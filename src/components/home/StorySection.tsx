@@ -37,10 +37,27 @@ export default function StorySection() {
   const t = useTranslations("story");
 
   return (
-    <section className="bg-olive text-cream">
-      <div className="grid lg:grid-cols-[1fr_1.2fr]">
-        {/* Sol metin — içerik sayfa hizasında kalır */}
-        <div className="px-4 py-16 sm:px-6 lg:py-20 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-16">
+    <section className="relative overflow-hidden bg-olive text-cream">
+      {/* Tam genişlik arka plan fotoğrafı */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/story.jpg')" }}
+        aria-hidden="true"
+      />
+      {/* Mobil: tüm alana koyu örtü — masaüstü: soldan sağa eriyen yeşil panel */}
+      <div className="absolute inset-0 bg-olive/85 lg:hidden" aria-hidden="true" />
+      <div
+        className="absolute inset-0 hidden lg:block"
+        style={{
+          background:
+            "linear-gradient(to right, #3d4a22 0%, #3d4a22 34%, rgba(61,74,34,0.6) 48%, rgba(61,74,34,0) 62%)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Sol metin paneli */}
+        <div className="max-w-md py-16 lg:py-24">
           <h2 className="font-display text-3xl leading-snug lg:text-4xl">
             {t("title")}
           </h2>
@@ -72,22 +89,18 @@ export default function StorySection() {
           </Link>
         </div>
 
-        {/* Sağ görsel — grid alanını tamamen kaplar, sayfanın sağ kenarına dayanır */}
-        <div
-          className="relative min-h-[320px] bg-olive-deep bg-cover bg-center sm:min-h-[420px] lg:min-h-0"
-          style={{ backgroundImage: "url('/images/story.jpg')" }}
-        >
-          <button
-            type="button"
-            aria-label={t("play")}
-            className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream/90 text-olive shadow-lg transition-transform hover:scale-105"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-            </svg>
-          </button>
-        </div>
       </div>
+
+      {/* Oynat düğmesi — fotoğraf alanının ortasında (masaüstü) */}
+      <button
+        type="button"
+        aria-label={t("play")}
+        className="absolute left-[68%] top-1/2 hidden h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-light/60 bg-olive-deep/70 text-cream shadow-lg backdrop-blur-sm transition-transform hover:scale-105 lg:flex"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+        </svg>
+      </button>
     </section>
   );
 }
