@@ -6,13 +6,13 @@ export default function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[560px] items-center bg-olive bg-cover bg-center lg:min-h-[640px]"
+      className="relative -mt-20 flex min-h-[640px] items-center bg-olive bg-cover bg-center lg:min-h-[720px]"
       style={{
         backgroundImage:
-          "linear-gradient(to right, rgba(35,42,20,0.72) 0%, rgba(35,42,20,0.35) 55%, rgba(35,42,20,0.1) 100%), url('/images/hero.jpg')",
+          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px), linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%), url('/images/hero.jpg')",
       }}
     >
-      <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 pb-20 pt-40 sm:px-6 lg:px-8">
         <div className="max-w-xl">
           <h1 className="font-display text-4xl leading-tight text-cream sm:text-5xl lg:text-[3.4rem]">
             {t("title")}

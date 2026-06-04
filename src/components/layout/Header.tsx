@@ -16,7 +16,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-cream/95 backdrop-blur-sm">
+    <header className="relative z-40">
       <div className="mx-auto grid h-20 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-6 lg:px-8">
         {/* Sol: masaüstü nav / mobil menü düğmesi */}
         <nav className="hidden items-center gap-8 lg:flex">
@@ -93,7 +93,7 @@ export default function Header() {
 
       {/* Mobil menü */}
       {menuOpen && (
-        <nav className="border-t border-line bg-cream px-6 py-4 lg:hidden">
+        <nav className="absolute inset-x-0 top-full border-y border-line bg-cream px-6 py-4 lg:hidden">
           <ul className="flex flex-col gap-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
