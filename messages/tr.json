@@ -37,6 +37,13 @@
     "cta": "Tüm Ürünleri Gör",
     "addToCart": "Sepete ekle"
   },
+  "collectionPage": {
+    "title": "Koleksiyonumuz",
+    "text": "Erken hasattan, soğuk sıkıma özenle üretilen zeytinyağlarımızla tanışın.",
+    "cta": "Zeytinyağlarımız Hakkında",
+    "metaTitle": "Koleksiyon | Veroliva Zeytinyağı",
+    "metaDescription": "Veroliva zeytinyağı koleksiyonu: erken hasat, soğuk sıkım klasik ve aile boyu seçenekler."
+  },
   "story": {
     "title": "1985'ten Bugüne Geleneksel Ustalık",
     "text": "Üç Kuşağın Sabır ve Sevgi Hikayesi: Bizim için her ağaç bir miras, her hasat bir bayram. Geleneksel ustalığı, doğanın sabrıyla harmanlıyoruz.",

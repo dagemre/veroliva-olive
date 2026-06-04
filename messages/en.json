@@ -37,6 +37,13 @@
     "cta": "View All Products",
     "addToCart": "Add to cart"
   },
+  "collectionPage": {
+    "title": "Our Collection",
+    "text": "Meet our olive oils, carefully crafted from early harvest to cold press.",
+    "cta": "About Our Olive Oils",
+    "metaTitle": "Collection | Veroliva Olive Oil",
+    "metaDescription": "The Veroliva olive oil collection: early harvest, cold-pressed classics and family-size options."
+  },
   "story": {
     "title": "Traditional Mastery Since 1985",
     "text": "A story of three generations of patience and love: For us, every tree is a legacy and every harvest a celebration. We blend traditional mastery with nature's patience.",

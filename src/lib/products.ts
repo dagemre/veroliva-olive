@@ -38,9 +38,23 @@ export const products: Product[] = [
   {
     slug: "veroliva-aile-boyu-teneke",
     name: "Veroliva Aile Boyu Teneke",
-    badge: { tr: "EKONOMİK", en: "VALUE SIZE" },
+    badge: { tr: "AİLE BOYU", en: "FAMILY SIZE" },
     size: "5 L",
     price: 3850,
+  },
+  {
+    slug: "veroliva-premium",
+    name: "Veroliva Premium",
+    badge: { tr: "PREMİUM", en: "PREMIUM" },
+    size: "750 ml",
+    price: 2150,
+  },
+  {
+    slug: "veroliva-classic",
+    name: "Veroliva Classic",
+    badge: { tr: "KLASİK", en: "CLASSIC" },
+    size: "1 L",
+    price: 2350,
   },
 ];
 
