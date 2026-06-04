@@ -75,23 +75,13 @@ export default function Footer() {
       <section className="border-y border-line bg-parchment">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:gap-10 lg:px-8">
           {/* Zeytin dalı süslemesi */}
-          <svg
-            className="hidden shrink-0 text-ink-soft lg:block"
-            width="96"
-            height="64"
-            viewBox="0 0 96 64"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/icons/zeytindali.webp"
+            alt=""
             aria-hidden="true"
-          >
-            <path d="M6 52 C 28 40, 56 28, 90 14" />
-            <ellipse cx="30" cy="38" rx="4" ry="8" transform="rotate(-35 30 38)" />
-            <ellipse cx="46" cy="32" rx="4" ry="8" transform="rotate(-50 46 32)" />
-            <ellipse cx="62" cy="24" rx="4" ry="8" transform="rotate(-30 62 24)" />
-            <circle cx="38" cy="48" r="4.5" fill="currentColor" fillOpacity="0.15" />
-            <circle cx="56" cy="40" r="4.5" fill="currentColor" fillOpacity="0.15" />
-          </svg>
+            className="hidden h-16 w-auto shrink-0 lg:block"
+          />
 
           <h2 className="max-w-xs text-center font-display text-xl text-ink lg:text-left">
             {t("newsletter.title")}
