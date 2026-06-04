@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 
 const NAV_ITEMS = [
   { key: "collection", href: "/koleksiyon" },
@@ -13,7 +13,11 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className="relative z-40">
@@ -24,7 +28,12 @@ export default function Header() {
             <Link
               key={item.key}
               href={item.href}
-              className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:text-gold"
+              className={`border-b pb-1 text-[13px] font-medium uppercase tracking-[0.12em] transition-colors hover:text-gold ${
+                isActive(item.href)
+                  ? "border-gold text-ink"
+                  : "border-transparent text-ink"
+              }`}
+              aria-current={isActive(item.href) ? "page" : undefined}
             >
               {t(item.key)}
             </Link>
@@ -100,7 +109,10 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block py-2.5 text-sm font-medium uppercase tracking-[0.12em] text-ink"
+                  className={`block w-fit py-2.5 text-sm font-medium uppercase tracking-[0.12em] text-ink ${
+                    isActive(item.href) ? "border-b border-gold" : ""
+                  }`}
+                  aria-current={isActive(item.href) ? "page" : undefined}
                 >
                   {t(item.key)}
                 </Link>

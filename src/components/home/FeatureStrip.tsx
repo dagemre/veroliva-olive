@@ -13,9 +13,9 @@ export default function FeatureStrip() {
 
   return (
     <section className="border-b border-line bg-cream-light">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-4 py-2 sm:grid-cols-2 sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:divide-x lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-line px-4 py-1 sm:grid-cols-2 sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:divide-x lg:px-8">
         {FEATURES.map((f) => (
-          <div key={f.key} className="flex items-start gap-4 px-2 py-6 lg:px-7">
+          <div key={f.key} className="flex items-start gap-4 px-2 py-3.5 lg:px-7">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={f.icon}

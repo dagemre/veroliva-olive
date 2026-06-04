@@ -20,6 +20,8 @@ Tercihen arka planı şeffaf PNG:
 | `veroliva-reserve-gold.png` | Veroliva Reserve Gold 500 ml |
 | `veroliva-classic-silver.png` | Veroliva Classic Silver 500 ml |
 | `veroliva-aile-boyu-teneke.png` | Veroliva Aile Boyu Teneke 5 L |
+| `veroliva-premium.png` | Veroliva Premium 750 ml (şimdilik Classic Silver kopyası — gerçeği gelince üzerine yaz) |
+| `veroliva-classic.png` | Veroliva Classic 1 L (şimdilik Classic Silver kopyası — gerçeği gelince üzerine yaz) |
 
 ## Rehber/blog görselleri (`public/images/blog/`)
 
