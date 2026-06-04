@@ -1,0 +1,92 @@
+{
+  "announcement": "Kasım Ayı Özel: İlk Siparişe %15 İndirim & 1500 TL Üzeri Ücretsiz Kargo.",
+  "nav": {
+    "collection": "Koleksiyon",
+    "guide": "Rehber",
+    "about": "Hakkımızda",
+    "search": "Ara",
+    "account": "Hesabım",
+    "cart": "Sepet"
+  },
+  "hero": {
+    "title": "Ege'nin Altın Hediyesi, Sofranızda Canlanıyor.",
+    "text": "Pelitköy'ün rüzgarıyla olgunlaşan, asırlık ağaçlardan özenle ve geleneksel yöntemlerle soğuk sıkım natürel sızma zeytinyağları. Hasadın en saf ve taze ruhu.",
+    "cta": "Özel Hasat Koleksiyonunu Keşfet"
+  },
+  "features": {
+    "coldPress": {
+      "title": "Soğuk Sıkım",
+      "text": "Geleneksel bütünlük: Doğal sıkımla besleyici değerini tam koruyoruz."
+    },
+    "earlyHarvest": {
+      "title": "Erken Hasat",
+      "text": "Gençlik enerjisi: Taze yeşil hasadın canlı aroması ve polifenol zenginliği."
+    },
+    "natural": {
+      "title": "Doğal",
+      "text": "Katkısız saflık: Hiçbir koruyucu veya kimyasal içermeyen, %100 doğal özler."
+    },
+    "local": {
+      "title": "Yerli",
+      "text": "Atadan miras: Kendi aile bahçelerimizden gelen yerli ve otantik üretim."
+    }
+  },
+  "collection": {
+    "title": "Koleksiyonumuz",
+    "text": "Pelitköy hasat dönemlerinin benzersiz lezzetlerini keşfedin.",
+    "cta": "Tüm Ürünleri Gör",
+    "addToCart": "Sepete ekle"
+  },
+  "story": {
+    "title": "1985'ten Bugüne Geleneksel Ustalık",
+    "text": "Üç Kuşağın Sabır ve Sevgi Hikayesi: Bizim için her ağaç bir miras, her hasat bir bayram. Geleneksel ustalığı, doğanın sabrıyla harmanlıyoruz.",
+    "stats": {
+      "years": "Yıl Tecrübe",
+      "trees": "Asırlık Ağaç",
+      "natural": "Doğal Üretim"
+    },
+    "cta": "Hikayemizi Keşfedin",
+    "play": "Videoyu oynat"
+  },
+  "guide": {
+    "title": "Zeytinyağı Rehberi",
+    "text": "Zeytinyağı hakkında merak ettiğiniz tüm konular ve tarif önerileri.",
+    "cta": "Tüm Yazıları Gör"
+  },
+  "newsletter": {
+    "title": "Ege Lezzetlerinin Büyüsünden Haberdar Olun.",
+    "placeholder": "E-posta adresiniz",
+    "button": "Abone Ol",
+    "follow": "Bizi Takip Edin",
+    "success": "Teşekkürler! Aboneliğiniz alındı."
+  },
+  "footer": {
+    "corporate": {
+      "title": "Kurumsal",
+      "about": "Hakkımızda",
+      "production": "Üretim Sürecimiz",
+      "quality": "Kalite Anlayışımız",
+      "contact": "İletişim"
+    },
+    "collection": {
+      "title": "Koleksiyon",
+      "all": "Tüm Ürünler",
+      "earlyHarvest": "Erken Hasat",
+      "classic": "Klasik Seri",
+      "tins": "Teneke Ürünler"
+    },
+    "help": {
+      "title": "Yardım",
+      "faq": "Sıkça Sorulan Sorular",
+      "shipping": "Kargo & Teslimat",
+      "returns": "İade & Değişim",
+      "privacy": "Gizlilik Politikası"
+    },
+    "copyright": "© {year} Veroliva Zeytinyağı. Tüm hakları saklıdır.",
+    "badges": {
+      "natural": "%100 Doğal",
+      "securePayment": "Güvenli Ödeme",
+      "fastShipping": "Hızlı Kargo"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  /* Veroliva renk paleti — anasayfa tasarımından */
+  --color-cream: #f4efe0; /* sayfa zemini */
+  --color-cream-light: #faf7ec; /* kartlar, açık bölümler */
+  --color-parchment: #ece5d0; /* koyu krem bantlar */
+  --color-olive: #3d4a22; /* koyu zeytin yeşili bölümler */
+  --color-olive-deep: #313d1b; /* duyuru barı, hover */
+  --color-gold: #b3924c; /* logo, vurgular */
+  --color-gold-light: #cdb57a; /* açık altın kenarlıklar */
+  --color-ink: #2b2b21; /* ana metin */
+  --color-ink-soft: #6b6a58; /* ikincil metin */
+  --color-line: #dcd3b8; /* ince çizgiler */
+
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Karusel kaydırma çubuğunu gizle */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,92 @@
+{
+  "announcement": "November Special: 15% Off Your First Order & Free Shipping Over 1500 TL.",
+  "nav": {
+    "collection": "Collection",
+    "guide": "Guide",
+    "about": "About Us",
+    "search": "Search",
+    "account": "My Account",
+    "cart": "Cart"
+  },
+  "hero": {
+    "title": "The Aegean's Golden Gift, Brought to Life at Your Table.",
+    "text": "Cold-pressed extra virgin olive oils, carefully crafted with traditional methods from centuries-old trees ripened by the winds of Pelitköy. The purest, freshest spirit of the harvest.",
+    "cta": "Discover the Special Harvest Collection"
+  },
+  "features": {
+    "coldPress": {
+      "title": "Cold Pressed",
+      "text": "Traditional integrity: Natural pressing fully preserves nutritional value."
+    },
+    "earlyHarvest": {
+      "title": "Early Harvest",
+      "text": "Youthful energy: The vivid aroma and polyphenol richness of fresh green harvest."
+    },
+    "natural": {
+      "title": "Natural",
+      "text": "Additive-free purity: 100% natural, with no preservatives or chemicals."
+    },
+    "local": {
+      "title": "Local",
+      "text": "An ancestral legacy: Authentic, local production from our own family groves."
+    }
+  },
+  "collection": {
+    "title": "Our Collection",
+    "text": "Discover the unique flavors of Pelitköy's harvest seasons.",
+    "cta": "View All Products",
+    "addToCart": "Add to cart"
+  },
+  "story": {
+    "title": "Traditional Mastery Since 1985",
+    "text": "A story of three generations of patience and love: For us, every tree is a legacy and every harvest a celebration. We blend traditional mastery with nature's patience.",
+    "stats": {
+      "years": "Years of Experience",
+      "trees": "Centuries-Old Trees",
+      "natural": "Natural Production"
+    },
+    "cta": "Discover Our Story",
+    "play": "Play video"
+  },
+  "guide": {
+    "title": "Olive Oil Guide",
+    "text": "Everything you want to know about olive oil, plus recipe ideas.",
+    "cta": "View All Articles"
+  },
+  "newsletter": {
+    "title": "Stay in Touch with the Magic of Aegean Flavors.",
+    "placeholder": "Your e-mail address",
+    "button": "Subscribe",
+    "follow": "Follow Us",
+    "success": "Thank you! Your subscription has been received."
+  },
+  "footer": {
+    "corporate": {
+      "title": "Corporate",
+      "about": "About Us",
+      "production": "Our Production Process",
+      "quality": "Our Quality Standards",
+      "contact": "Contact"
+    },
+    "collection": {
+      "title": "Collection",
+      "all": "All Products",
+      "earlyHarvest": "Early Harvest",
+      "classic": "Classic Series",
+      "tins": "Tin Products"
+    },
+    "help": {
+      "title": "Help",
+      "faq": "FAQ",
+      "shipping": "Shipping & Delivery",
+      "returns": "Returns & Exchanges",
+      "privacy": "Privacy Policy"
+    },
+    "copyright": "© {year} Veroliva Olive Oil. All rights reserved.",
+    "badges": {
+      "natural": "100% Natural",
+      "securePayment": "Secure Payment",
+      "fastShipping": "Fast Shipping"
+    }
+  }
+}

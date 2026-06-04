@@ -1,0 +1,193 @@
+import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import NewsletterForm from "./NewsletterForm";
+
+const SOCIALS = [
+  {
+    name: "Instagram",
+    href: "https://instagram.com",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    name: "Facebook",
+    href: "https://facebook.com",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V5.1c-.3 0-1.1-.1-2-.1-2 0-3.4 1.2-3.4 3.5V11H8.5v3H11v7h2.5Z" />
+      </svg>
+    ),
+  },
+  {
+    name: "YouTube",
+    href: "https://youtube.com",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8c1.5.4 7.8.4 7.8.4s6.3 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z" />
+      </svg>
+    ),
+  },
+];
+
+export default function Footer() {
+  const t = useTranslations();
+  const year = new Date().getFullYear();
+
+  const columns = [
+    {
+      title: t("footer.corporate.title"),
+      links: [
+        { label: t("footer.corporate.about"), href: "/hakkimizda" },
+        { label: t("footer.corporate.production"), href: "/uretim" },
+        { label: t("footer.corporate.quality"), href: "/kalite" },
+        { label: t("footer.corporate.contact"), href: "/iletisim" },
+      ],
+    },
+    {
+      title: t("footer.collection.title"),
+      links: [
+        { label: t("footer.collection.all"), href: "/koleksiyon" },
+        { label: t("footer.collection.earlyHarvest"), href: "/koleksiyon" },
+        { label: t("footer.collection.classic"), href: "/koleksiyon" },
+        { label: t("footer.collection.tins"), href: "/koleksiyon" },
+      ],
+    },
+    {
+      title: t("footer.help.title"),
+      links: [
+        { label: t("footer.help.faq"), href: "/sss" },
+        { label: t("footer.help.shipping"), href: "/kargo" },
+        { label: t("footer.help.returns"), href: "/iade" },
+        { label: t("footer.help.privacy"), href: "/gizlilik" },
+      ],
+    },
+  ];
+
+  return (
+    <footer>
+      {/* Bülten bandı */}
+      <section className="border-y border-line bg-parchment">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:gap-10 lg:px-8">
+          {/* Zeytin dalı süslemesi */}
+          <svg
+            className="hidden shrink-0 text-ink-soft lg:block"
+            width="96"
+            height="64"
+            viewBox="0 0 96 64"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            aria-hidden="true"
+          >
+            <path d="M6 52 C 28 40, 56 28, 90 14" />
+            <ellipse cx="30" cy="38" rx="4" ry="8" transform="rotate(-35 30 38)" />
+            <ellipse cx="46" cy="32" rx="4" ry="8" transform="rotate(-50 46 32)" />
+            <ellipse cx="62" cy="24" rx="4" ry="8" transform="rotate(-30 62 24)" />
+            <circle cx="38" cy="48" r="4.5" fill="currentColor" fillOpacity="0.15" />
+            <circle cx="56" cy="40" r="4.5" fill="currentColor" fillOpacity="0.15" />
+          </svg>
+
+          <h2 className="max-w-xs text-center font-display text-xl text-ink lg:text-left">
+            {t("newsletter.title")}
+          </h2>
+
+          <div className="flex flex-1 justify-center">
+            <NewsletterForm />
+          </div>
+
+          <div className="flex flex-col items-center gap-3 lg:items-end">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+              {t("newsletter.follow")}
+            </span>
+            <div className="flex items-center gap-4">
+              {SOCIALS.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  className="text-ink transition-colors hover:text-gold"
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ana footer */}
+      <section className="bg-cream">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
+          <div>
+            <Image
+              src="/Logo.svg"
+              alt="Veroliva Zeytinyağı"
+              width={170}
+              height={47}
+              className="h-10 w-auto"
+            />
+          </div>
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <h3 className="mb-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-ink">
+                {col.title}
+              </h3>
+              <ul className="space-y-2.5">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-[13px] text-ink-soft transition-colors hover:text-gold"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        {/* Alt bar */}
+        <div className="border-t border-line">
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:px-8">
+            <p className="text-xs text-ink-soft">
+              {t("footer.copyright", { year })}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+                  <path d="M12 3c-4 3-7 4-7 9a7 7 0 0 0 14 0c0-5-3-6-7-9Z" />
+                </svg>
+                {t("footer.badges.natural")}
+              </span>
+              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+                {t("footer.badges.securePayment")}
+              </span>
+              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" />
+                  <circle cx="7" cy="17" r="2" />
+                  <circle cx="17" cy="17" r="2" />
+                </svg>
+                {t("footer.badges.fastShipping")}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+  );
+}
