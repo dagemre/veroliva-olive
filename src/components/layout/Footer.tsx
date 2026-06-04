@@ -80,7 +80,7 @@ export default function Footer() {
             src="/icons/zeytindali.svg"
             alt=""
             aria-hidden="true"
-            className="-my-9 hidden h-36 w-auto shrink-0 lg:block"
+            className="-my-6 hidden h-28 w-auto shrink-0 lg:block"
           />
 
           <h2 className="max-w-xs text-center font-display text-xl text-ink lg:text-left">
