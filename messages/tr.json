@@ -1,5 +1,5 @@
 {
-  "announcement": "Kasım Ayı Özel: İlk Siparişe %15 İndirim & 1500 TL Üzeri Ücretsiz Kargo.",
+  "announcement": "İlk Siparişe %15 İndirim ve 1500 TL Üzeri Ücretsiz Kargo.",
   "nav": {
     "collection": "Koleksiyon",
     "guide": "Rehber",
@@ -44,6 +44,51 @@
     "cta": "Zeytinyağlarımız Hakkında",
     "metaTitle": "Koleksiyon | Veroliva Zeytinyağı",
     "metaDescription": "Veroliva zeytinyağı koleksiyonu: erken hasat, soğuk sıkım klasik ve aile boyu seçenekler."
+  },
+  "guidePage": {
+    "metaTitle": "Zeytinyağı Rehberi | Veroliva Zeytinyağı",
+    "metaDescription": "Zeytinyağı çeşitleri, faydaları ve kullanım önerileri. Doğru zeytinyağını seçmek için Veroliva rehberi.",
+    "hero": {
+      "title": "Zeytinyağı Rehberi",
+      "text": "Zeytinyağını daha yakından tanıyın. Doğru seçimi yapın, lezzetin ve sağlığın farkını keşfedin.",
+      "cta": "Zeytinyağı Hakkında"
+    },
+    "about": {
+      "title": "Zeytinyağı Hakkında",
+      "text": "Binlerce yıllık geçmişiyle zeytinyağı, Akdeniz kültürünün en değerli miraslarından biri. Doğal üretim süreci, besleyici içeriği ve benzersiz aromasıyla sofralarımızın vazgeçilmezi.",
+      "more": "Devamını Oku",
+      "f1Title": "Doğal ve Saf",
+      "f1Text": "Katkısız, %100 doğal zeytinlerden üretilir.",
+      "f2Title": "Zengin İçerik",
+      "f2Text": "E vitamini ve antioksidan bakımından zengindir.",
+      "f3Title": "Sağlıklı Yaşam",
+      "f3Text": "Dengeli beslenmenin doğal bir parçasıdır.",
+      "f4Title": "Sürdürülebilir",
+      "f4Text": "Doğaya saygılı üretim anlayışıyla üretilir."
+    },
+    "varieties": {
+      "title": "Zeytinyağı Çeşitleri",
+      "text": "İhtiyacınıza ve damak zevkinize uygun en doğru zeytinyağını seçin.",
+      "cta": "Keşfet",
+      "v1Title": "Erken Hasat Zeytinyağı",
+      "v1Text": "Yeşil zeytinlerden erken dönemde üretilir. Yoğun aroma, yüksek polifenol içerir.",
+      "v2Title": "Klasik Zeytinyağı",
+      "v2Text": "Olgun zeytinlerden elde edilir. Dengeli aroma ve yumuşak içime sahiptir.",
+      "v3Title": "Natürel Sızma Zeytinyağı",
+      "v3Text": "İlk soğuk sıkım, en saf hali. En yüksek kalite zeytinyağıdır."
+    },
+    "tips": {
+      "title": "Zeytinyağı Kullanım Önerileri",
+      "text": "Zeytinyağını en doğru şekilde kullanarak lezzetini ve faydasını artırın.",
+      "t1Title": "Salatalarda",
+      "t1Text": "Taze salatalarınıza lezzet ve sağlık katar.",
+      "t2Title": "Pişirmede",
+      "t2Text": "Orta ısıda pişirme ve soteleme için idealdir.",
+      "t3Title": "Kahvaltılarda",
+      "t3Text": "Ekmek, peynir ve zeytinle mükemmel uyum sağlar.",
+      "t4Title": "Tatlılarda",
+      "t4Text": "Doğru tariflerle tatlılarınıza farklı bir dokunuş katar."
+    }
   },
   "story": {
     "title": "1985'ten Bugüne Geleneksel Ustalık",

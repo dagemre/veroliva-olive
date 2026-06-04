@@ -95,20 +95,20 @@ export default function Footer() {
 
       {/* Ana footer */}
       <section className="bg-cream">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 text-center sm:grid-cols-2 sm:px-6 sm:text-left lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
           <div>
             <Image
               src="/Logo.svg"
               alt="Veroliva Zeytinyağı"
               width={170}
               height={47}
-              className="h-10 w-auto"
+              className="mx-auto h-10 w-auto sm:mx-0"
             />
             <div className="mt-6">
               <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
                 {t("newsletter.follow")}
               </span>
-              <div className="mt-3 flex items-center gap-4">
+              <div className="mt-3 flex items-center justify-center gap-4 sm:justify-start">
                 {SOCIALS.map((s) => (
                   <a
                     key={s.name}

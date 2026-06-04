@@ -1,5 +1,5 @@
 {
-  "announcement": "November Special: 15% Off Your First Order & Free Shipping Over 1500 TL.",
+  "announcement": "15% Off Your First Order & Free Shipping Over 1500 TL.",
   "nav": {
     "collection": "Collection",
     "guide": "Guide",
@@ -44,6 +44,51 @@
     "cta": "About Our Olive Oils",
     "metaTitle": "Collection | Veroliva Olive Oil",
     "metaDescription": "The Veroliva olive oil collection: early harvest, cold-pressed classics and family-size options."
+  },
+  "guidePage": {
+    "metaTitle": "Olive Oil Guide | Veroliva Olive Oil",
+    "metaDescription": "Olive oil varieties, benefits and usage tips. The Veroliva guide to choosing the right olive oil.",
+    "hero": {
+      "title": "Olive Oil Guide",
+      "text": "Get to know olive oil more closely. Make the right choice and discover the difference in taste and health.",
+      "cta": "About Olive Oil"
+    },
+    "about": {
+      "title": "About Olive Oil",
+      "text": "With a history spanning thousands of years, olive oil is one of the most treasured legacies of Mediterranean culture. Its natural production process, nutritious content and unique aroma make it indispensable at our tables.",
+      "more": "Read More",
+      "f1Title": "Natural and Pure",
+      "f1Text": "Made from 100% natural olives with no additives.",
+      "f2Title": "Rich Content",
+      "f2Text": "Rich in vitamin E and antioxidants.",
+      "f3Title": "Healthy Living",
+      "f3Text": "A natural part of a balanced diet.",
+      "f4Title": "Sustainable",
+      "f4Text": "Produced with respect for nature."
+    },
+    "varieties": {
+      "title": "Olive Oil Varieties",
+      "text": "Choose the olive oil that best suits your needs and your palate.",
+      "cta": "Explore",
+      "v1Title": "Early Harvest Olive Oil",
+      "v1Text": "Produced early in the season from green olives. Intense aroma, high in polyphenols.",
+      "v2Title": "Classic Olive Oil",
+      "v2Text": "Obtained from ripe olives. Balanced aroma with a smooth finish.",
+      "v3Title": "Extra Virgin Olive Oil",
+      "v3Text": "First cold press, in its purest form. The highest quality olive oil."
+    },
+    "tips": {
+      "title": "Olive Oil Usage Tips",
+      "text": "Use olive oil the right way to enhance its flavor and benefits.",
+      "t1Title": "In Salads",
+      "t1Text": "Adds flavor and health to your fresh salads.",
+      "t2Title": "In Cooking",
+      "t2Text": "Ideal for medium-heat cooking and sautéing.",
+      "t3Title": "At Breakfast",
+      "t3Text": "Pairs perfectly with bread, cheese and olives.",
+      "t4Title": "In Desserts",
+      "t4Text": "Adds a distinctive touch to desserts with the right recipes."
+    }
   },
   "story": {
     "title": "Traditional Mastery Since 1985",
