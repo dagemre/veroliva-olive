@@ -73,42 +73,22 @@ export default function Footer() {
     <footer>
       {/* Bülten bandı */}
       <section className="border-y border-line bg-parchment">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-10 sm:px-6 lg:flex-row lg:gap-10 lg:px-8">
-          {/* Zeytin dalı süslemesi */}
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 py-5 sm:px-6 lg:flex-row lg:gap-10 lg:px-8">
+          {/* Zeytin dalı süslemesi — bant yüksekliğini büyütmeden taşarak büyür */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/icons/zeytindali.svg"
             alt=""
             aria-hidden="true"
-            className="hidden h-28 w-auto shrink-0 lg:block"
+            className="-my-9 hidden h-36 w-auto shrink-0 lg:block"
           />
 
           <h2 className="max-w-xs text-center font-display text-xl text-ink lg:text-left">
             {t("newsletter.title")}
           </h2>
 
-          <div className="flex flex-1 justify-center">
+          <div className="flex flex-1 justify-center lg:justify-end">
             <NewsletterForm />
-          </div>
-
-          <div className="flex flex-col items-center gap-3 lg:items-end">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
-              {t("newsletter.follow")}
-            </span>
-            <div className="flex items-center gap-4">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.name}
-                  className="text-ink transition-colors hover:text-gold"
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -124,6 +104,25 @@ export default function Footer() {
               height={47}
               className="h-10 w-auto"
             />
+            <div className="mt-6">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
+                {t("newsletter.follow")}
+              </span>
+              <div className="mt-3 flex items-center gap-4">
+                {SOCIALS.map((s) => (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    className="text-ink transition-colors hover:text-gold"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
           {columns.map((col) => (
             <nav key={col.title} aria-label={col.title}>
