@@ -4,6 +4,8 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { products } from "@/lib/products";
 import ProductCard from "@/components/product/ProductCard";
+import PageHero from "@/components/layout/PageHero";
+import FeatureStrip from "@/components/home/FeatureStrip";
 
 export async function generateMetadata({
   params,
@@ -22,6 +24,22 @@ function CollectionContent() {
   const t = useTranslations("collectionPage");
 
   return (
+    <>
+      <PageHero
+        title={t("title")}
+        text={t("heroText")}
+        image="/images/hero2.jpg"
+      />
+      <FeatureStrip />
+      <CollectionGrid />
+    </>
+  );
+}
+
+function CollectionGrid() {
+  const t = useTranslations("collectionPage");
+
+  return (
     <section
       className="bg-cream bg-cover bg-center"
       style={{ backgroundImage: "url('/images/urun-fon.jpg')" }}
@@ -29,9 +47,9 @@ function CollectionContent() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:py-20">
         {/* Sol tanıtım kolonu */}
         <div className="lg:pt-6">
-          <h1 className="font-display text-3xl text-ink lg:text-4xl">
+          <h2 className="font-display text-3xl text-ink lg:text-4xl">
             {t("title")}
-          </h1>
+          </h2>
           <p className="mt-5 text-sm leading-relaxed text-ink-soft">
             {t("text")}
           </p>
