@@ -77,7 +77,7 @@ export default function Footer() {
           {/* Zeytin dalı süslemesi */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/icons/zeytindali.webp"
+            src="/icons/zeytindali.svg"
             alt=""
             aria-hidden="true"
             className="hidden h-28 w-auto shrink-0 lg:block"
