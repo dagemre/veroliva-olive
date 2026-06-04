@@ -21,7 +21,7 @@ export default function FeatureStrip() {
               src={f.icon}
               alt=""
               aria-hidden="true"
-              className="mt-0.5 h-10 w-10 shrink-0 object-contain"
+              className="h-16 w-16 shrink-0 self-center object-contain"
             />
             <div>
               <h3 className="text-[12px] font-bold uppercase tracking-[0.14em] text-ink">

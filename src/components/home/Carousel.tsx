@@ -18,7 +18,7 @@ export default function Carousel({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative min-w-0">
       <div
         ref={trackRef}
         className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2"

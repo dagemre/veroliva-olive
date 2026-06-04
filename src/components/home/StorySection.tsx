@@ -38,9 +38,9 @@ export default function StorySection() {
 
   return (
     <section className="bg-olive text-cream">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_1.3fr] lg:gap-14 lg:px-8 lg:py-20">
-        {/* Sol metin */}
-        <div>
+      <div className="grid lg:grid-cols-[1fr_1.2fr]">
+        {/* Sol metin — içerik sayfa hizasında kalır */}
+        <div className="px-4 py-16 sm:px-6 lg:py-20 lg:pl-[max(2rem,calc((100vw-80rem)/2+2rem))] lg:pr-16">
           <h2 className="font-display text-3xl leading-snug lg:text-4xl">
             {t("title")}
           </h2>
@@ -72,9 +72,9 @@ export default function StorySection() {
           </Link>
         </div>
 
-        {/* Sağ görsel + oynat düğmesi */}
+        {/* Sağ görsel — grid alanını tamamen kaplar, sayfanın sağ kenarına dayanır */}
         <div
-          className="relative min-h-[300px] overflow-hidden bg-olive-deep bg-cover bg-center lg:min-h-[420px]"
+          className="relative min-h-[320px] bg-olive-deep bg-cover bg-center sm:min-h-[420px] lg:min-h-0"
           style={{ backgroundImage: "url('/images/story.jpg')" }}
         >
           <button

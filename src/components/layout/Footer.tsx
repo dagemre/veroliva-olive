@@ -80,7 +80,7 @@ export default function Footer() {
             src="/icons/zeytindali.webp"
             alt=""
             aria-hidden="true"
-            className="hidden h-16 w-auto shrink-0 lg:block"
+            className="hidden h-28 w-auto shrink-0 lg:block"
           />
 
           <h2 className="max-w-xs text-center font-display text-xl text-ink lg:text-left">
