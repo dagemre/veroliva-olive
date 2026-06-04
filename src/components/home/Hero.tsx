@@ -9,7 +9,7 @@ export default function Hero() {
       className="relative flex min-h-[560px] items-center bg-olive bg-cover bg-center lg:min-h-[640px]"
       style={{
         backgroundImage:
-          "linear-gradient(to top, #f4efe0 0%, rgba(244,239,224,0) 26%), linear-gradient(to right, rgba(35,42,20,0.72) 0%, rgba(35,42,20,0.35) 55%, rgba(35,42,20,0.1) 100%), url('/images/hero.jpg')",
+          "linear-gradient(to right, rgba(35,42,20,0.72) 0%, rgba(35,42,20,0.35) 55%, rgba(35,42,20,0.1) 100%), url('/images/hero.jpg')",
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
