@@ -11,7 +11,8 @@ export default function ProductCard({ product }: { product: Product }) {
       {/* Görsel alanı */}
       <Link
         href={`/urun/${product.slug}`}
-        className="relative block aspect-[4/5] overflow-hidden bg-parchment"
+        className="relative block aspect-[4/5] overflow-hidden bg-parchment bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/urun-fon.jpg')" }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
