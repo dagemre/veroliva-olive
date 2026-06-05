@@ -90,6 +90,61 @@
       "t4Text": "Adds a distinctive touch to desserts with the right recipes."
     }
   },
+  "aboutPage": {
+    "metaTitle": "About Us | Veroliva Olive Oil",
+    "metaDescription": "Veroliva's story since 1985: three generations of traditional olive oil craftsmanship in the fertile lands of the Aegean.",
+    "hero": {
+      "eyebrow": "About Us",
+      "title": "Our Family's Legacy, Our Land's Bounty",
+      "p1": "Veroliva began in 1985 with our love for the olive in the fertile lands of the Aegean. With knowledge, labor and passion passed down through generations, today we bring naturalness and quality to your table.",
+      "p2": "Our purpose is to bring you olive oil in its purest, additive-free and natural form, and to carry this unique flavor to future generations.",
+      "cta": "Discover Our Story"
+    },
+    "features": {
+      "f1Title": "100% Natural",
+      "f1Text": "No additives — natural in its purest form.",
+      "f2Title": "Cold Pressed",
+      "f2Text": "Our cold-press method preserves nutritional value.",
+      "f3Title": "Healthy & Safe",
+      "f3Text": "Supports a healthy life with natural ingredients.",
+      "f4Title": "Sustainable",
+      "f4Text": "We work with a nature-conscious production approach.",
+      "f5Title": "Local Production",
+      "f5Text": "From local Aegean growers, supporting local development."
+    },
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "Traditional Craftsmanship Since 1985",
+      "text": "A story of three generations of patience and love: for us, every tree is a legacy and every harvest a celebration. We blend traditional craftsmanship with nature's patience.",
+      "t1Year": "1985",
+      "t1Text": "We planted our first olive trees.",
+      "t2Year": "1995",
+      "t2Text": "We adopted cold pressing and focused on quality.",
+      "t3Year": "2005",
+      "t3Text": "We began bringing our naturalness to more tables.",
+      "t4Year": "Today",
+      "t4Text": "With strength drawn from tradition, we leave a legacy of quality for the future.",
+      "s1Value": "39+",
+      "s1Label": "Years of Experience",
+      "s2Value": "12,000+",
+      "s2Label": "Happy Customers",
+      "s3Value": "100%",
+      "s3Label": "Local & Natural"
+    },
+    "process": {
+      "title": "Crafted with Nature",
+      "p1Title": "1. Harvest",
+      "p1Text": "Our olives are picked with care, right on time.",
+      "p2Title": "2. Selection",
+      "p2Text": "Only the finest olives are selected and sorted.",
+      "p3Title": "3. Cold Press",
+      "p3Text": "Pressed at low temperature to preserve nutrients.",
+      "p4Title": "4. Natural Resting",
+      "p4Text": "Our oil rests naturally and is never refined.",
+      "p5Title": "5. Bottling",
+      "p5Text": "Bottled in its purest form and brought to your table."
+    }
+  },
   "story": {
     "title": "Traditional Mastery Since 1985",
     "text": "A story of three generations of patience and love: For us, every tree is a legacy and every harvest a celebration. We blend traditional mastery with nature's patience.",

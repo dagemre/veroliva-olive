@@ -90,6 +90,61 @@
       "t4Text": "Doğru tariflerle tatlılarınıza farklı bir dokunuş katar."
     }
   },
+  "aboutPage": {
+    "metaTitle": "Hakkımızda | Veroliva Zeytinyağı",
+    "metaDescription": "Veroliva'nın 1985'ten bugüne uzanan hikayesi: Ege'nin bereketli topraklarında üç kuşaktır süren geleneksel zeytinyağı ustalığı.",
+    "hero": {
+      "eyebrow": "Hakkımızda",
+      "title": "Ailemizin Mirası, Toprağımızın Bereketi",
+      "p1": "Veroliva, 1985'ten bu yana Ege'nin bereketli topraklarında zeytine duyduğumuz sevgiyle başladı. Nesiller boyu aktarılan bilgi, emek ve tutku ile bugün, doğallığı ve kaliteyi sofralarınıza taşıyoruz.",
+      "p2": "Amacımız; en saf haliyle, katkısız ve doğal zeytinyağını sizlerle buluşturmak ve bu eşsiz lezzeti gelecek nesillere taşımaktır.",
+      "cta": "Hikayemizi Keşfedin"
+    },
+    "features": {
+      "f1Title": "%100 Doğal",
+      "f1Text": "Katkı maddesi içermez, en saf haliyle doğaldır.",
+      "f2Title": "Soğuk Sıkım",
+      "f2Text": "Besin değerini koruyan soğuk sıkım yöntemimiz.",
+      "f3Title": "Sağlıklı ve Güvenli",
+      "f3Text": "Doğal içeriklerle sağlıklı yaşamı destekler.",
+      "f4Title": "Sürdürülebilir",
+      "f4Text": "Doğaya duyarlı üretim anlayışıyla çalışırız.",
+      "f5Title": "Yerli Üretim",
+      "f5Text": "Ege'nin yerel üreticilerinden, yerel kalkınmaya destek."
+    },
+    "story": {
+      "eyebrow": "Hikayemiz",
+      "title": "1985'ten Bugüne Geleneksel Ustalık",
+      "text": "Üç Kuşağın Sabır ve Sevgi Hikayesi: Bizim için her ağaç bir miras, her hasat bir bayram. Geleneksel ustalığı, doğanın sabrıyla harmanlıyoruz.",
+      "t1Year": "1985",
+      "t1Text": "İlk zeytin ağaçlarımızı toprakla buluşturduk.",
+      "t2Year": "1995",
+      "t2Text": "Soğuk sıkım yöntemini benimseyerek kaliteye odaklandık.",
+      "t3Year": "2005",
+      "t3Text": "Doğallığımızı daha geniş sofralara taşımaya başladık.",
+      "t4Year": "Bugün",
+      "t4Text": "Gelenekten aldığımız güçle, geleceğe kaliteli miras bırakıyoruz.",
+      "s1Value": "39+",
+      "s1Label": "Yıllık Tecrübe",
+      "s2Value": "12.000+",
+      "s2Label": "Mutlu Müşteri",
+      "s3Value": "%100",
+      "s3Label": "Yerel ve Doğal"
+    },
+    "process": {
+      "title": "Doğallıkla Üretiyoruz",
+      "p1Title": "1. Hasat",
+      "p1Text": "Zeytinlerimiz özenle ve zamanında toplanır.",
+      "p2Title": "2. Seçim",
+      "p2Text": "En kaliteli zeytinler seçilir ve ayrıştırılır.",
+      "p3Title": "3. Soğuk Sıkım",
+      "p3Text": "Düşük ısıda sıkım yapılarak besin değerleri korunur.",
+      "p4Title": "4. Doğal Dinlendirme",
+      "p4Text": "Zeytinyağımız doğal yöntemlerle dinlendirilir ve arıtılmaz.",
+      "p5Title": "5. Şişeleme",
+      "p5Text": "En saf haliyle şişelenir ve sofralarınıza ulaşır."
+    }
+  },
   "story": {
     "title": "1985'ten Bugüne Geleneksel Ustalık",
     "text": "Üç Kuşağın Sabır ve Sevgi Hikayesi: Bizim için her ağaç bir miras, her hasat bir bayram. Geleneksel ustalığı, doğanın sabrıyla harmanlıyoruz.",
