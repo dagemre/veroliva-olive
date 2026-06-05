@@ -34,9 +34,9 @@
       "title": "Natural",
       "text": "Additive-free purity: 100% natural, with no preservatives or chemicals."
     },
-    "local": {
-      "title": "Local",
-      "text": "An ancestral legacy: Authentic, local production from our own family groves."
+    "shipping": {
+      "title": "Fast Shipping",
+      "text": "Free shipping on orders over 1,500 TL."
     }
   },
   "collection": {
@@ -184,23 +184,42 @@
     "metaTitle": "Contact — Bulk Olive Oil Supplier & Private Label | Veroliva",
     "metaDescription": "Contact Veroliva Olive Oil for questions, bulk olive oil supply and private label production. Turkish olive oil producer in Pelitköy, Burhaniye, Balıkesir.",
     "title": "Contact",
-    "text": "Write to us for questions, suggestions, wholesale and private label requests. We reply as soon as possible.",
-    "infoTitle": "Reach Us",
-    "addressLabel": "Address",
-    "address": "Pelitköy, Burhaniye / Balıkesir, Türkiye",
-    "emailLabel": "E-mail",
-    "b2bTitle": "Wholesale & Private Label",
-    "b2bText": "We supply bulk extra virgin olive oil for restaurants, retailers and export partners, and offer private label olive oil production for your own brand. Send your request via the form and we will prepare a tailored offer.",
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "We Are Happy to Hear From You",
+      "text": "Feel free to reach out anytime with your questions, suggestions or order requests. Our team will get back to you as soon as possible."
+    },
     "form": {
-      "name": "Full Name",
-      "email": "E-mail",
+      "title": "Send Us a Message",
+      "name": "Your Full Name",
+      "email": "Your E-mail Address",
+      "phone": "Your Phone Number",
       "subject": "Subject",
       "subjectGeneral": "General Question",
+      "subjectOrder": "Order Request",
       "subjectWholesale": "Wholesale / Bulk",
       "subjectPrivateLabel": "Private Label",
       "message": "Your Message",
       "submit": "Send",
       "success": "Thank you! Your message has been received — we will get back to you shortly."
+    },
+    "info": {
+      "title": "Our Contact Details",
+      "addressLabel": "Address",
+      "address": "Pelitköy Mahallesi, Zeytinlik Sokak No: 12, Burhaniye / Balıkesir, Türkiye",
+      "phoneLabel": "Phone",
+      "emailLabel": "E-mail",
+      "hoursLabel": "Working Hours",
+      "hours1": "Monday - Saturday: 09:00 - 18:00",
+      "hours2": "Sunday: Closed",
+      "socialLabel": "Social Media"
+    },
+    "visit": {
+      "eyebrow": "Visit Us",
+      "title": "In the Heart of Nature, We Await You.",
+      "text": "Stop by our shop set among our olive groves to discover our products on site and learn more about our production process.",
+      "cta": "Get Directions",
+      "mapTitle": "Veroliva location — map of Pelitköy, Burhaniye"
     }
   },
   "story": {

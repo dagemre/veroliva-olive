@@ -34,9 +34,9 @@
       "title": "Doğal",
       "text": "Katkısız saflık: Hiçbir koruyucu veya kimyasal içermeyen, %100 doğal özler."
     },
-    "local": {
-      "title": "Yerli",
-      "text": "Atadan miras: Kendi aile bahçelerimizden gelen yerli ve otantik üretim."
+    "shipping": {
+      "title": "Hızlı Kargo",
+      "text": "1500 TL üzeri siparişlerde ücretsiz kargo."
     }
   },
   "collection": {
@@ -184,23 +184,42 @@
     "metaTitle": "İletişim | Veroliva Zeytinyağı",
     "metaDescription": "Veroliva Zeytinyağı iletişim: sorularınız, toptan satış ve private label talepleriniz için bize ulaşın. Pelitköy, Burhaniye / Balıkesir.",
     "title": "İletişim",
-    "text": "Sorularınız, önerileriniz, toptan satış ve private label talepleriniz için bize yazın. En kısa sürede dönüş yapıyoruz.",
-    "infoTitle": "Bize Ulaşın",
-    "addressLabel": "Adres",
-    "address": "Pelitköy Mah., Burhaniye / Balıkesir, Türkiye",
-    "emailLabel": "E-posta",
-    "b2bTitle": "Toptan Satış ve Private Label",
-    "b2bText": "Restoranlar, marketler ve ihracat ortakları için toptan natürel sızma zeytinyağı tedarik ediyor; kendi markanız için private label üretim yapıyoruz. Talebinizi formdan iletin, size özel teklif hazırlayalım.",
+    "hero": {
+      "eyebrow": "İletişim",
+      "title": "Sizinle İletişimde Olmaktan Mutluluk Duyarız",
+      "text": "Sorularınız, önerileriniz veya sipariş talepleriniz için bizimle dilediğiniz zaman iletişime geçebilirsiniz. Ekibimiz en kısa sürede size dönüş sağlayacaktır."
+    },
     "form": {
-      "name": "Ad Soyad",
-      "email": "E-posta",
+      "title": "Bize Mesaj Gönderin",
+      "name": "Adınız Soyadınız",
+      "email": "E-posta Adresiniz",
+      "phone": "Telefon Numaranız",
       "subject": "Konu",
       "subjectGeneral": "Genel Soru",
+      "subjectOrder": "Sipariş Talebi",
       "subjectWholesale": "Toptan Satış",
       "subjectPrivateLabel": "Private Label",
       "message": "Mesajınız",
       "submit": "Gönder",
       "success": "Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız."
+    },
+    "info": {
+      "title": "İletişim Bilgilerimiz",
+      "addressLabel": "Adres",
+      "address": "Pelitköy Mahallesi, Zeytinlik Sokak No: 12, Burhaniye / Balıkesir, Türkiye",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E-posta",
+      "hoursLabel": "Çalışma Saatleri",
+      "hours1": "Pazartesi - Cumartesi: 09.00 - 18.00",
+      "hours2": "Pazar: Kapalı",
+      "socialLabel": "Sosyal Medya"
+    },
+    "visit": {
+      "eyebrow": "Bizi Ziyaret Edin",
+      "title": "Doğanın Kalbinde, Sizi Bekliyoruz.",
+      "text": "Zeytinliklerimizin arasında yer alan mağazamıza uğrayarak ürünlerimizi yerinde keşfedebilir, üretim sürecimiz hakkında daha fazla bilgi alabilirsiniz.",
+      "cta": "Yol Tarifi Al",
+      "mapTitle": "Veroliva konumu — Pelitköy, Burhaniye haritası"
     }
   },
   "story": {

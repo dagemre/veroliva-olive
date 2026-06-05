@@ -5,7 +5,7 @@ const FEATURES = [
   { key: "coldPress", icon: "/icons/soguk-sikim.svg" },
   { key: "earlyHarvest", icon: "/icons/erken-hasat.svg" },
   { key: "natural", icon: "/icons/dogal.svg" },
-  { key: "local", icon: "/icons/yerli.svg" },
+  { key: "shipping", icon: "/icons/rehber-icon-10.webp" },
 ] as const;
 
 export default function FeatureStrip() {
