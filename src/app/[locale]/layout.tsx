@@ -28,6 +28,10 @@ export async function generateMetadata({
     applicationName: "Veroliva",
     formatDetection: { telephone: false },
     robots: { index: true, follow: true },
+    // Google Search Console site doğrulaması (<head>'e meta tag olarak basılır)
+    verification: {
+      google: "N7SGKEopaWhZ6AC9Iyk42_8XvG9NBxLnlBqQDyeAb9A",
+    },
   };
 }
 
