@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
+import { getProducts } from "@/lib/products";
 import Hero from "@/components/home/Hero";
 import FeatureStrip from "@/components/home/FeatureStrip";
 import CollectionSection from "@/components/home/CollectionSection";
@@ -29,12 +30,13 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const products = await getProducts();
 
   return (
     <>
       <Hero />
       <FeatureStrip />
-      <CollectionSection />
+      <CollectionSection products={products} />
       <StorySection />
       <GuideSection />
     </>

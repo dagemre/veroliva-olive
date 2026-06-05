@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { products } from "@/lib/products";
+import { getProducts, type Product } from "@/lib/products";
 import { buildPageMetadata } from "@/lib/seo";
 import { productListSchema, breadcrumbSchema } from "@/lib/schema";
 import JsonLd from "@/components/seo/JsonLd";
@@ -26,7 +26,7 @@ export async function generateMetadata({
   });
 }
 
-function CollectionContent() {
+function CollectionContent({ products }: { products: Product[] }) {
   const t = useTranslations("collectionPage");
 
   return (
@@ -37,12 +37,12 @@ function CollectionContent() {
         image="/images/hero2.webp"
       />
       <FeatureStrip />
-      <CollectionGrid />
+      <CollectionGrid products={products} />
     </>
   );
 }
 
-function CollectionGrid() {
+function CollectionGrid({ products }: { products: Product[] }) {
   const t = useTranslations("collectionPage");
 
   return (
@@ -87,18 +87,19 @@ export default async function CollectionPage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "collectionPage" });
   const nav = await getTranslations({ locale, namespace: "nav" });
+  const products = await getProducts();
 
   return (
     <>
       {/* Structured data: ürün listesi + breadcrumb */}
-      <JsonLd data={productListSchema(locale as "tr" | "en")} />
+      <JsonLd data={productListSchema(locale as "tr" | "en", products)} />
       <JsonLd
         data={breadcrumbSchema(locale as "tr" | "en", [
           { name: "Veroliva", path: "/" },
           { name: nav("collection"), path: "/koleksiyon" },
         ])}
       />
-      <CollectionContent />
+      <CollectionContent products={products} />
     </>
   );
 }

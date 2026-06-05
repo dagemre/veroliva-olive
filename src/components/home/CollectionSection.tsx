@@ -1,10 +1,14 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { products } from "@/lib/products";
+import type { Product } from "@/lib/products";
 import ProductCard from "@/components/product/ProductCard";
 import Carousel from "./Carousel";
 
-export default function CollectionSection() {
+export default function CollectionSection({
+  products,
+}: {
+  products: Product[];
+}) {
   const t = useTranslations("collection");
 
   return (

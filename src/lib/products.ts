@@ -1,5 +1,6 @@
-// Geçici ürün verisi — ileride Supabase'den gelecek.
-// Görseller: public/images/products/{slug}.webp (877x900, şeffaf zemin)
+// Ürün verileri — Supabase'den okunur (products tablosu).
+// Supabase'e erişilemezse yedek (fallback) liste kullanılır ki site asla boş kalmasın.
+import { createSupabaseClient } from "@/lib/supabase";
 
 export type Product = {
   slug: string;
@@ -10,7 +11,38 @@ export type Product = {
   medal?: "gold" | "silver";
 };
 
-export const products: Product[] = [
+/** Supabase'den aktif ürünleri çeker (sort_order sıralı, 5 dk cache). */
+export async function getProducts(): Promise<Product[]> {
+  const supabase = createSupabaseClient();
+  if (!supabase) return fallbackProducts;
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("slug, name, badge_tr, badge_en, size, price, medal")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error || !data || data.length === 0) {
+    console.warn("[products] Supabase okunamadı, yedek liste kullanılıyor.", error?.message);
+    return fallbackProducts;
+  }
+
+  return data.map((row) => ({
+    slug: row.slug,
+    name: row.name,
+    badge: { tr: row.badge_tr, en: row.badge_en },
+    size: row.size,
+    price: Number(row.price),
+    medal: row.medal === "gold" || row.medal === "silver" ? row.medal : undefined,
+  }));
+}
+
+export function formatPrice(price: number): string {
+  return `${price.toLocaleString("tr-TR")} TL`;
+}
+
+// Yedek liste — Supabase'deki seed verisinin kopyası.
+const fallbackProducts: Product[] = [
   {
     slug: "pelitkoy-erken-hasat-rezerv-petite",
     name: "Pelitköy Erken Hasat Rezerv Petite",
@@ -57,7 +89,3 @@ export const products: Product[] = [
     price: 2350,
   },
 ];
-
-export function formatPrice(price: number): string {
-  return `${price.toLocaleString("tr-TR")} TL`;
-}

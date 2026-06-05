@@ -1,5 +1,5 @@
 // JSON-LD şema üreticileri — schema.org
-import { products, type Product } from "@/lib/products";
+import type { Product } from "@/lib/products";
 import { SITE_URL, SITE_NAME, absoluteUrl } from "@/lib/seo";
 import type { AppPathname } from "@/i18n/routing";
 
@@ -86,7 +86,7 @@ export function productSchema(product: Product, locale: Locale) {
 }
 
 /** Koleksiyon sayfası için ürün listesi (ItemList + Product) */
-export function productListSchema(locale: Locale) {
+export function productListSchema(locale: Locale, products: Product[]) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
