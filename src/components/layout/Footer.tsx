@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import NewsletterForm from "./NewsletterForm";
+import BackToTop from "./BackToTop";
 
 const SOCIALS = [
   {
@@ -173,6 +174,7 @@ export default function Footer() {
                 </svg>
                 {t("footer.badges.fastShipping")}
               </span>
+              <BackToTop />
             </div>
           </div>
         </div>
