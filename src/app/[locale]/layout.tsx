@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/seo";
 import { organizationSchema } from "@/lib/schema";
 import JsonLd from "@/components/seo/JsonLd";
+import { CartProvider } from "@/components/cart/CartProvider";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -69,10 +70,12 @@ export default async function LocaleLayout({
       <body className="antialiased">
         <JsonLd data={organizationSchema(locale as "tr" | "en")} />
         <NextIntlClientProvider>
-          <AnnouncementBar />
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <CartProvider>
+            <AnnouncementBar />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>

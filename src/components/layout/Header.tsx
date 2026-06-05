@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
+import { useCart } from "@/components/cart/CartProvider";
 
 const NAV_ITEMS = [
   { key: "collection", href: "/koleksiyon" },
@@ -15,6 +16,7 @@ export default function Header() {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { count } = useCart();
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
@@ -93,8 +95,11 @@ export default function Header() {
               <path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
               <path d="M9 8V6a3 3 0 0 1 6 0v2" />
             </svg>
-            <span className="absolute -right-0.5 -top-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-olive text-[10px] font-semibold text-cream">
-              0
+            <span
+              aria-live="polite"
+              className="absolute -right-0.5 -top-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-olive text-[10px] font-semibold text-cream"
+            >
+              {count > 99 ? "99" : count}
             </span>
           </Link>
         </div>

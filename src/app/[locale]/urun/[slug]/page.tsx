@@ -232,7 +232,16 @@ function ProductDetail({
 
             {/* Adet + sepete ekle */}
             <div className="mt-6">
-              <PurchasePanel productName={product.name} />
+              <PurchasePanel
+                product={{
+                  id: product.id,
+                  slug: product.slug,
+                  name: product.name,
+                  size: product.size,
+                  price: product.price,
+                  badge: product.badge,
+                }}
+              />
             </div>
 
             {/* Güven şeridi */}

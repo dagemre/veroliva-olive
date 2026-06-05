@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
-import Overview from "@/components/account/Overview";
+import PersonalInfo from "@/components/account/PersonalInfo";
 
 export async function generateMetadata({
   params,
@@ -13,7 +13,7 @@ export async function generateMetadata({
   return {
     ...buildPageMetadata({
       locale: locale as "tr" | "en",
-      path: "/hesap",
+      path: "/hesap/bilgilerim",
       title: t("metaTitle"),
       description: t("metaDescription"),
     }),
@@ -21,7 +21,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function AccountPage({
+export default async function Page({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -29,5 +29,5 @@ export default async function AccountPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <Overview />;
+  return <PersonalInfo />;
 }

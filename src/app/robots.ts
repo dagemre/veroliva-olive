@@ -8,7 +8,17 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         // Kişisel/işlemsel sayfalar indekslenmesin (TR + EN URL'leri)
-        disallow: ["/sepet", "/hesap", "/en/cart", "/en/account", "/api/"],
+        disallow: [
+          "/sepet",
+          "/odeme",
+          "/siparis-onayi",
+          "/hesap",
+          "/en/cart",
+          "/en/checkout",
+          "/en/order-confirmation",
+          "/en/account",
+          "/api/",
+        ],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

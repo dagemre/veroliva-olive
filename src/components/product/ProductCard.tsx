@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { formatPrice, type Product } from "@/lib/products";
+import { useCart } from "@/components/cart/CartProvider";
 
 // SEO: açıklayıcı alt text (TR/EN) — görsel araması için anahtar kelimeli.
 function productAlt(product: Product, locale: "tr" | "en"): string {
@@ -13,10 +17,24 @@ function productAlt(product: Product, locale: "tr" | "en"): string {
 export default function ProductCard({ product }: { product: Product }) {
   const locale = useLocale() as "tr" | "en";
   const t = useTranslations("collection");
+  const { add } = useCart();
+  const [added, setAdded] = useState(false);
   const productHref = {
     pathname: "/urun/[slug]",
     params: { slug: product.slug },
   } as const;
+
+  function handleAdd() {
+    add({
+      slug: product.slug,
+      name: product.name,
+      size: product.size,
+      price: product.price,
+      badge: product.badge,
+    });
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 2000);
+  }
 
   return (
     <article className="group flex w-64 shrink-0 snap-start flex-col border border-line bg-cream-light sm:w-72">
@@ -68,13 +86,22 @@ export default function ProductCard({ product }: { product: Product }) {
           </span>
           <button
             type="button"
+            onClick={handleAdd}
             aria-label={`${product.name} — ${t("addToCart")}`}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-olive text-cream transition-colors hover:bg-olive-deep"
+            className={`flex h-8 w-8 items-center justify-center rounded-full text-cream transition-colors ${
+              added ? "bg-gold" : "bg-olive hover:bg-olive-deep"
+            }`}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
+            {added ? (
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 12.5 9.5 18 20 6.5" />
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            )}
           </button>
         </div>
       </div>

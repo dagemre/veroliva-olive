@@ -3,6 +3,8 @@
 import { createSupabaseClient } from "@/lib/supabase";
 
 export type Product = {
+  /** Supabase ürün UUID'si — favoriler için gerekli (fallback listede yok). */
+  id?: string;
   slug: string;
   name: string;
   badge: { tr: string; en: string };
@@ -196,7 +198,7 @@ export async function getProducts(): Promise<Product[]> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("slug, name, badge_tr, badge_en, size, price, medal")
+    .select("id, slug, name, badge_tr, badge_en, size, price, medal")
     .eq("is_active", true)
     .order("sort_order", { ascending: true });
 
@@ -206,6 +208,7 @@ export async function getProducts(): Promise<Product[]> {
   }
 
   return data.map((row) => ({
+    id: row.id,
     slug: row.slug,
     name: row.name,
     badge: { tr: row.badge_tr, en: row.badge_en },
@@ -224,7 +227,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("slug, name, badge_tr, badge_en, size, price, medal, description_tr, description_en, details")
+    .select("id, slug, name, badge_tr, badge_en, size, price, medal, description_tr, description_en, details")
     .eq("slug", slug)
     .eq("is_active", true)
     .single();
@@ -235,6 +238,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   }
 
   return {
+    id: data.id,
     slug: data.slug,
     name: data.name,
     badge: { tr: data.badge_tr, en: data.badge_en },

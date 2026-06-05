@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { buildPageMetadata } from "@/lib/seo";
-import Overview from "@/components/account/Overview";
+import CartView from "@/components/cart/CartView";
 
 export async function generateMetadata({
   params,
@@ -9,11 +9,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "accountPage" });
+  const t = await getTranslations({ locale, namespace: "cart" });
   return {
     ...buildPageMetadata({
       locale: locale as "tr" | "en",
-      path: "/hesap",
+      path: "/sepet",
       title: t("metaTitle"),
       description: t("metaDescription"),
     }),
@@ -21,7 +21,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function AccountPage({
+export default async function CartPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -29,5 +29,5 @@ export default async function AccountPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <Overview />;
+  return <CartView />;
 }
