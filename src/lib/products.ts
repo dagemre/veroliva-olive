@@ -83,7 +83,7 @@ export const DEFAULT_DETAILS: ProductDetails = {
     items: [
       { icon: "salad", label: { tr: "Salatalar", en: "Salads" } },
       { icon: "breakfast", label: { tr: "Kahvaltılık", en: "Breakfast" } },
-      { icon: "cooking", label: { tr: "Sıcak Yemekler", en: "Hot Dishes" } },
+      { icon: "meze", label: { tr: "Soğuk Mezeler", en: "Cold Meze" } },
       { icon: "bread", label: { tr: "Ekmek Bandırma", en: "Bread Dipping" } },
     ],
   },

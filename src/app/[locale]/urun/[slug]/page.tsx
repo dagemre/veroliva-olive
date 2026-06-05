@@ -64,6 +64,16 @@ export async function generateMetadata({
   });
 }
 
+// İdeal Kullanım: ikon anahtarı → Emre'nin çizimli görselleri (etiket görselin içinde).
+// Görseli olmayan anahtarlar (cooking/oven/sauce vb.) eski çizgi ikon + yazı stiline düşer;
+// tüm anahtarların görseli varsa kart 2x2 görsel grid'i olur.
+const USAGE_IMAGES: Record<string, string> = {
+  salad: "/icons/salatalar.webp",
+  breakfast: "/icons/kahvaltilik.webp",
+  meze: "/icons/soguk-mezeler.webp",
+  bread: "/icons/ekmek-bandirma.webp",
+};
+
 // Açıklamanın ilk 1-2 cümlesi — fiyatın altındaki kısa tanıtım metni.
 function shortDescription(text: string | undefined): string {
   if (!text) return "";
@@ -300,18 +310,46 @@ function ProductDetail({
             <p className="mt-3.5 text-[13px] leading-relaxed text-ink-soft">
               {L(details.usage.text)}
             </p>
-            <div className="mt-5 grid grid-cols-3 gap-x-3 gap-y-5 border-t border-line pt-5">
-              {details.usage.items.map((u, i) => (
-                <div key={i} className="flex flex-col items-center gap-2 text-center">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-parchment text-olive">
-                    <DetailIcon name={u.icon} size={22} />
-                  </span>
-                  <span className="text-[11px] font-medium leading-tight text-ink">
-                    {L(u.label)}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {details.usage.items.every((u) => USAGE_IMAGES[u.icon]) ? (
+              // Çizimli görseller (etiket görselin içinde — ayrıca yazı yok)
+              <div className="mt-5 grid grid-cols-[auto_auto] items-end justify-center gap-x-5 gap-y-3 border-t border-line pt-5">
+                {details.usage.items.map((u, i) => (
+                  <Image
+                    key={i}
+                    src={USAGE_IMAGES[u.icon]}
+                    alt={L(u.label)}
+                    width={300}
+                    height={250}
+                    sizes="132px"
+                    className="h-auto w-[132px]"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-5 grid grid-cols-3 gap-x-3 gap-y-5 border-t border-line pt-5">
+                {details.usage.items.map((u, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2 text-center">
+                    {USAGE_IMAGES[u.icon] ? (
+                      <Image
+                        src={USAGE_IMAGES[u.icon]}
+                        alt=""
+                        width={400}
+                        height={400}
+                        sizes="96px"
+                        className="h-auto w-full max-w-24"
+                      />
+                    ) : (
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-parchment text-olive">
+                        <DetailIcon name={u.icon} size={22} />
+                      </span>
+                    )}
+                    <span className="text-[11px] font-medium leading-tight text-ink">
+                      {L(u.label)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
           </article>
         </div>
       </section>
