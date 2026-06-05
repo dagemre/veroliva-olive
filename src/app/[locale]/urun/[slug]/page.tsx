@@ -5,10 +5,22 @@ import { preload } from "react-dom";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { getProducts, getProductBySlug, formatPrice, type Product } from "@/lib/products";
+import {
+  getProducts,
+  getProductBySlug,
+  formatPrice,
+  formatUnitPrice,
+  normalizeDetails,
+  type Product,
+  type ProductDetails,
+} from "@/lib/products";
 import { buildPageMetadata, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
+import ProductGallery, { type GalleryImage } from "@/components/product/ProductGallery";
+import PurchasePanel from "@/components/product/PurchasePanel";
+import DetailIcon from "@/components/product/DetailIcon";
+import Carousel from "@/components/home/Carousel";
 
 export const revalidate = 300;
 
@@ -45,39 +57,39 @@ export async function generateMetadata({
   return buildPageMetadata({
     locale: locale_,
     path: "/urun/[slug]",
+    params: { slug },
     title,
     description: desc,
     ogImage: `/images/products/${slug}.webp`,
   });
 }
 
+// Açıklamanın ilk 1-2 cümlesi — fiyatın altındaki kısa tanıtım metni.
+function shortDescription(text: string | undefined): string {
+  if (!text) return "";
+  const sentences = text.split(/(?<=\.)\s+/);
+  return sentences.slice(0, 2).join(" ");
+}
+
 // ─── Breadcrumb ───────────────────────────────────────────────────────────────
 function Breadcrumb({ product }: { product: Product }) {
   const t = useTranslations("productPage");
-  const locale = useLocale() as "tr" | "en";
 
   return (
-    <nav
-      aria-label="breadcrumb"
-      className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8"
-    >
+    <nav aria-label="breadcrumb" className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
       <ol className="flex flex-wrap items-center gap-1.5 text-xs text-ink-soft">
         <li>
           <Link href="/" className="hover:text-gold transition-colors">
             {t("breadcrumbHome")}
           </Link>
         </li>
-        <li aria-hidden="true" className="select-none">
-          /
-        </li>
+        <li aria-hidden="true" className="select-none">›</li>
         <li>
           <Link href="/koleksiyon" className="hover:text-gold transition-colors">
             {t("breadcrumbCollection")}
           </Link>
         </li>
-        <li aria-hidden="true" className="select-none">
-          /
-        </li>
+        <li aria-hidden="true" className="select-none">›</li>
         <li className="font-medium text-ink" aria-current="page">
           {product.name}
         </li>
@@ -86,227 +98,283 @@ function Breadcrumb({ product }: { product: Product }) {
   );
 }
 
-// ─── Medal badge ──────────────────────────────────────────────────────────────
-function MedalBadge({ medal }: { medal: "gold" | "silver" }) {
-  const isGold = medal === "gold";
+// ─── Tat & aroma çubuğu ───────────────────────────────────────────────────────
+function TasteBar({ label, value }: { label: string; value: number }) {
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold tracking-wide ${
-        isGold
-          ? "border-gold bg-gold/10 text-gold"
-          : "border-ink-soft/40 bg-ink-soft/10 text-ink-soft"
-      }`}
-    >
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2 9.5 8.5 2.5 9l5.2 4.6L6 21l6-3.6L18 21l-1.7-7.4L21.5 9l-7-.5L12 2Z" />
-      </svg>
-      {isGold ? "Gold" : "Silver"}
-    </span>
+    <div>
+      <div className="flex items-baseline justify-between">
+        <span className="text-[13px] font-medium text-ink">{label}</span>
+        <span className="text-xs text-ink-soft">{value}/5</span>
+      </div>
+      <div className="mt-1.5 flex gap-1" role="img" aria-label={`${label}: ${value}/5`}>
+        {Array.from({ length: 5 }, (_, i) => (
+          <span
+            key={i}
+            className={`h-1.5 flex-1 ${i < value ? "bg-olive" : "bg-line"}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 
-// ─── Main product section ─────────────────────────────────────────────────────
-function ProductDetail({ product, relatedProducts }: { product: Product; relatedProducts: Product[] }) {
+// ─── Ana içerik ───────────────────────────────────────────────────────────────
+function ProductDetail({
+  product,
+  relatedProducts,
+}: {
+  product: Product;
+  relatedProducts: Product[];
+}) {
   const t = useTranslations("productPage");
   const locale = useLocale() as "tr" | "en";
+  const L = (l: { tr: string; en: string }) => l[locale];
+
+  const details: ProductDetails = product.details ?? normalizeDetails(null);
   const description = locale === "tr" ? product.description?.tr : product.description?.en;
+  const unitPrice = formatUnitPrice(product.price, product.size);
 
-  const imageUrl = `/images/products/${product.slug}.webp`;
-  preload(imageUrl, { as: "image", fetchPriority: "high" });
+  const bottleUrl = `/images/products/${product.slug}.webp`;
+  preload(bottleUrl, { as: "image", fetchPriority: "high" });
 
-  // Teneke ambalaj tespiti
-  const isTin = product.slug.includes("teneke");
+  const bottleAlt =
+    locale === "tr"
+      ? `${product.name} ${product.size} natürel sızma zeytinyağı şişesi`
+      : `${product.name} ${product.size} Turkish extra virgin olive oil bottle`;
+
+  const galleryImages: GalleryImage[] = [
+    { src: bottleUrl, alt: bottleAlt, kind: "bottle" },
+    ...details.gallery.map((src, i) => ({
+      src,
+      alt: `${product.name} — ${t("galleryImage")} ${i + 2}`,
+      kind: "photo" as const,
+    })),
+  ];
+
+  const trustItems = [
+    { icon: "truck", title: t("trust.shippingTitle"), sub: t("trust.shippingSub") },
+    { icon: "clock", title: t("trust.sameDayTitle"), sub: t("trust.sameDaySub") },
+    { icon: "shield", title: t("trust.secureTitle"), sub: t("trust.secureSub") },
+    { icon: "refresh", title: t("trust.returnTitle"), sub: t("trust.returnSub") },
+  ];
 
   return (
     <>
-      {/* Breadcrumb */}
       <Breadcrumb product={product} />
 
-      {/* Ana içerik */}
-      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+      {/* ── Üst bölüm: galeri + satın alma ── */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-14">
+          <ProductGallery images={galleryImages} medal={product.medal} />
 
-          {/* ── Sol: Ürün görseli ── */}
-          <div className="relative">
-            <div
-              className="relative aspect-square overflow-hidden rounded-sm bg-parchment bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
-            >
-              <Image
-                src={imageUrl}
-                alt={
-                  locale === "tr"
-                    ? `${product.name} ${product.size} natürel sızma zeytinyağı şişesi`
-                    : `${product.name} ${product.size} Turkish extra virgin olive oil bottle`
-                }
-                width={877}
-                height={900}
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-full w-full object-contain p-10 sm:p-14"
-              />
-
-              {/* Medal rozeti — sol üst */}
-              {product.medal && (
-                <div className="absolute left-4 top-4">
-                  <MedalBadge medal={product.medal} />
-                </div>
-              )}
-            </div>
-
-            {/* Güven rozeti şeridi */}
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-4 border border-line bg-cream-light px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
-              <span className="flex items-center gap-1.5">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                {locale === "tr" ? "%100 Doğal" : "100% Natural"}
-              </span>
-              <span aria-hidden="true" className="text-line">|</span>
-              <span className="flex items-center gap-1.5">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                {locale === "tr" ? "Soğuk Sıkım" : "Cold Pressed"}
-              </span>
-              <span aria-hidden="true" className="text-line">|</span>
-              <span className="flex items-center gap-1.5">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-                {locale === "tr" ? "Pelitköy, Burhaniye" : "Pelitköy, Türkiye"}
-              </span>
-            </div>
-          </div>
-
-          {/* ── Sağ: Ürün bilgisi ── */}
           <div className="flex flex-col">
-
-            {/* Kategori etiketi */}
-            <span className="self-start border border-line px-2.5 py-1 text-[10px] font-semibold tracking-[0.14em] text-ink-soft">
+            {/* Etiket */}
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-soft">
               {product.badge[locale]}
             </span>
 
             {/* İsim */}
-            <h1 className="mt-4 font-display text-3xl leading-snug text-ink sm:text-4xl lg:text-[2.5rem]">
+            <h1 className="mt-2.5 font-display text-3xl leading-snug text-ink sm:text-4xl">
               {product.name}
             </h1>
 
-            {/* Hacim */}
-            <p className="mt-1.5 text-sm text-ink-soft">{product.size}</p>
-
-            {/* Ayraç */}
-            <div className="my-5 h-px w-16 bg-gold" />
+            {/* Hacim | tür */}
+            <p className="mt-2 text-sm text-ink-soft">
+              {product.size}
+              <span aria-hidden="true" className="mx-2.5 text-line">|</span>
+              {t("productType")}
+            </p>
 
             {/* Fiyat */}
-            <p className="text-3xl font-bold text-ink">{formatPrice(product.price)}</p>
+            <p className="mt-5 font-display text-3xl text-ink">{formatPrice(product.price)}</p>
+            {unitPrice && <p className="mt-1 text-xs text-ink-soft">{unitPrice}</p>}
 
-            {/* Açıklama */}
+            {/* Kısa açıklama */}
             {description && (
-              <p className="mt-5 text-sm leading-relaxed text-ink-soft">
-                {description}
+              <p className="mt-4 text-sm leading-relaxed text-ink-soft">
+                {shortDescription(description)}
               </p>
             )}
 
-            {/* Sepete ekle butonu */}
-            <button
-              type="button"
-              aria-label={`${product.name} — ${t("addToCart")}`}
-              className="mt-8 flex w-full items-center justify-center gap-2.5 bg-olive py-4 text-[13px] font-semibold uppercase tracking-[0.12em] text-cream transition-colors hover:bg-olive-deep"
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-              {t("addToCart")}
-            </button>
+            {/* Hızlı özellikler */}
+            {details.highlights.length > 0 && (
+              <div className="mt-6 grid grid-cols-2 gap-y-4 border-y border-line py-4 lg:grid-cols-4">
+                {details.highlights.map((h, i) => (
+                  <div
+                    key={i}
+                    className={`flex items-center gap-2.5 px-1 lg:px-3 ${
+                      i > 0 ? "lg:border-l lg:border-line" : "lg:pl-0"
+                    }`}
+                  >
+                    <DetailIcon name={h.icon} size={24} className="shrink-0 text-olive" />
+                    <span className="min-w-0">
+                      <span className="block text-[12px] font-semibold leading-tight text-ink">
+                        {L(h.title)}
+                      </span>
+                      <span className="block text-[11px] leading-tight text-ink-soft">
+                        {L(h.sub)}
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
-            {/* Kargo notu */}
-            <p className="mt-3 flex items-center gap-1.5 text-[11px] text-ink-soft">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <rect x="1" y="3" width="15" height="13" rx="1" />
-                <path d="M16 8h4l3 5v4h-7V8z" />
-                <circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
-              </svg>
-              {t("shippingNote")}
-            </p>
-
-            {/* Ayraç */}
-            <div className="my-7 h-px bg-line" />
-
-            {/* Teknik bilgiler */}
-            <div>
-              <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                {t("specsTitle")}
-              </h2>
-              <dl className="space-y-3">
-                <div className="flex items-baseline gap-3 text-sm">
-                  <dt className="w-36 shrink-0 text-ink-soft">{t("specs.typeLabel")}</dt>
-                  <dd className="font-medium text-ink">{t("specs.typeValue")}</dd>
-                </div>
-                <div className="flex items-baseline gap-3 text-sm">
-                  <dt className="w-36 shrink-0 text-ink-soft">{t("specs.methodLabel")}</dt>
-                  <dd className="font-medium text-ink">{t("specs.methodValue")}</dd>
-                </div>
-                <div className="flex items-baseline gap-3 text-sm">
-                  <dt className="w-36 shrink-0 text-ink-soft">{t("specs.harvestLabel")}</dt>
-                  <dd className="font-medium text-ink">
-                    {isTin
-                      ? (locale === "tr" ? "Makine Hasadı" : "Machine Harvested")
-                      : t("specs.harvestValue")}
-                  </dd>
-                </div>
-                <div className="flex items-baseline gap-3 text-sm">
-                  <dt className="w-36 shrink-0 text-ink-soft">{t("specs.originLabel")}</dt>
-                  <dd className="font-medium text-ink">{t("specs.originValue")}</dd>
-                </div>
-                <div className="flex items-baseline gap-3 text-sm">
-                  <dt className="w-36 shrink-0 text-ink-soft">
-                    {locale === "tr" ? "Ambalaj" : "Packaging"}
-                  </dt>
-                  <dd className="font-medium text-ink">
-                    {isTin
-                      ? (locale === "tr" ? "Teneke" : "Tin")
-                      : (locale === "tr" ? "Koyu Cam Şişe" : "Dark Glass Bottle")}
-                  </dd>
-                </div>
-              </dl>
+            {/* Adet + sepete ekle */}
+            <div className="mt-6">
+              <PurchasePanel productName={product.name} />
             </div>
 
-            {/* Toplu sipariş bağlantısı */}
-            <div className="mt-8 border border-line p-4">
-              <Link
-                href="/iletisim"
-                className="text-[12px] font-semibold uppercase tracking-[0.12em] text-ink underline-offset-4 transition-colors hover:text-gold"
-              >
-                {t("contactCta")}
-              </Link>
+            {/* Güven şeridi */}
+            <div className="mt-7 grid grid-cols-2 gap-x-3 gap-y-4 border-t border-line pt-5 lg:grid-cols-4">
+              {trustItems.map((item) => (
+                <div key={item.title} className="flex items-center gap-2.5">
+                  <DetailIcon name={item.icon} size={20} className="shrink-0 text-ink-soft" />
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-semibold leading-tight text-ink">
+                      {item.title}
+                    </span>
+                    <span className="block text-[10.5px] leading-tight text-ink-soft">
+                      {item.sub}
+                    </span>
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Diğer ürünler */}
-      {relatedProducts.length > 0 && (
-        <section className="border-t border-line bg-cream-light py-14">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="font-display text-2xl text-ink">{t("otherProducts")}</h2>
-              <Link
-                href="/koleksiyon"
-                className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft underline-offset-4 transition-colors hover:text-gold"
-              >
-                {t("backToCollection")} →
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-center gap-5 lg:justify-start">
-              {relatedProducts.map((p) => (
-                <ProductCard key={p.slug} product={p} />
+      {/* ── Bilgi kartları ── */}
+      <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Ürün Hakkında */}
+          <article className="border border-line bg-cream-light p-6 sm:p-7">
+            <h2 className="font-display text-xl text-ink">{t("aboutTitle")}</h2>
+            {description && (
+              <p className="mt-3.5 text-[13px] leading-relaxed text-ink-soft">{description}</p>
+            )}
+            <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-line pt-5">
+              {details.aboutSpecs.map((s, i) => (
+                <div key={i} className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-parchment text-olive">
+                    <DetailIcon name={s.icon} size={17} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-semibold leading-tight text-ink">
+                      {L(s.label)}
+                    </span>
+                    <span className="block text-[11.5px] leading-tight text-ink-soft">
+                      {L(s.value)}
+                    </span>
+                  </span>
+                </div>
               ))}
             </div>
+          </article>
+
+          {/* Tat & Aroma Profili */}
+          <article className="relative overflow-hidden border border-line bg-cream-light p-6 sm:p-7">
+            <h2 className="font-display text-xl text-ink">{t("tasteTitle")}</h2>
+            <div className="mt-5 space-y-4">
+              <TasteBar label={t("fruity")} value={details.taste.fruity} />
+              <TasteBar label={t("bitter")} value={details.taste.bitter} />
+              <TasteBar label={t("pungent")} value={details.taste.pungent} />
+            </div>
+            <p className="mt-5 text-[13px] leading-relaxed text-ink-soft">
+              {L(details.taste.notes)}
+            </p>
+            <Image
+              src="/icons/zeytindali.svg"
+              alt=""
+              aria-hidden="true"
+              width={96}
+              height={72}
+              className="pointer-events-none absolute -bottom-3 -right-2 h-20 w-auto opacity-50"
+            />
+          </article>
+
+          {/* İdeal Kullanım */}
+          <article className="border border-line bg-cream-light p-6 sm:p-7">
+            <h2 className="font-display text-xl text-ink">{t("usageTitle")}</h2>
+            <p className="mt-3.5 text-[13px] leading-relaxed text-ink-soft">
+              {L(details.usage.text)}
+            </p>
+            <div className="mt-5 grid grid-cols-3 gap-x-3 gap-y-5 border-t border-line pt-5">
+              {details.usage.items.map((u, i) => (
+                <div key={i} className="flex flex-col items-center gap-2 text-center">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-parchment text-olive">
+                    <DetailIcon name={u.icon} size={22} />
+                  </span>
+                  <span className="text-[11px] font-medium leading-tight text-ink">
+                    {L(u.label)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </article>
+        </div>
+      </section>
+
+      {/* ── Besin değerleri ── */}
+      <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+        <details open className="group border border-line bg-cream-light">
+          <summary
+            className="flex cursor-pointer list-none items-center justify-between px-6 py-4 sm:px-7 [&::-webkit-details-marker]:hidden"
+            aria-label={t("nutritionToggle")}
+          >
+            <h2 className="font-display text-xl text-ink">{t("nutritionTitle")}</h2>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="text-ink-soft transition-transform group-open:rotate-180"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div className="border-t border-line px-6 pb-6 pt-4 sm:px-7">
+            <dl className="gap-x-12 lg:columns-3">
+              {details.nutrition.rows.map((row, i) => (
+                <div
+                  key={i}
+                  className="flex items-baseline justify-between gap-4 border-b border-line/70 py-2 break-inside-avoid"
+                >
+                  <dt className="text-[13px] text-ink-soft">{L(row.label)}</dt>
+                  <dd className="text-[13px] font-medium text-ink">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-4 text-right text-[11px] text-ink-soft">
+              {L(details.nutrition.footnote)}
+            </p>
           </div>
+        </details>
+      </section>
+
+      {/* ── Bunlar da ilginizi çekebilir ── */}
+      {relatedProducts.length > 0 && (
+        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-7 flex items-center justify-between">
+            <h2 className="font-display text-2xl text-ink">{t("relatedTitle")}</h2>
+            <Link
+              href="/koleksiyon"
+              className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft underline-offset-4 transition-colors hover:text-gold"
+            >
+              {t("backToCollection")} →
+            </Link>
+          </div>
+          <Carousel>
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </Carousel>
         </section>
       )}
     </>
@@ -331,12 +399,10 @@ export default async function ProductPage({
 
   const locale_ = locale as "tr" | "en";
 
-  // Diğer ürünler — aynı ürün hariç, en fazla 3 tane
-  const relatedProducts = allProducts
-    .filter((p) => p.slug !== slug)
-    .slice(0, 3);
+  // Diğer ürünler — aynı ürün hariç
+  const relatedProducts = allProducts.filter((p) => p.slug !== slug);
 
-  // JSON-LD için Product şeması (ürünün kendi URL'i)
+  // JSON-LD: Product şeması (ürünün kendi URL'i)
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",

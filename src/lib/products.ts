@@ -10,7 +10,184 @@ export type Product = {
   price: number; // TL
   medal?: "gold" | "silver";
   description?: { tr: string; en: string };
+  details?: ProductDetails;
 };
+
+// ── Ürün detay sayfası içerikleri ────────────────────────────────────────────
+// Supabase products.details (jsonb) sütunundan gelir; eksik anahtarlar
+// aşağıdaki DEFAULT_DETAILS ile tamamlanır. Admin paneli yapılınca bu yapılar
+// oradan satır ekle/çıkar şeklinde düzenlenebilir olacak.
+type L = { tr: string; en: string };
+
+export type ProductDetails = {
+  /** Şişe fotoğrafına EK galeri görselleri (public yolu). */
+  gallery: string[];
+  /** Fiyatın altındaki 4'lü hızlı özellik şeridi. */
+  highlights: { icon: string; title: L; sub: L }[];
+  /** "Ürün Hakkında" kartındaki mini özellikler. */
+  aboutSpecs: { icon: string; label: L; value: L }[];
+  /** Tat & aroma profili (0-5). */
+  taste: { fruity: number; bitter: number; pungent: number; notes: L };
+  /** İdeal kullanım. */
+  usage: { text: L; items: { icon: string; label: L }[] };
+  /** Besin değerleri tablosu (100 ml). */
+  nutrition: { rows: { label: L; value: string }[]; footnote: L };
+};
+
+const DEFAULT_NUTRITION_ROWS: { label: L; value: string }[] = [
+  { label: { tr: "Enerji", en: "Energy" }, value: "824 kcal / 3389 kJ" },
+  { label: { tr: "Yağ", en: "Fat" }, value: "91,6 g" },
+  { label: { tr: "- Doymuş Yağ", en: "- Saturated Fat" }, value: "13,1 g" },
+  { label: { tr: "- Tekli Doymamış Yağ", en: "- Monounsaturated Fat" }, value: "70,4 g" },
+  { label: { tr: "- Çoklu Doymamış Yağ", en: "- Polyunsaturated Fat" }, value: "8,1 g" },
+  { label: { tr: "Karbonhidrat", en: "Carbohydrate" }, value: "0 g" },
+  { label: { tr: "- Şekerler", en: "- Sugars" }, value: "0 g" },
+  { label: { tr: "Protein", en: "Protein" }, value: "0 g" },
+  { label: { tr: "Lif", en: "Fibre" }, value: "0 g" },
+  { label: { tr: "Tuz", en: "Salt" }, value: "0 g" },
+  { label: { tr: "Vitamin E", en: "Vitamin E" }, value: "14,3 mg (%119**)" },
+];
+
+/** Yeni eklenen bir üründe details boşsa kullanılacak standart değerler. */
+export const DEFAULT_DETAILS: ProductDetails = {
+  gallery: [
+    "/images/galeri/galeri-zeytinlik.webp",
+    "/images/galeri/galeri-zeytin.webp",
+    "/images/galeri/galeri-sikim.webp",
+  ],
+  highlights: [
+    { icon: "leaf", title: { tr: "Soğuk Sıkım", en: "Cold Pressed" }, sub: { tr: "27°C altı", en: "Below 27°C" } },
+    { icon: "drop", title: { tr: "Asitlik", en: "Acidity" }, sub: { tr: "≤ %0,8", en: "≤ 0.8%" } },
+    { icon: "molecule", title: { tr: "%100 Doğal", en: "100% Natural" }, sub: { tr: "Katkısız", en: "Additive-free" } },
+    { icon: "pin", title: { tr: "Menşei", en: "Origin" }, sub: { tr: "Pelitköy", en: "Pelitköy" } },
+  ],
+  aboutSpecs: [
+    { icon: "olive", label: { tr: "Zeytin Türü", en: "Olive Variety" }, value: { tr: "Ayvalık", en: "Ayvalık" } },
+    { icon: "press", label: { tr: "Üretim Yöntemi", en: "Production Method" }, value: { tr: "Soğuk Sıkım", en: "Cold Pressed" } },
+    { icon: "pin", label: { tr: "Menşei", en: "Origin" }, value: { tr: "Pelitköy / Burhaniye", en: "Pelitköy / Burhaniye" } },
+  ],
+  taste: {
+    fruity: 4,
+    bitter: 2,
+    pungent: 2,
+    notes: {
+      tr: "Dengeli, yumuşak içimli natürel sızma zeytinyağı.",
+      en: "Balanced, smooth extra virgin olive oil.",
+    },
+  },
+  usage: {
+    text: {
+      tr: "Salatalar, günlük yemekler ve kahvaltılıklar için idealdir.",
+      en: "Ideal for salads, everyday cooking and breakfasts.",
+    },
+    items: [
+      { icon: "salad", label: { tr: "Salatalar", en: "Salads" } },
+      { icon: "breakfast", label: { tr: "Kahvaltılık", en: "Breakfast" } },
+      { icon: "cooking", label: { tr: "Sıcak Yemekler", en: "Hot Dishes" } },
+      { icon: "bread", label: { tr: "Ekmek Bandırma", en: "Bread Dipping" } },
+    ],
+  },
+  nutrition: {
+    rows: [
+      ...DEFAULT_NUTRITION_ROWS,
+      { label: { tr: "Polifenoller", en: "Polyphenols" }, value: "200+ mg/kg" },
+    ],
+    footnote: {
+      tr: "** Günlük referans alım değerine göre.",
+      en: "** Based on the daily reference intake.",
+    },
+  },
+};
+
+// Supabase'deki jsonb yapısı (snake_case, _tr/_en alanlı) → ProductDetails.
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function toL(obj: any, key: string, fallback: L = { tr: "", en: "" }): L {
+  const tr = obj?.[`${key}_tr`];
+  const en = obj?.[`${key}_en`];
+  if (typeof tr !== "string" && typeof en !== "string") return fallback;
+  return { tr: typeof tr === "string" ? tr : (en ?? ""), en: typeof en === "string" ? en : (tr ?? "") };
+}
+
+export function normalizeDetails(raw: unknown): ProductDetails {
+  const d = (raw && typeof raw === "object" ? raw : {}) as any;
+
+  const gallery = Array.isArray(d.gallery) && d.gallery.length > 0
+    ? d.gallery.filter((g: unknown) => typeof g === "string")
+    : DEFAULT_DETAILS.gallery;
+
+  const highlights = Array.isArray(d.highlights) && d.highlights.length > 0
+    ? d.highlights.map((h: any) => ({
+        icon: typeof h?.icon === "string" ? h.icon : "olive",
+        title: toL(h, "title"),
+        sub: toL(h, "sub"),
+      }))
+    : DEFAULT_DETAILS.highlights;
+
+  const aboutSpecs = Array.isArray(d.about_specs) && d.about_specs.length > 0
+    ? d.about_specs.map((s: any) => ({
+        icon: typeof s?.icon === "string" ? s.icon : "olive",
+        label: toL(s, "label"),
+        value: toL(s, "value"),
+      }))
+    : DEFAULT_DETAILS.aboutSpecs;
+
+  const taste = d.taste && typeof d.taste === "object"
+    ? {
+        fruity: clamp05(d.taste.fruity, DEFAULT_DETAILS.taste.fruity),
+        bitter: clamp05(d.taste.bitter, DEFAULT_DETAILS.taste.bitter),
+        pungent: clamp05(d.taste.pungent, DEFAULT_DETAILS.taste.pungent),
+        notes: toL(d.taste, "notes", DEFAULT_DETAILS.taste.notes),
+      }
+    : DEFAULT_DETAILS.taste;
+
+  const usage = d.usage && typeof d.usage === "object"
+    ? {
+        text: toL(d.usage, "text", DEFAULT_DETAILS.usage.text),
+        items: Array.isArray(d.usage.items) && d.usage.items.length > 0
+          ? d.usage.items.map((u: any) => ({
+              icon: typeof u?.icon === "string" ? u.icon : "olive",
+              label: toL(u, "label"),
+            }))
+          : DEFAULT_DETAILS.usage.items,
+      }
+    : DEFAULT_DETAILS.usage;
+
+  const nutrition = d.nutrition && typeof d.nutrition === "object" && Array.isArray(d.nutrition.rows)
+    ? {
+        rows: d.nutrition.rows.map((r: any) => ({
+          label: toL(r, "label"),
+          value: typeof r?.value === "string" ? r.value : "",
+        })),
+        footnote: toL(d.nutrition, "footnote", DEFAULT_DETAILS.nutrition.footnote),
+      }
+    : DEFAULT_DETAILS.nutrition;
+
+  return { gallery, highlights, aboutSpecs, taste, usage, nutrition };
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+function clamp05(v: unknown, fallback: number): number {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(5, Math.max(0, Math.round(n)));
+}
+
+/** "500 ml" / "5 L" gibi hacim metnini ml'ye çevirir; anlaşılamazsa null. */
+export function parseSizeToMl(size: string): number | null {
+  const m = size.replace(",", ".").match(/([\d.]+)\s*(ml|l|lt)/i);
+  if (!m) return null;
+  const n = parseFloat(m[1]);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  return m[2].toLowerCase() === "ml" ? n : n * 1000;
+}
+
+/** 100 ml başına fiyat metni — ör. "31,60 TL / 100 ml". Hesaplanamazsa null. */
+export function formatUnitPrice(price: number, size: string): string | null {
+  const ml = parseSizeToMl(size);
+  if (!ml) return null;
+  const per100 = (price / ml) * 100;
+  return `${per100.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TL / 100 ml`;
+}
 
 /** Supabase'den aktif ürünleri çeker (sort_order sıralı, 5 dk cache). */
 export async function getProducts(): Promise<Product[]> {
@@ -47,14 +224,14 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("slug, name, badge_tr, badge_en, size, price, medal, description_tr, description_en")
+    .select("slug, name, badge_tr, badge_en, size, price, medal, description_tr, description_en, details")
     .eq("slug", slug)
     .eq("is_active", true)
     .single();
 
   if (error || !data) {
     console.warn("[products] getProductBySlug: Supabase hatası, yedek kullanılıyor.", error?.message);
-    return fallbackProducts.find((p) => p.slug === slug) ?? null;
+    return withDetails(fallbackProducts.find((p) => p.slug === slug) ?? null);
   }
 
   return {
@@ -68,6 +245,49 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       tr: (data as { description_tr?: string }).description_tr || "",
       en: (data as { description_en?: string }).description_en || "",
     },
+    details: normalizeDetails((data as { details?: unknown }).details),
+  };
+}
+
+// Fallback üründe details boş → varsayılanlar + ürüne özel yedek değerler.
+// (Supabase'deki seed'in özeti; gerçek kaynak DB'dir.)
+const fallbackDetailOverrides: Record<string, Partial<ProductDetails>> = {
+  "pelitkoy-erken-hasat-rezerv-petite": {
+    highlights: earlyHarvestHighlights(),
+    taste: {
+      fruity: 5, bitter: 4, pungent: 5,
+      notes: {
+        tr: "Yeşil domates, taze çimen, enginar ve badem çağrışımları.",
+        en: "Green tomato, fresh-cut grass, artichoke and almond.",
+      },
+    },
+  },
+  "veroliva-reserve-gold": {
+    highlights: earlyHarvestHighlights(),
+    taste: {
+      fruity: 5, bitter: 4, pungent: 4,
+      notes: {
+        tr: "Yeşil domates, taze çimen, enginar ve badem çağrışımları.",
+        en: "Green tomato, fresh-cut grass, artichoke and almond.",
+      },
+    },
+  },
+};
+
+function earlyHarvestHighlights(): ProductDetails["highlights"] {
+  return [
+    { icon: "leaf", title: { tr: "Erken Hasat", en: "Early Harvest" }, sub: { tr: "Ekim Ayı", en: "October" } },
+    { icon: "press", title: { tr: "Soğuk Sıkım", en: "Cold Pressed" }, sub: { tr: "24°C'de sıkım", en: "Pressed at 24°C" } },
+    { icon: "drop", title: { tr: "Asitlik", en: "Acidity" }, sub: { tr: "≤ %0,3", en: "≤ 0.3%" } },
+    { icon: "molecule", title: { tr: "Polifenol", en: "Polyphenol" }, sub: { tr: "450+ mg/kg", en: "450+ mg/kg" } },
+  ];
+}
+
+function withDetails(p: Product | null): Product | null {
+  if (!p) return null;
+  return {
+    ...p,
+    details: { ...DEFAULT_DETAILS, ...(fallbackDetailOverrides[p.slug] ?? {}), ...(p.details ?? {}) },
   };
 }
 

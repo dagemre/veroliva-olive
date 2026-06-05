@@ -199,6 +199,7 @@ export type Database = {
           currency: string
           description_en: string | null
           description_tr: string | null
+          details: Json
           id: string
           image_url: string | null
           is_active: boolean
@@ -219,6 +220,7 @@ export type Database = {
           currency?: string
           description_en?: string | null
           description_tr?: string | null
+          details?: Json
           id?: string
           image_url?: string | null
           is_active?: boolean
@@ -239,6 +241,7 @@ export type Database = {
           currency?: string
           description_en?: string | null
           description_tr?: string | null
+          details?: Json
           id?: string
           image_url?: string | null
           is_active?: boolean
