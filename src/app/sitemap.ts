@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routing, type AppPathname } from "@/i18n/routing";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
+import { getProducts } from "@/lib/products";
 
-// İndekslenmesini istediğimiz sayfalar. Yeni sayfa açılınca buraya ekle —
+// İndekslenmesini istediğimiz statik sayfalar. Yeni sayfa açılınca buraya ekle —
 // sitemap.xml otomatik güncellenir (her dil için hreflang alternates ile).
 const PAGES: { path: AppPathname; priority: number; changeFrequency: "weekly" | "monthly" }[] = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
@@ -13,10 +14,10 @@ const PAGES: { path: AppPathname; priority: number; changeFrequency: "weekly" | 
   { path: "/iletisim", priority: 0.6, changeFrequency: "monthly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
-  return PAGES.flatMap(({ path, priority, changeFrequency }) => {
+  const staticEntries = PAGES.flatMap(({ path, priority, changeFrequency }) => {
     const languages: Record<string, string> = {};
     for (const locale of routing.locales) {
       languages[locale] = absoluteUrl(locale, path);
@@ -31,4 +32,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages },
     }));
   });
+
+  // Ürün detay sayfaları — her ürün için TR + EN URL
+  const products = await getProducts();
+  const productEntries: MetadataRoute.Sitemap = products.flatMap((p) => {
+    const trUrl = `${SITE_URL}/urun/${p.slug}`;
+    const enUrl = `${SITE_URL}/en/products/${p.slug}`;
+    const languages = { tr: trUrl, en: enUrl, "x-default": trUrl };
+    return [
+      { url: trUrl, lastModified, changeFrequency: "weekly", priority: 0.85, alternates: { languages } },
+      { url: enUrl, lastModified, changeFrequency: "weekly", priority: 0.75, alternates: { languages } },
+    ];
+  });
+
+  return [...staticEntries, ...productEntries];
 }

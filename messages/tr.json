@@ -180,6 +180,30 @@
       "a9": "Siparişler 1-2 iş günü içinde kargoya verilir. 1500 TL üzeri siparişlerde Türkiye içi kargo ücretsizdir."
     }
   },
+  "productPage": {
+    "metaTitleSuffix": "| Veroliva Zeytinyağı",
+    "metaDescriptionFallback": "soğuk sıkım natürel sızma zeytinyağı, Pelitköy Burhaniye",
+    "breadcrumbHome": "Ana Sayfa",
+    "breadcrumbCollection": "Koleksiyon",
+    "addToCart": "Sepete Ekle",
+    "shippingNote": "1.500 TL üzeri siparişlerde ücretsiz kargo",
+    "specsTitle": "Teknik Bilgiler",
+    "specs": {
+      "typeLabel": "Ürün Tipi",
+      "typeValue": "Natürel Sızma Zeytinyağı",
+      "methodLabel": "Sıkım Yöntemi",
+      "methodValue": "Soğuk Sıkım (27°C Altı)",
+      "harvestLabel": "Hasat",
+      "harvestValue": "El Hasadı",
+      "originLabel": "Menşei",
+      "originValue": "Pelitköy, Burhaniye, Balıkesir"
+    },
+    "otherProducts": "Diğer Ürünlerimiz",
+    "backToCollection": "Koleksiyona Dön",
+    "notFound": "Ürün bulunamadı.",
+    "notFoundText": "Aradığınız ürün mevcut değil veya yayından kaldırılmış olabilir.",
+    "contactCta": "Toplu Sipariş İçin Bize Ulaşın →"
+  },
   "contactPage": {
     "metaTitle": "İletişim | Veroliva Zeytinyağı",
     "metaDescription": "Veroliva Zeytinyağı iletişim: sorularınız, toptan satış ve private label talepleriniz için bize ulaşın. Pelitköy, Burhaniye / Balıkesir.",
