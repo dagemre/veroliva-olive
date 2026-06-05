@@ -310,5 +310,176 @@
       "fastShipping": "Hızlı Kargo"
     },
     "backToTop": "Yukarı çık"
+  },
+  "auth": {
+    "common": {
+      "loading": "Gönderiliyor...",
+      "errorGeneric": "Bir şeyler ters gitti. Lütfen tekrar deneyin.",
+      "errorOAuth": "Google ile giriş şu an aktif değil. Lütfen e-posta ile devam edin."
+    },
+    "login": {
+      "metaTitle": "Giriş Yap | Veroliva Zeytinyağı",
+      "metaDescription": "Veroliva hesabınıza giriş yapın; siparişlerinizi takip edin, size özel fırsatlardan yararlanın.",
+      "title": "Hoş Geldiniz",
+      "subtitle": "Veroliva ailesine katılın, size özel ayrıcalıklardan yararlanın ve siparişlerinizi kolayca takip edin.",
+      "email": "E-posta Adresiniz",
+      "emailPlaceholder": "E-posta adresinizi giriniz",
+      "password": "Şifreniz",
+      "passwordPlaceholder": "Şifrenizi giriniz",
+      "remember": "Beni hatırla",
+      "forgot": "Şifremi unuttum",
+      "submit": "Giriş Yap",
+      "or": "veya",
+      "google": "Google ile giriş yap",
+      "noAccount": "Hesabınız yok mu?",
+      "register": "Hesap oluşturun",
+      "errorInvalid": "E-posta veya şifre hatalı.",
+      "errorUnconfirmed": "E-posta adresiniz henüz doğrulanmamış. Gelen kutunuzu kontrol edin.",
+      "asideTitle": "Toprağımızdan Sofranıza, Doğallığın En Saf Hali.",
+      "badgeTop": "AYNI TOPRAK",
+      "badgeBottom": "AYNI EMEK"
+    },
+    "register": {
+      "metaTitle": "Hesap Oluşturun | Veroliva Zeytinyağı",
+      "metaDescription": "Veroliva'ya üye olun; size özel fırsatlar, hızlı sipariş ve sipariş takibi sizi bekliyor.",
+      "title": "Hesap Oluşturun",
+      "subtitle": "Veroliva ailesine katılın, size özel ayrıcalıklardan yararlanın ve siparişlerinizi kolayca takip edin.",
+      "firstName": "Adınız",
+      "firstNamePlaceholder": "Adınızı giriniz",
+      "lastName": "Soyadınız",
+      "lastNamePlaceholder": "Soyadınızı giriniz",
+      "email": "E-posta Adresiniz",
+      "emailPlaceholder": "E-posta adresinizi giriniz",
+      "password": "Şifreniz",
+      "passwordPlaceholder": "Şifrenizi oluşturun",
+      "confirm": "Şifrenizi Onaylayın",
+      "confirmPlaceholder": "Şifrenizi tekrar giriniz",
+      "rulesTitle": "Şifreniz en az:",
+      "rules": {
+        "length": "8 karakter uzunluğunda olmalı",
+        "upper": "1 büyük harf içermeli",
+        "digit": "1 rakam içermeli"
+      },
+      "kvkk": "KVKK <link>Aydınlatma Metni</link>'ni okudum, kabul ediyorum.",
+      "submit": "Hesap Oluştur",
+      "or": "veya",
+      "google": "Google ile devam et",
+      "haveAccount": "Zaten hesabınız var mı?",
+      "login": "Giriş yapın",
+      "errorName": "Lütfen adınızı ve soyadınızı girin.",
+      "errorRules": "Şifreniz aşağıdaki kuralların tümünü karşılamalı.",
+      "errorMatch": "Şifreler birbiriyle eşleşmiyor.",
+      "errorKvkk": "Devam etmek için KVKK Aydınlatma Metni'ni kabul etmelisiniz.",
+      "errorExists": "Bu e-posta adresiyle zaten bir hesap var. Giriş yapmayı deneyin.",
+      "successTitle": "E-postanızı Kontrol Edin",
+      "successText": "Hesabınız oluşturuldu. Size gönderdiğimiz doğrulama e-postasındaki bağlantıya tıklayarak üyeliğinizi tamamlayın.",
+      "successCta": "Giriş Sayfasına Dön",
+      "aside": {
+        "title": "Veroliva Dünyasına Hoş Geldiniz",
+        "text": "Hesap oluşturduğunuzda size özel avantajlardan yararlanmaya başlayın.",
+        "items": [
+          {
+            "title": "Size Özel Fırsatlar",
+            "text": "Sadece üyelerimize özel indirimler ve kampanyalar."
+          },
+          {
+            "title": "Hızlı ve Kolay Sipariş",
+            "text": "Kayıtlı adreslerinizle hızlıca sipariş verin, zaman kazanın."
+          },
+          {
+            "title": "Favorilerinizi Kaydedin",
+            "text": "Beğendiğiniz ürünleri kaydedin, kolayca tekrar ulaşın."
+          },
+          {
+            "title": "Sipariş Takibi",
+            "text": "Siparişlerinizi anlık olarak takip edin, bilgilendirmeleri kaçırmayın."
+          }
+        ]
+      }
+    },
+    "forgot": {
+      "metaTitle": "Şifremi Unuttum | Veroliva Zeytinyağı",
+      "metaDescription": "Veroliva hesabınızın şifresini sıfırlamak için e-posta adresinizi girin.",
+      "title": "Şifrenizi mi Unuttunuz?",
+      "text": "Endişelenmeyin. E-posta adresinizi girin, size şifrenizi yenileyebileceğiniz bir bağlantı gönderelim.",
+      "email": "E-posta Adresiniz",
+      "emailPlaceholder": "E-posta adresinizi giriniz",
+      "submit": "Sıfırlama Bağlantısı Gönder",
+      "backToLogin": "Giriş sayfasına dön",
+      "successTitle": "Bağlantı Gönderildi",
+      "successText": "Bu e-posta adresiyle kayıtlı bir hesap varsa, şifre yenileme bağlantısı birkaç dakika içinde gelen kutunuza ulaşır."
+    },
+    "reset": {
+      "metaTitle": "Yeni Şifre Belirle | Veroliva Zeytinyağı",
+      "metaDescription": "Veroliva hesabınız için yeni şifrenizi belirleyin.",
+      "title": "Yeni Şifre Belirleyin",
+      "text": "Hesabınız için yeni bir şifre oluşturun.",
+      "password": "Yeni Şifreniz",
+      "passwordPlaceholder": "Yeni şifrenizi oluşturun",
+      "confirm": "Şifrenizi Onaylayın",
+      "confirmPlaceholder": "Şifrenizi tekrar giriniz",
+      "submit": "Şifreyi Güncelle",
+      "backToLogin": "Giriş sayfasına dön",
+      "errorShort": "Şifreniz en az 8 karakter olmalı.",
+      "errorMatch": "Şifreler birbiriyle eşleşmiyor.",
+      "errorExpired": "Bağlantının süresi dolmuş olabilir. Lütfen yeni bir sıfırlama bağlantısı isteyin.",
+      "successTitle": "Şifreniz Güncellendi",
+      "successText": "Yeni şifrenizle giriş yaptınız, hesabınıza yönlendiriliyorsunuz..."
+    },
+    "account": {
+      "metaTitle": "Hesabım | Veroliva Zeytinyağı",
+      "metaDescription": "Veroliva hesabınızı yönetin; siparişlerinizi ve bilgilerinizi görüntüleyin.",
+      "loading": "Hesabınız yükleniyor...",
+      "welcome": "Hoş Geldiniz",
+      "welcomeName": "Hoş Geldiniz, {name}",
+      "ordersTitle": "Siparişlerim",
+      "ordersEmpty": "Henüz bir siparişiniz bulunmuyor. Koleksiyonumuzu keşfederek ilk siparişinizi verebilirsiniz.",
+      "signOut": "Çıkış Yap"
+    },
+    "kvkkModal": {
+      "title": "KVKK Aydınlatma Metni",
+      "version": "Sürüm: 2026-06 · Kişisel Verilerin Korunması Kanunu (6698 sayılı) kapsamında",
+      "close": "Kapat",
+      "accept": "Okudum, Kabul Ediyorum",
+      "intro": "Veroliva Zeytinyağı (\"Veroliva\" veya \"Şirket\") olarak kişisel verilerinizin güvenliğine önem veriyoruz. Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") uyarınca, verolivaolive.com üzerinden üyelik oluşturmanız ve alışveriş yapmanız sırasında işlenen kişisel verileriniz hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.",
+      "sections": [
+        {
+          "h": "Veri Sorumlusu",
+          "p": "Kişisel verileriniz, veri sorumlusu sıfatıyla Veroliva Zeytinyağı (Pelitköy Mah., Burhaniye/Balıkesir) tarafından işlenmektedir. İletişim: hello@verolivaolive.com"
+        },
+        {
+          "h": "İşlenen Kişisel Verileriniz",
+          "p": "Üyelik ve alışveriş süreçlerinde şu verileriniz işlenir:\n• Kimlik bilgileri: ad, soyad\n• İletişim bilgileri: e-posta adresi, telefon numarası, teslimat ve fatura adresi\n• Müşteri işlem bilgileri: sipariş geçmişi, sepet bilgileri, fatura bilgileri\n• İşlem güvenliği bilgileri: şifre (şifrelenmiş olarak), IP adresi, oturum kayıtları\n• Pazarlama bilgileri (onay vermeniz hâlinde): kampanya ve bülten tercihleri"
+        },
+        {
+          "h": "İşleme Amaçları",
+          "p": "Kişisel verileriniz; üyelik hesabınızın oluşturulması ve yönetilmesi, siparişlerinizin alınması, hazırlanması ve teslim edilmesi, ödeme işlemlerinin gerçekleştirilmesi, fatura düzenlenmesi, sizinle iletişim kurulması, talep ve şikâyetlerinizin sonuçlandırılması, yasal yükümlülüklerin yerine getirilmesi ve açık rızanız bulunması hâlinde kampanya/bülten bilgilendirmeleri yapılması amaçlarıyla işlenir."
+        },
+        {
+          "h": "Hukuki Sebepler",
+          "p": "Verileriniz KVKK m.5 kapsamında; sözleşmenin kurulması ve ifası (üyelik ve satış sözleşmesi), hukuki yükümlülüğün yerine getirilmesi (fatura, vergi ve e-ticaret mevzuatı), meşru menfaat (hesap güvenliği, dolandırıcılık önleme) ve pazarlama iletişimi için açık rıza hukuki sebeplerine dayanılarak işlenir."
+        },
+        {
+          "h": "Verilerin Aktarılması",
+          "p": "Kişisel verileriniz; siparişinizin teslimi için kargo firmalarına, ödeme işlemleri için ödeme kuruluşlarına (iyzico vb.), altyapı ve barındırma hizmetleri için yurt içi/yurt dışındaki hizmet sağlayıcılarımıza (sunucu, veritabanı ve e-posta hizmetleri) ve yasal zorunluluk hâlinde yetkili kamu kurum ve kuruluşlarına, amaçla sınırlı ve gerekli güvenlik tedbirleri alınarak aktarılabilir."
+        },
+        {
+          "h": "Toplama Yöntemi",
+          "p": "Verileriniz; web sitemizdeki üyelik, sipariş ve iletişim formları, çerezler ve benzeri teknolojiler ile e-posta/telefon üzerinden kurduğunuz iletişim aracılığıyla, kısmen veya tamamen otomatik yollarla toplanır."
+        },
+        {
+          "h": "Saklama Süresi",
+          "p": "Kişisel verileriniz, işleme amaçlarının gerektirdiği süre boyunca ve ilgili mevzuatta öngörülen asgari saklama sürelerine (ör. e-ticaret ve vergi mevzuatı) uygun olarak saklanır; sürelerin dolmasıyla silinir, yok edilir veya anonim hâle getirilir."
+        },
+        {
+          "h": "KVKK Kapsamındaki Haklarınız",
+          "p": "KVKK'nın 11. maddesi uyarınca; kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işleme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme, eksik veya yanlış işlenmişse düzeltilmesini isteme, silinmesini veya yok edilmesini isteme, bu işlemlerin aktarılan üçüncü kişilere bildirilmesini isteme, münhasıran otomatik sistemlerle analiz sonucu aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve zarara uğramanız hâlinde tazminat talep etme haklarına sahipsiniz."
+        },
+        {
+          "h": "Başvuru",
+          "p": "Haklarınıza ilişkin taleplerinizi hello@verolivaolive.com adresine e-posta göndererek iletebilirsiniz. Başvurularınız en geç 30 gün içinde ücretsiz olarak sonuçlandırılır."
+        }
+      ]
+    }
   }
 }

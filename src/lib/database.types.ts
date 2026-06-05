@@ -260,27 +260,39 @@ export type Database = {
         Row: {
           created_at: string
           email: string | null
+          first_name: string
           full_name: string | null
           id: string
           is_admin: boolean
+          kvkk_accepted_at: string | null
+          kvkk_version: string | null
+          last_name: string
           phone: string | null
           updated_at: string
         }
         Insert: {
           created_at?: string
           email?: string | null
+          first_name?: string
           full_name?: string | null
           id: string
           is_admin?: boolean
+          kvkk_accepted_at?: string | null
+          kvkk_version?: string | null
+          last_name?: string
           phone?: string | null
           updated_at?: string
         }
         Update: {
           created_at?: string
           email?: string | null
+          first_name?: string
           full_name?: string | null
           id?: string
           is_admin?: boolean
+          kvkk_accepted_at?: string | null
+          kvkk_version?: string | null
+          last_name?: string
           phone?: string | null
           updated_at?: string
         }

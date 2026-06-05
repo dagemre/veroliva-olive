@@ -310,5 +310,176 @@
       "fastShipping": "Fast Shipping"
     },
     "backToTop": "Back to top"
+  },
+  "auth": {
+    "common": {
+      "loading": "Submitting...",
+      "errorGeneric": "Something went wrong. Please try again.",
+      "errorOAuth": "Google sign-in is not available yet. Please continue with email."
+    },
+    "login": {
+      "metaTitle": "Sign In | Veroliva Olive Oil",
+      "metaDescription": "Sign in to your Veroliva account to track your orders and enjoy exclusive offers.",
+      "title": "Welcome Back",
+      "subtitle": "Join the Veroliva family, enjoy exclusive privileges and easily track your orders.",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "remember": "Remember me",
+      "forgot": "Forgot password",
+      "submit": "Sign In",
+      "or": "or",
+      "google": "Sign in with Google",
+      "noAccount": "Don't have an account?",
+      "register": "Create an account",
+      "errorInvalid": "Incorrect email or password.",
+      "errorUnconfirmed": "Your email address has not been verified yet. Please check your inbox.",
+      "asideTitle": "From Our Soil to Your Table, Nature at Its Purest.",
+      "badgeTop": "SAME SOIL",
+      "badgeBottom": "SAME CRAFT"
+    },
+    "register": {
+      "metaTitle": "Create Account | Veroliva Olive Oil",
+      "metaDescription": "Join Veroliva for exclusive offers, faster checkout and order tracking.",
+      "title": "Create Account",
+      "subtitle": "Join the Veroliva family, enjoy exclusive privileges and easily track your orders.",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter your last name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Password",
+      "passwordPlaceholder": "Create your password",
+      "confirm": "Confirm Password",
+      "confirmPlaceholder": "Re-enter your password",
+      "rulesTitle": "Your password must contain at least:",
+      "rules": {
+        "length": "8 characters",
+        "upper": "1 uppercase letter",
+        "digit": "1 number"
+      },
+      "kvkk": "I have read and accept the <link>Privacy Notice</link>.",
+      "submit": "Create Account",
+      "or": "or",
+      "google": "Continue with Google",
+      "haveAccount": "Already have an account?",
+      "login": "Sign in",
+      "errorName": "Please enter your first and last name.",
+      "errorRules": "Your password must meet all the rules below.",
+      "errorMatch": "Passwords do not match.",
+      "errorKvkk": "You must accept the Privacy Notice to continue.",
+      "errorExists": "An account with this email already exists. Try signing in.",
+      "successTitle": "Check Your Email",
+      "successText": "Your account has been created. Complete your registration by clicking the link in the verification email we sent you.",
+      "successCta": "Back to Sign In",
+      "aside": {
+        "title": "Welcome to the World of Veroliva",
+        "text": "Create an account and start enjoying your exclusive benefits.",
+        "items": [
+          {
+            "title": "Exclusive Offers",
+            "text": "Member-only discounts and campaigns."
+          },
+          {
+            "title": "Fast & Easy Ordering",
+            "text": "Order quickly with saved addresses and save time."
+          },
+          {
+            "title": "Save Your Favorites",
+            "text": "Save the products you love and find them again easily."
+          },
+          {
+            "title": "Order Tracking",
+            "text": "Track your orders in real time and never miss an update."
+          }
+        ]
+      }
+    },
+    "forgot": {
+      "metaTitle": "Forgot Password | Veroliva Olive Oil",
+      "metaDescription": "Enter your email address to reset your Veroliva account password.",
+      "title": "Forgot Your Password?",
+      "text": "Don't worry. Enter your email address and we'll send you a link to reset your password.",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email address",
+      "submit": "Send Reset Link",
+      "backToLogin": "Back to sign in",
+      "successTitle": "Link Sent",
+      "successText": "If an account exists with this email address, a password reset link will arrive in your inbox within a few minutes."
+    },
+    "reset": {
+      "metaTitle": "Set New Password | Veroliva Olive Oil",
+      "metaDescription": "Set a new password for your Veroliva account.",
+      "title": "Set a New Password",
+      "text": "Create a new password for your account.",
+      "password": "New Password",
+      "passwordPlaceholder": "Create your new password",
+      "confirm": "Confirm Password",
+      "confirmPlaceholder": "Re-enter your password",
+      "submit": "Update Password",
+      "backToLogin": "Back to sign in",
+      "errorShort": "Your password must be at least 8 characters.",
+      "errorMatch": "Passwords do not match.",
+      "errorExpired": "The link may have expired. Please request a new reset link.",
+      "successTitle": "Password Updated",
+      "successText": "You are now signed in with your new password, redirecting to your account..."
+    },
+    "account": {
+      "metaTitle": "My Account | Veroliva Olive Oil",
+      "metaDescription": "Manage your Veroliva account; view your orders and details.",
+      "loading": "Loading your account...",
+      "welcome": "Welcome",
+      "welcomeName": "Welcome, {name}",
+      "ordersTitle": "My Orders",
+      "ordersEmpty": "You don't have any orders yet. Explore our collection to place your first order.",
+      "signOut": "Sign Out"
+    },
+    "kvkkModal": {
+      "title": "Privacy Notice (KVKK)",
+      "version": "Version: 2026-06 · Under the Turkish Personal Data Protection Law No. 6698 (KVKK)",
+      "close": "Close",
+      "accept": "I Have Read and Accept",
+      "intro": "At Veroliva Olive Oil (\"Veroliva\"), we care about the security of your personal data. This notice is provided under the Turkish Personal Data Protection Law No. 6698 (\"KVKK\") to inform you about how your personal data is processed when you create an account and shop on verolivaolive.com.",
+      "sections": [
+        {
+          "h": "Data Controller",
+          "p": "Your personal data is processed by Veroliva Olive Oil (Pelitköy, Burhaniye/Balıkesir, Türkiye) as data controller. Contact: hello@verolivaolive.com"
+        },
+        {
+          "h": "Personal Data We Process",
+          "p": "During registration and shopping we process:\n• Identity data: first and last name\n• Contact data: email address, phone number, delivery and billing address\n• Customer transaction data: order history, cart details, invoice details\n• Security data: password (encrypted), IP address, session logs\n• Marketing data (with your consent): campaign and newsletter preferences"
+        },
+        {
+          "h": "Purposes of Processing",
+          "p": "Your data is processed to create and manage your account, receive, prepare and deliver your orders, process payments, issue invoices, communicate with you, resolve your requests and complaints, fulfil legal obligations, and — with your explicit consent — send campaign/newsletter communications."
+        },
+        {
+          "h": "Legal Bases",
+          "p": "Under Article 5 of the KVKK, processing is based on: the establishment and performance of a contract (membership and sales agreement), compliance with legal obligations (invoicing, tax and e-commerce legislation), legitimate interest (account security, fraud prevention), and explicit consent for marketing communications."
+        },
+        {
+          "h": "Data Transfers",
+          "p": "Your data may be transferred — limited to the stated purposes and with appropriate safeguards — to courier companies for delivery, payment institutions (e.g. iyzico), our domestic and international service providers for infrastructure and hosting (server, database and email services), and competent public authorities where legally required."
+        },
+        {
+          "h": "Collection Method",
+          "p": "Your data is collected through the registration, order and contact forms on our website, cookies and similar technologies, and your communications with us via email or phone, by fully or partially automated means."
+        },
+        {
+          "h": "Retention Period",
+          "p": "Your data is retained for as long as required by the processing purposes and the minimum statutory retention periods (e.g. e-commerce and tax legislation), after which it is deleted, destroyed or anonymised."
+        },
+        {
+          "h": "Your Rights Under the KVKK",
+          "p": "Under Article 11 of the KVKK you have the right to: learn whether your data is processed; request information; learn the purpose of processing and whether it is used accordingly; know the third parties to whom it is transferred domestically or abroad; request correction of incomplete or inaccurate data; request deletion or destruction; request notification of these actions to third parties; object to results arising exclusively from automated analysis; and claim compensation for damages."
+        },
+        {
+          "h": "Applications",
+          "p": "You may submit requests regarding your rights by emailing hello@verolivaolive.com. Applications are concluded free of charge within 30 days at the latest."
+        }
+      ]
+    }
   }
 }
