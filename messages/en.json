@@ -1,12 +1,20 @@
 {
   "announcement": "15% Off Your First Order & Free Shipping Over 1500 TL.",
+  "homePage": {
+    "metaTitle": "Veroliva | Premium Turkish Extra Virgin Olive Oil — Cold Pressed",
+    "metaDescription": "Premium cold pressed extra virgin olive oil from a family-run Turkish olive oil producer in Pelitköy, on the Aegean coast. Early harvest, 100% natural — worldwide shipping."
+  },
   "nav": {
     "collection": "Collection",
     "guide": "Guide",
     "about": "About Us",
     "search": "Search",
     "account": "My Account",
-    "cart": "Cart"
+    "cart": "Cart",
+    "menu": "Menu"
+  },
+  "a11y": {
+    "next": "Next"
   },
   "hero": {
     "title": "The Aegean's Golden Gift, Brought to Life at Your Table.",
@@ -42,12 +50,12 @@
     "heroText": "Discover our natural extra virgin olive oils, reaching your table from the fertile lands of Pelitköy.",
     "text": "Meet our olive oils, carefully crafted from early harvest to cold press.",
     "cta": "About Our Olive Oils",
-    "metaTitle": "Collection | Veroliva Olive Oil",
-    "metaDescription": "The Veroliva olive oil collection: early harvest, cold-pressed classics and family-size options."
+    "metaTitle": "Extra Virgin Olive Oil Collection — Cold Pressed | Veroliva Olive Oil",
+    "metaDescription": "Shop premium Turkish extra virgin olive oil: early harvest, cold pressed classics and family-size tins, from 250 ml to 5 L. Produced in Pelitköy, Aegean Türkiye."
   },
   "guidePage": {
-    "metaTitle": "Olive Oil Guide | Veroliva Olive Oil",
-    "metaDescription": "Olive oil varieties, benefits and usage tips. The Veroliva guide to choosing the right olive oil.",
+    "metaTitle": "Olive Oil Guide: Extra Virgin, Cold Pressed & Early Harvest | Veroliva",
+    "metaDescription": "What makes extra virgin olive oil special? Learn the difference between cold pressed, early harvest and classic olive oil, plus storage and usage tips.",
     "hero": {
       "title": "Olive Oil Guide",
       "text": "Get to know olive oil more closely. Make the right choice and discover the difference in taste and health.",
@@ -91,12 +99,12 @@
     }
   },
   "aboutPage": {
-    "metaTitle": "About Us | Veroliva Olive Oil",
-    "metaDescription": "Veroliva's story since 1985: three generations of traditional olive oil craftsmanship in the fertile lands of the Aegean.",
+    "metaTitle": "About Us — Turkish Olive Oil Producer Since 1985 | Veroliva",
+    "metaDescription": "Veroliva is a family-run Turkish olive oil producer and manufacturer in Pelitköy, Burhaniye. Three generations of cold pressed extra virgin olive oil craftsmanship since 1985.",
     "hero": {
       "eyebrow": "About Us",
       "title": "Our Family's Legacy, Our Land's Bounty",
-      "p1": "Veroliva began in 1985 with our love for the olive in the fertile lands of the Aegean. With knowledge, labor and passion passed down through generations, today we bring naturalness and quality to your table.",
+      "p1": "Veroliva began in 1985 with our love for the olive in the fertile lands of the Aegean. As a family-run Turkish olive oil producer, with knowledge, labor and passion passed down through generations, today we bring naturalness and quality to your table.",
       "p2": "Our purpose is to bring you olive oil in its purest, additive-free and natural form, and to carry this unique flavor to future generations.",
       "cta": "Discover Our Story"
     },
@@ -143,6 +151,56 @@
       "p4Text": "Our oil rests naturally and is never refined.",
       "p5Title": "5. Bottling",
       "p5Text": "Bottled in its purest form and brought to your table."
+    }
+  },
+  "faqPage": {
+    "metaTitle": "Frequently Asked Questions | Veroliva Olive Oil",
+    "metaDescription": "FAQ about extra virgin olive oil, cold pressing, early harvest, storage, international shipping, bulk olive oil supply and private label production.",
+    "title": "Frequently Asked Questions",
+    "intro": "Everything you may wonder about our olive oils, our production process and orders. Can't find your answer? Write to us.",
+    "contactCta": "Contact Us",
+    "items": {
+      "q1": "What is extra virgin olive oil?",
+      "a1": "Extra virgin olive oil is the highest quality grade: obtained from olives purely by mechanical means, without any chemical treatment, with free acidity below 0.8%. All Veroliva oils are extra virgin grade.",
+      "q2": "What does cold pressed mean?",
+      "a2": "Cold pressed means the olives are pressed at temperatures below 27°C (80°F). Low temperature preserves the aroma, vitamins and antioxidants. At Veroliva, the entire harvest is processed by cold pressing.",
+      "q3": "What makes early harvest olive oil special?",
+      "a3": "Early harvest olives are picked while still green. The yield is lower, but the polyphenol (antioxidant) content is much higher and the aroma is more intense, with grassy notes. That is why early harvest oils are more prized.",
+      "q4": "How should olive oil be stored?",
+      "a4": "Keep it sealed, away from light and heat, in a cool (14-18°C) dark place. Dark glass bottles or tins protect the oil from light. Properly stored olive oil stays fresh for 18-24 months.",
+      "q5": "Is your olive oil natural and additive-free?",
+      "a5": "Yes. Our oils are made from 100% olives, with no additives, preservatives or refining. Olives picked from our own family groves are pressed on the same day.",
+      "q6": "Do you ship internationally?",
+      "a6": "Yes, we ship worldwide. For international orders, reach us via the contact page; shipping time and cost vary by country.",
+      "q7": "Do you supply bulk olive oil?",
+      "a7": "Yes. As a Turkish olive oil manufacturer, we are a bulk olive oil supplier for restaurants, retailers and export partners. Send us your requirements via the contact page.",
+      "q8": "Do you offer private label olive oil?",
+      "a8": "Yes, we produce private label olive oil for your own brand. Contact us for bottle sizes, labelling and packaging options.",
+      "q9": "When will my order ship?",
+      "a9": "Orders are dispatched within 1-2 business days. Shipping within Türkiye is free for orders over 1500 TL."
+    }
+  },
+  "contactPage": {
+    "metaTitle": "Contact — Bulk Olive Oil Supplier & Private Label | Veroliva",
+    "metaDescription": "Contact Veroliva Olive Oil for questions, bulk olive oil supply and private label production. Turkish olive oil producer in Pelitköy, Burhaniye, Balıkesir.",
+    "title": "Contact",
+    "text": "Write to us for questions, suggestions, wholesale and private label requests. We reply as soon as possible.",
+    "infoTitle": "Reach Us",
+    "addressLabel": "Address",
+    "address": "Pelitköy, Burhaniye / Balıkesir, Türkiye",
+    "emailLabel": "E-mail",
+    "b2bTitle": "Wholesale & Private Label",
+    "b2bText": "We supply bulk extra virgin olive oil for restaurants, retailers and export partners, and offer private label olive oil production for your own brand. Send your request via the form and we will prepare a tailored offer.",
+    "form": {
+      "name": "Full Name",
+      "email": "E-mail",
+      "subject": "Subject",
+      "subjectGeneral": "General Question",
+      "subjectWholesale": "Wholesale / Bulk",
+      "subjectPrivateLabel": "Private Label",
+      "message": "Your Message",
+      "submit": "Send",
+      "success": "Thank you! Your message has been received — we will get back to you shortly."
     }
   },
   "story": {

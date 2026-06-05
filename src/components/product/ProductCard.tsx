@@ -1,23 +1,38 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { formatPrice, type Product } from "@/lib/products";
 
+// SEO: açıklayıcı alt text (TR/EN) — görsel araması için anahtar kelimeli.
+function productAlt(product: Product, locale: "tr" | "en"): string {
+  return locale === "tr"
+    ? `${product.name} ${product.size} natürel sızma zeytinyağı şişesi`
+    : `${product.name} ${product.size} Turkish extra virgin olive oil bottle`;
+}
+
 export default function ProductCard({ product }: { product: Product }) {
   const locale = useLocale() as "tr" | "en";
   const t = useTranslations("collection");
+  const productHref = {
+    pathname: "/urun/[slug]",
+    params: { slug: product.slug },
+  } as const;
 
   return (
     <article className="group flex w-64 shrink-0 snap-start flex-col border border-line bg-cream-light sm:w-72">
       {/* Görsel alanı */}
       <Link
-        href={`/urun/${product.slug}`}
+        href={productHref}
         className="relative block aspect-[4/5] overflow-hidden bg-parchment bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/urun-fon.jpg')" }}
+        style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`/images/products/${product.slug}.png`}
-          alt={product.name}
+        <Image
+          src={`/images/products/${product.slug}.webp`}
+          alt={productAlt(product, locale)}
+          width={877}
+          height={900}
+          sizes="(min-width: 640px) 288px, 256px"
+          loading="lazy"
           className="h-full w-full object-contain p-6 transition-transform duration-300 group-hover:scale-[1.04]"
         />
         {product.medal && (
@@ -41,7 +56,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <span className="self-start border border-line px-2 py-1 text-[10px] font-semibold tracking-[0.12em] text-ink-soft">
           {product.badge[locale]}
         </span>
-        <Link href={`/urun/${product.slug}`} className="mt-2.5 hover:text-gold">
+        <Link href={productHref} className="mt-2.5 hover:text-gold">
           <h3 className="text-[15px] font-semibold leading-snug text-ink">
             {product.name}
           </h3>

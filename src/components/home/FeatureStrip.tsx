@@ -24,9 +24,10 @@ export default function FeatureStrip() {
               className="h-16 w-16 shrink-0 self-center object-contain"
             />
             <div>
-              <h3 className="text-[12px] font-bold uppercase tracking-[0.14em] text-ink">
+              {/* Heading hiyerarşisi: h1'den sonra ilk seviye → h2 */}
+              <h2 className="text-[12px] font-bold uppercase tracking-[0.14em] text-ink">
                 {t(`${f.key}.title`)}
-              </h3>
+              </h2>
               <p className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
                 {t(`${f.key}.text`)}
               </p>

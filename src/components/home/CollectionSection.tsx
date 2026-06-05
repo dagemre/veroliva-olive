@@ -10,7 +10,7 @@ export default function CollectionSection() {
   return (
     <section
       className="bg-cream bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/urun-fon.jpg')" }}
+      style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[260px_1fr] lg:gap-14 lg:px-8 lg:py-20">
         {/* Sol tanıtım */}

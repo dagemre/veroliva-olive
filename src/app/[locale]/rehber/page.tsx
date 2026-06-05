@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { buildPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/schema";
+import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -10,10 +15,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "guidePage" });
-  return {
+  return buildPageMetadata({
+    locale: locale as "tr" | "en",
+    path: "/rehber",
     title: t("metaTitle"),
     description: t("metaDescription"),
-  };
+    ogImage: "/images/og/og-rehber.jpg",
+  });
 }
 
 /* Hero — PageHero'nun açık (krem) varyantı: görsel sağda, soldan krem
@@ -21,11 +29,14 @@ export async function generateMetadata({
 function GuideHero() {
   const t = useTranslations("guidePage.hero");
 
+  // LCP: hero arka plan görselini erkenden indir.
+  preload("/images/hero3.webp", { as: "image", fetchPriority: "high" });
+
   return (
     <section
       className="relative -mt-20 flex min-h-[460px] items-center bg-cream bg-cover bg-center lg:min-h-[540px]"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(244,239,224,0.55) 110px, rgba(244,239,224,0) 300px), linear-gradient(to right, rgba(244,239,224,1) 0%, rgba(244,239,224,0.96) 30%, rgba(244,239,224,0.55) 48%, rgba(244,239,224,0) 68%), url('/images/hero3.jpg')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(244,239,224,0.55) 110px, rgba(244,239,224,0) 300px), linear-gradient(to right, rgba(244,239,224,1) 0%, rgba(244,239,224,0.96) 30%, rgba(244,239,224,0.55) 48%, rgba(244,239,224,0) 68%), url('/images/hero3.webp')`,
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 pb-14 pt-36 sm:px-6 lg:px-8">
@@ -50,10 +61,10 @@ function GuideHero() {
 
 /* Zeytinyağı Hakkında — sol tanıtım kolonu + 4 ikonlu özellik kolonu */
 const aboutFeatures = [
-  { key: "f1", icon: "/icons/rehber-icon-1.png" },
-  { key: "f2", icon: "/icons/rehber-icon-2.png" },
-  { key: "f3", icon: "/icons/rehber-icon-3.png" },
-  { key: "f4", icon: "/icons/rehber-icon-4.png" },
+  { key: "f1", icon: "/icons/rehber-icon-1.webp" },
+  { key: "f2", icon: "/icons/rehber-icon-2.webp" },
+  { key: "f3", icon: "/icons/rehber-icon-3.webp" },
+  { key: "f4", icon: "/icons/rehber-icon-4.webp" },
 ] as const;
 
 function AboutSection() {
@@ -85,11 +96,15 @@ function AboutSection() {
               key={key}
               className="flex flex-col items-center px-4 text-center"
             >
-              <img
+              {/* Dekoratif ikon — boş alt + width/height (CLS önlemi) */}
+              <Image
                 src={icon}
                 alt=""
-                className="h-20 w-auto"
+                aria-hidden="true"
+                width={242}
+                height={273}
                 loading="lazy"
+                className="h-20 w-auto"
               />
               <h3 className="mt-5 text-sm font-bold text-ink">
                 {t(`${key}Title`)}
@@ -108,12 +123,12 @@ function AboutSection() {
 /* Zeytinyağı Çeşitleri — 3 fotoğraflı kart
    NOT: Kart fotoğrafları GEÇİCİ (blog görsellerinden) — gerçekleri bekleniyor. */
 const varieties = [
-  { key: "v1", image: "/images/blog/erken-hasat-zeytinyaginin-sirlari.jpg" },
+  { key: "v1", image: "/images/blog/erken-hasat-zeytinyaginin-sirlari.webp" },
   {
     key: "v2",
-    image: "/images/blog/geleneksel-zeytinyagli-tarifler-enginar-dolmasi.jpg",
+    image: "/images/blog/geleneksel-zeytinyagli-tarifler-enginar-dolmasi.webp",
   },
-  { key: "v3", image: "/images/blog/lezzeti-taze-tutmak-icin-saklama-ipuclari.jpg" },
+  { key: "v3", image: "/images/blog/lezzeti-taze-tutmak-icin-saklama-ipuclari.webp" },
 ] as const;
 
 function VarietiesSection() {
@@ -135,12 +150,14 @@ function VarietiesSection() {
               key={key}
               className="border border-line bg-cream-light"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
                   src={image}
                   alt={t(`${key}Title`)}
-                  className="h-full w-full object-cover"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   loading="lazy"
+                  className="object-cover"
                 />
               </div>
               <div className="p-5">
@@ -167,10 +184,10 @@ function VarietiesSection() {
 
 /* Kullanım Önerileri — ikon solda, başlık + metin sağda, 4 kolon */
 const tips = [
-  { key: "t1", icon: "/icons/rehber-icon-5.png" },
-  { key: "t2", icon: "/icons/rehber-icon-6.png" },
-  { key: "t3", icon: "/icons/rehber-icon-7.png" },
-  { key: "t4", icon: "/icons/rehber-icon-8.png" },
+  { key: "t1", icon: "/icons/rehber-icon-5.webp" },
+  { key: "t2", icon: "/icons/rehber-icon-6.webp" },
+  { key: "t3", icon: "/icons/rehber-icon-7.webp" },
+  { key: "t4", icon: "/icons/rehber-icon-8.webp" },
 ] as const;
 
 function UsageTipsSection() {
@@ -189,11 +206,14 @@ function UsageTipsSection() {
         <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
           {tips.map(({ key, icon }) => (
             <div key={key} className="flex items-start gap-4">
-              <img
+              <Image
                 src={icon}
                 alt=""
-                className="h-16 w-auto shrink-0"
+                aria-hidden="true"
+                width={242}
+                height={273}
                 loading="lazy"
+                className="h-16 w-auto shrink-0"
               />
               <div>
                 <h3 className="text-sm font-bold text-ink">
@@ -229,6 +249,17 @@ export default async function GuidePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
-  return <GuideContent />;
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbSchema(locale as "tr" | "en", [
+          { name: "Veroliva", path: "/" },
+          { name: nav("guide"), path: "/rehber" },
+        ])}
+      />
+      <GuideContent />
+    </>
+  );
 }

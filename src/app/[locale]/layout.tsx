@@ -1,18 +1,35 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { SITE_URL } from "@/lib/seo";
+import { organizationSchema } from "@/lib/schema";
+import JsonLd from "@/components/seo/JsonLd";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "../globals.css";
 
-export const metadata: Metadata = {
-  title: "Veroliva Zeytinyağı | Ege'nin Altın Hediyesi",
-  description:
-    "Pelitköy'ün asırlık ağaçlarından soğuk sıkım natürel sızma zeytinyağları. Erken hasat, %100 doğal, aile üretimi.",
-};
+// Site geneli varsayılanlar — sayfa bazlı metadata (canonical, hreflang, OG)
+// her sayfanın kendi generateMetadata'sından buildPageMetadata ile gelir.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "homePage" });
+  return {
+    metadataBase: new URL(SITE_URL),
+    // Her sayfa kendi tam başlığını verir (marka eki dahil) — template yok.
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    applicationName: "Veroliva",
+    formatDetection: { telephone: false },
+    robots: { index: true, follow: true },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -46,6 +63,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="antialiased">
+        <JsonLd data={organizationSchema(locale as "tr" | "en")} />
         <NextIntlClientProvider>
           <AnnouncementBar />
           <Header />

@@ -41,7 +41,7 @@ export default function StorySection() {
       {/* Tam genişlik arka plan fotoğrafı */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/story.jpg')" }}
+        style={{ backgroundImage: "url('/images/story.webp')" }}
         aria-hidden="true"
       />
       {/* Mobil: tüm alana koyu örtü — masaüstü: soldan sağa eriyen yeşil panel */}

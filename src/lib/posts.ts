@@ -1,5 +1,5 @@
 // Geçici rehber/blog verisi — ileride Supabase'den gelecek.
-// Görseller: public/images/blog/{slug}.jpg
+// Görseller: public/images/blog/{slug}.webp
 
 export type Post = {
   slug: string;

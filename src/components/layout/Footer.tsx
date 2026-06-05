@@ -36,11 +36,16 @@ const SOCIALS = [
   },
 ];
 
+type FooterLink = {
+  label: string;
+  href: React.ComponentProps<typeof Link>["href"];
+};
+
 export default function Footer() {
   const t = useTranslations();
   const year = new Date().getFullYear();
 
-  const columns = [
+  const columns: { title: string; links: FooterLink[] }[] = [
     {
       title: t("footer.corporate.title"),
       links: [

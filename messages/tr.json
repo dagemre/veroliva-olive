@@ -1,12 +1,20 @@
 {
   "announcement": "İlk Siparişe %15 İndirim ve 1500 TL Üzeri Ücretsiz Kargo.",
+  "homePage": {
+    "metaTitle": "Veroliva Zeytinyağı | Soğuk Sıkım Natürel Sızma Zeytinyağı",
+    "metaDescription": "Pelitköy Burhaniye'nin asırlık ağaçlarından soğuk sıkım natürel sızma zeytinyağı. Erken hasat, %100 doğal, aile üretimi premium zeytinyağları — Türkiye ve yurtdışına gönderim."
+  },
   "nav": {
     "collection": "Koleksiyon",
     "guide": "Rehber",
     "about": "Hakkımızda",
     "search": "Ara",
     "account": "Hesabım",
-    "cart": "Sepet"
+    "cart": "Sepet",
+    "menu": "Menü"
+  },
+  "a11y": {
+    "next": "Sonraki"
   },
   "hero": {
     "title": "Ege'nin Altın Hediyesi, Sofranızda Canlanıyor.",
@@ -42,12 +50,12 @@
     "heroText": "Pelitköy'ün bereketli topraklarından sofralarınıza uzanan naturel sızma zeytinyağlarımızı keşfedin.",
     "text": "Erken hasattan, soğuk sıkıma özenle üretilen zeytinyağlarımızla tanışın.",
     "cta": "Zeytinyağlarımız Hakkında",
-    "metaTitle": "Koleksiyon | Veroliva Zeytinyağı",
-    "metaDescription": "Veroliva zeytinyağı koleksiyonu: erken hasat, soğuk sıkım klasik ve aile boyu seçenekler."
+    "metaTitle": "Natürel Sızma Zeytinyağı Koleksiyonu | Veroliva Zeytinyağı",
+    "metaDescription": "Erken hasat, soğuk sıkım klasik ve aile boyu natürel sızma zeytinyağları. Pelitköy'den sofranıza premium zeytinyağı koleksiyonu — 250 ml'den 5 litreye."
   },
   "guidePage": {
-    "metaTitle": "Zeytinyağı Rehberi | Veroliva Zeytinyağı",
-    "metaDescription": "Zeytinyağı çeşitleri, faydaları ve kullanım önerileri. Doğru zeytinyağını seçmek için Veroliva rehberi.",
+    "metaTitle": "Zeytinyağı Rehberi: Çeşitler, Faydalar ve Kullanım | Veroliva Zeytinyağı",
+    "metaDescription": "Natürel sızma, erken hasat ve soğuk sıkım zeytinyağı arasındaki farklar; saklama ve kullanım önerileri. Doğru zeytinyağını seçmek için Veroliva rehberi.",
     "hero": {
       "title": "Zeytinyağı Rehberi",
       "text": "Zeytinyağını daha yakından tanıyın. Doğru seçimi yapın, lezzetin ve sağlığın farkını keşfedin.",
@@ -91,8 +99,8 @@
     }
   },
   "aboutPage": {
-    "metaTitle": "Hakkımızda | Veroliva Zeytinyağı",
-    "metaDescription": "Veroliva'nın 1985'ten bugüne uzanan hikayesi: Ege'nin bereketli topraklarında üç kuşaktır süren geleneksel zeytinyağı ustalığı.",
+    "metaTitle": "Hakkımızda: 1985'ten Beri Zeytinyağı Üreticisi | Veroliva Zeytinyağı",
+    "metaDescription": "Veroliva'nın 1985'ten bugüne uzanan hikayesi: Balıkesir Burhaniye Pelitköy'de üç kuşaktır süren geleneksel zeytinyağı üreticiliği ve soğuk sıkım ustalığı.",
     "hero": {
       "eyebrow": "Hakkımızda",
       "title": "Ailemizin Mirası, Toprağımızın Bereketi",
@@ -143,6 +151,56 @@
       "p4Text": "Zeytinyağımız doğal yöntemlerle dinlendirilir ve arıtılmaz.",
       "p5Title": "5. Şişeleme",
       "p5Text": "En saf haliyle şişelenir ve sofralarınıza ulaşır."
+    }
+  },
+  "faqPage": {
+    "metaTitle": "Sıkça Sorulan Sorular | Veroliva Zeytinyağı",
+    "metaDescription": "Natürel sızma zeytinyağı, soğuk sıkım, erken hasat, saklama koşulları, yurtdışı gönderim, toptan satış ve private label üretim hakkında sık sorulan sorular.",
+    "title": "Sıkça Sorulan Sorular",
+    "intro": "Zeytinyağlarımız, üretim sürecimiz ve siparişler hakkında merak edilenler. Aradığınız cevabı bulamadıysanız bize yazın.",
+    "contactCta": "Bize Ulaşın",
+    "items": {
+      "q1": "Natürel sızma zeytinyağı nedir?",
+      "a1": "Natürel sızma (extra virgin) zeytinyağı, zeytinin yalnızca mekanik yöntemlerle, hiçbir kimyasal işlem görmeden elde edilen ve serbest asitliği %0,8'in altında olan en yüksek kalite sınıfıdır. Veroliva'nın tüm yağları natürel sızma sınıfındadır.",
+      "q2": "Soğuk sıkım ne anlama geliyor?",
+      "a2": "Soğuk sıkım, zeytinin 27°C'nin altındaki sıcaklıkta sıkılması demektir. Düşük sıcaklık; aromayı, vitaminleri ve antioksidanları korur. Veroliva'da tüm hasat soğuk sıkım yöntemiyle işlenir.",
+      "q3": "Erken hasat zeytinyağını farklı kılan nedir?",
+      "a3": "Erken hasat, zeytinler henüz yeşilken toplanır. Verim daha düşük olsa da polifenol (antioksidan) oranı çok daha yüksek, aroması daha yoğun ve çim-ot notalıdır. Bu yüzden erken hasat yağlar daha değerlidir.",
+      "q4": "Zeytinyağı nasıl saklanmalı?",
+      "a4": "Işıktan ve ısıdan uzak, serin (14-18°C) ve karanlık bir yerde, ağzı kapalı şekilde saklayın. Koyu cam şişe veya teneke ambalaj yağı ışıktan korur. Doğru saklanan zeytinyağı 18-24 ay tazeliğini korur.",
+      "q5": "Zeytinyağlarınız katkısız mı?",
+      "a5": "Evet. Yağlarımız %100 zeytinden, hiçbir katkı maddesi, koruyucu veya rafinasyon işlemi olmadan üretilir. Kendi aile bahçelerimizden topladığımız zeytinler aynı gün sıkılır.",
+      "q6": "Yurtdışına gönderim yapıyor musunuz?",
+      "a6": "Evet, yurtdışına gönderim yapıyoruz. Uluslararası siparişler için iletişim sayfamızdan bize ulaşabilirsiniz; kargo süresi ve ücreti ülkeye göre değişir.",
+      "q7": "Toptan zeytinyağı tedariki yapıyor musunuz?",
+      "a7": "Evet. Restoranlar, marketler ve ihracat ortakları için toptan natürel sızma zeytinyağı tedarik ediyoruz. Talepleriniz için iletişim sayfamızdan yazabilirsiniz.",
+      "q8": "Private label (özel etiket) üretim yapıyor musunuz?",
+      "a8": "Evet, kendi markanızla satmak üzere private label zeytinyağı üretimi yapıyoruz. Şişe boyutları, etiket ve ambalaj seçenekleri için bizimle iletişime geçin.",
+      "q9": "Siparişim ne zaman kargoya verilir?",
+      "a9": "Siparişler 1-2 iş günü içinde kargoya verilir. 1500 TL üzeri siparişlerde Türkiye içi kargo ücretsizdir."
+    }
+  },
+  "contactPage": {
+    "metaTitle": "İletişim | Veroliva Zeytinyağı",
+    "metaDescription": "Veroliva Zeytinyağı iletişim: sorularınız, toptan satış ve private label talepleriniz için bize ulaşın. Pelitköy, Burhaniye / Balıkesir.",
+    "title": "İletişim",
+    "text": "Sorularınız, önerileriniz, toptan satış ve private label talepleriniz için bize yazın. En kısa sürede dönüş yapıyoruz.",
+    "infoTitle": "Bize Ulaşın",
+    "addressLabel": "Adres",
+    "address": "Pelitköy Mah., Burhaniye / Balıkesir, Türkiye",
+    "emailLabel": "E-posta",
+    "b2bTitle": "Toptan Satış ve Private Label",
+    "b2bText": "Restoranlar, marketler ve ihracat ortakları için toptan natürel sızma zeytinyağı tedarik ediyor; kendi markanız için private label üretim yapıyoruz. Talebinizi formdan iletin, size özel teklif hazırlayalım.",
+    "form": {
+      "name": "Ad Soyad",
+      "email": "E-posta",
+      "subject": "Konu",
+      "subjectGeneral": "Genel Soru",
+      "subjectWholesale": "Toptan Satış",
+      "subjectPrivateLabel": "Private Label",
+      "message": "Mesajınız",
+      "submit": "Gönder",
+      "success": "Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız."
     }
   },
   "story": {

@@ -3,6 +3,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { products } from "@/lib/products";
+import { buildPageMetadata } from "@/lib/seo";
+import { productListSchema, breadcrumbSchema } from "@/lib/schema";
+import JsonLd from "@/components/seo/JsonLd";
 import ProductCard from "@/components/product/ProductCard";
 import PageHero from "@/components/layout/PageHero";
 import FeatureStrip from "@/components/home/FeatureStrip";
@@ -14,10 +17,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "collectionPage" });
-  return {
+  return buildPageMetadata({
+    locale: locale as "tr" | "en",
+    path: "/koleksiyon",
     title: t("metaTitle"),
     description: t("metaDescription"),
-  };
+    ogImage: "/images/og/og-koleksiyon.jpg",
+  });
 }
 
 function CollectionContent() {
@@ -28,7 +34,7 @@ function CollectionContent() {
       <PageHero
         title={t("title")}
         text={t("heroText")}
-        image="/images/hero2.jpg"
+        image="/images/hero2.webp"
       />
       <FeatureStrip />
       <CollectionGrid />
@@ -42,7 +48,7 @@ function CollectionGrid() {
   return (
     <section
       className="bg-cream bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/urun-fon.jpg')" }}
+      style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:py-20">
         {/* Sol tanıtım kolonu */}
@@ -79,6 +85,20 @@ export default async function CollectionPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "collectionPage" });
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
-  return <CollectionContent />;
+  return (
+    <>
+      {/* Structured data: ürün listesi + breadcrumb */}
+      <JsonLd data={productListSchema(locale as "tr" | "en")} />
+      <JsonLd
+        data={breadcrumbSchema(locale as "tr" | "en", [
+          { name: "Veroliva", path: "/" },
+          { name: nav("collection"), path: "/koleksiyon" },
+        ])}
+      />
+      <CollectionContent />
+    </>
+  );
 }

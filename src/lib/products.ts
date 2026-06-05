@@ -1,5 +1,5 @@
 // Geçici ürün verisi — ileride Supabase'den gelecek.
-// Görseller: public/images/products/{slug}.png
+// Görseller: public/images/products/{slug}.webp (877x900, şeffaf zemin)
 
 export type Product = {
   slug: string;

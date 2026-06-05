@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { posts } from "@/lib/posts";
@@ -33,13 +34,19 @@ export default function GuideSection() {
               key={post.slug}
               className="group w-72 shrink-0 snap-start border border-line bg-cream sm:w-80"
             >
-              <Link href={`/rehber/${post.slug}`} className="block">
-                <div
-                  className="relative aspect-[4/3] bg-parchment bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url('/images/blog/${post.slug}.jpg')`,
-                  }}
-                >
+              <Link
+                href={{ pathname: "/rehber/[slug]", params: { slug: post.slug } }}
+                className="block"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-parchment">
+                  <Image
+                    src={`/images/blog/${post.slug}.webp`}
+                    alt={post.title[locale]}
+                    fill
+                    sizes="(min-width: 640px) 320px, 288px"
+                    loading="lazy"
+                    className="object-cover"
+                  />
                   <span className="absolute left-3 top-3 bg-olive px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-cream">
                     {post.tag[locale]}
                   </span>

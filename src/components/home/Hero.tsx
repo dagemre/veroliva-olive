@@ -1,15 +1,20 @@
+import { preload } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 export default function Hero() {
   const t = useTranslations("hero");
 
+  // LCP: hero arka plan görselini erkenden indir (CSS background'lar
+  // normalde geç keşfedilir, preload ile LCP < 2.5s hedeflenir).
+  preload("/images/hero.webp", { as: "image", fetchPriority: "high" });
+
   return (
     <section
       className="relative -mt-20 flex min-h-[640px] items-center bg-olive bg-cover bg-center lg:min-h-[720px]"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px), linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%), url('/images/hero.jpg')",
+          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px), linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%), url('/images/hero.webp')",
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 pb-20 pt-40 sm:px-6 lg:px-8">

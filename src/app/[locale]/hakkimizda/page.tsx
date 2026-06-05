@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { buildPageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
+import JsonLd from "@/components/seo/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -9,10 +14,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "aboutPage" });
-  return {
+  return buildPageMetadata({
+    locale: locale as "tr" | "en",
+    path: "/hakkimizda",
     title: t("metaTitle"),
     description: t("metaDescription"),
-  };
+    ogImage: "/images/og/og-hakkimizda.jpg",
+  });
 }
 
 /* Hero — rehber'deki açık (krem) varyant: görsel sağda (hero4: zeytin kasesi
@@ -20,11 +28,14 @@ export async function generateMetadata({
 function AboutHero() {
   const t = useTranslations("aboutPage.hero");
 
+  // LCP: hero arka plan görselini erkenden indir.
+  preload("/images/hero4.webp", { as: "image", fetchPriority: "high" });
+
   return (
     <section
       className="relative -mt-20 flex min-h-[480px] items-center bg-cream bg-cover bg-center lg:min-h-[560px]"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(244,239,224,0.55) 110px, rgba(244,239,224,0) 300px), linear-gradient(to right, rgba(244,239,224,1) 0%, rgba(244,239,224,0.96) 30%, rgba(244,239,224,0.55) 48%, rgba(244,239,224,0) 68%), url('/images/hero4.jpg')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(244,239,224,0.55) 110px, rgba(244,239,224,0) 300px), linear-gradient(to right, rgba(244,239,224,1) 0%, rgba(244,239,224,0.96) 30%, rgba(244,239,224,0.55) 48%, rgba(244,239,224,0) 68%), url('/images/hero4.webp')`,
       }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 pb-14 pt-36 sm:px-6 lg:px-8">
@@ -56,11 +67,11 @@ function AboutHero() {
 /* 5'li özellik bandı — ikon + bold uppercase başlık + kısa metin,
    kolonlar arası ince dikey çizgi (sm+). */
 const features = [
-  { key: "f1", icon: "/icons/rehber-icon-1.png" },
-  { key: "f2", icon: "/icons/rehber-icon-2.png" },
-  { key: "f3", icon: "/icons/rehber-icon-3.png" },
-  { key: "f4", icon: "/icons/rehber-icon-4.png" },
-  { key: "f5", icon: "/icons/rehber-icon-9.png" },
+  { key: "f1", icon: "/icons/rehber-icon-1.webp" },
+  { key: "f2", icon: "/icons/rehber-icon-2.webp" },
+  { key: "f3", icon: "/icons/rehber-icon-3.webp" },
+  { key: "f4", icon: "/icons/rehber-icon-4.webp" },
+  { key: "f5", icon: "/icons/rehber-icon-9.webp" },
 ] as const;
 
 function FeatureBand() {
@@ -74,10 +85,19 @@ function FeatureBand() {
             key={key}
             className="flex flex-col items-center px-4 text-center"
           >
-            <img src={icon} alt="" className="h-16 w-auto" loading="lazy" />
-            <h3 className="mt-4 text-[13px] font-bold uppercase tracking-[0.08em] text-ink">
+            <Image
+              src={icon}
+              alt=""
+              aria-hidden="true"
+              width={242}
+              height={273}
+              loading="lazy"
+              className="h-16 w-auto"
+            />
+            {/* Heading hiyerarşisi: h1'den sonra ilk seviye → h2 */}
+            <h2 className="mt-4 text-[13px] font-bold uppercase tracking-[0.08em] text-ink">
               {t(`${key}Title`)}
-            </h3>
+            </h2>
             <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
               {t(`${key}Text`)}
             </p>
@@ -163,11 +183,14 @@ function StorySection() {
 
         {/* Sağ kolon — fotoğraf + istatistik bandı */}
         <div className="lg:self-center">
-          <img
-            src="/images/hero5.jpg"
+          <Image
+            src="/images/hero5.webp"
             alt={t("title")}
-            className="h-72 w-full object-cover sm:h-96 lg:h-[420px]"
+            width={2000}
+            height={1033}
+            sizes="(min-width: 1024px) 60vw, 100vw"
             loading="lazy"
+            className="h-72 w-full object-cover sm:h-96 lg:h-[420px]"
           />
           <div className="grid grid-cols-1 gap-6 bg-olive px-6 py-7 text-cream sm:grid-cols-3 sm:gap-4">
             {stats.map(({ key, Icon }) => (
@@ -194,11 +217,11 @@ function StorySection() {
    NOT: Adım fotoğrafları GEÇİCİ (eldeki görsellerden kırpıldı) —
    gerçek süreç fotoğrafları gelince public/images/surec/ altında değiştir. */
 const steps = [
-  { key: "p1", image: "/images/surec/adim-1-hasat.jpg" },
-  { key: "p2", image: "/images/surec/adim-2-secim.jpg" },
-  { key: "p3", image: "/images/surec/adim-3-soguk-sikim.jpg" },
-  { key: "p4", image: "/images/surec/adim-4-dinlendirme.jpg" },
-  { key: "p5", image: "/images/surec/adim-5-siseleme.jpg" },
+  { key: "p1", image: "/images/surec/adim-1-hasat.webp" },
+  { key: "p2", image: "/images/surec/adim-2-secim.webp" },
+  { key: "p3", image: "/images/surec/adim-3-soguk-sikim.webp" },
+  { key: "p4", image: "/images/surec/adim-4-dinlendirme.webp" },
+  { key: "p5", image: "/images/surec/adim-5-siseleme.webp" },
 ] as const;
 
 function ProcessSection() {
@@ -216,11 +239,14 @@ function ProcessSection() {
           {steps.map(({ key, image }, i) => (
             <div key={key} className="contents">
               <div className="flex flex-col items-center text-center lg:px-1">
-                <img
+                <Image
                   src={image}
                   alt={t(`${key}Title`)}
-                  className="aspect-[3/2] w-full max-w-[260px] object-cover"
+                  width={780}
+                  height={520}
+                  sizes="260px"
                   loading="lazy"
+                  className="aspect-[3/2] w-full max-w-[260px] object-cover"
                 />
                 <h3 className="mt-5 text-[13px] font-bold uppercase tracking-[0.08em] text-ink">
                   {t(`${key}Title`)}
@@ -263,6 +289,18 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const nav = await getTranslations({ locale, namespace: "nav" });
 
-  return <AboutContent />;
+  return (
+    <>
+      <JsonLd data={localBusinessSchema(locale as "tr" | "en")} />
+      <JsonLd
+        data={breadcrumbSchema(locale as "tr" | "en", [
+          { name: "Veroliva", path: "/" },
+          { name: nav("about"), path: "/hakkimizda" },
+        ])}
+      />
+      <AboutContent />
+    </>
+  );
 }

@@ -1,3 +1,5 @@
+import { preload } from "react-dom";
+
 // İç sayfalar için hero bandı — homepage Hero ile aynı degrade deseni,
 // daha alçak ve CTA'sız. Header şeffaf olduğu için -mt-20 ile arkasına uzanır.
 export default function PageHero({
@@ -9,6 +11,9 @@ export default function PageHero({
   text: string;
   image: string;
 }) {
+  // LCP: hero arka plan görselini erkenden indir.
+  preload(image, { as: "image", fetchPriority: "high" });
+
   return (
     <section
       className="relative -mt-20 flex min-h-[460px] items-center bg-olive bg-cover bg-center lg:min-h-[540px]"

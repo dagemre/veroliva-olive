@@ -42,7 +42,7 @@ export default function Header() {
         <button
           type="button"
           className="justify-self-start p-2 lg:hidden"
-          aria-label="Menü"
+          aria-label={t("menu")}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((o) => !o)}
         >

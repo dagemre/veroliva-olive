@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
 
 /**
  * Yatay kaydırmalı karusel — ürün kartları ve blog kartları için ortak.
  * Ok düğmesi bir kart genişliği kadar kaydırır.
  */
 export default function Carousel({ children }: { children: ReactNode }) {
+  const t = useTranslations("a11y");
   const trackRef = useRef<HTMLDivElement>(null);
 
   const scrollBy = (dir: 1 | -1) => {
@@ -28,7 +30,7 @@ export default function Carousel({ children }: { children: ReactNode }) {
       <button
         type="button"
         onClick={() => scrollBy(1)}
-        aria-label="Sonraki"
+        aria-label={t("next")}
         className="absolute -right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-cream-light text-ink shadow-sm transition-colors hover:border-gold hover:text-gold lg:flex"
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

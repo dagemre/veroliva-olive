@@ -20,9 +20,16 @@ export default function NewsletterForm() {
         setDone(true);
       }}
     >
+      {/* WCAG: görünmez ama ekran okuyucuya açık label */}
+      <label htmlFor="newsletter-email" className="sr-only">
+        {t("placeholder")}
+      </label>
       <input
+        id="newsletter-email"
+        name="email"
         type="email"
         required
+        autoComplete="email"
         placeholder={t("placeholder")}
         className="h-11 min-w-0 flex-1 border border-line bg-white px-4 text-sm text-ink outline-none placeholder:text-ink-soft focus:border-gold"
       />
