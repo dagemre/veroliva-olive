@@ -201,7 +201,9 @@
       "subjectPrivateLabel": "Private Label",
       "message": "Your Message",
       "submit": "Send",
-      "success": "Thank you! Your message has been received — we will get back to you shortly."
+      "success": "Thank you! Your message has been received — we will get back to you shortly.",
+      "sending": "Sending",
+      "error": "Your message could not be sent. Please try again or write to hello@verolivaolive.com."
     },
     "info": {
       "title": "Our Contact Details",
@@ -243,7 +245,8 @@
     "placeholder": "Your e-mail address",
     "button": "Subscribe",
     "follow": "Follow Us",
-    "success": "Thank you! Your subscription has been received."
+    "success": "Thank you! Your subscription has been received.",
+    "error": "Subscription failed, please try again."
   },
   "footer": {
     "corporate": {

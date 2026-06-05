@@ -201,7 +201,9 @@
       "subjectPrivateLabel": "Private Label",
       "message": "Mesajınız",
       "submit": "Gönder",
-      "success": "Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız."
+      "success": "Teşekkürler! Mesajınız alındı, en kısa sürede dönüş yapacağız.",
+      "sending": "Gönderiliyor",
+      "error": "Mesajınız gönderilemedi. Lütfen tekrar deneyin veya hello@verolivaolive.com adresine yazın."
     },
     "info": {
       "title": "İletişim Bilgilerimiz",
@@ -243,7 +245,8 @@
     "placeholder": "E-posta adresiniz",
     "button": "Abone Ol",
     "follow": "Bizi Takip Edin",
-    "success": "Teşekkürler! Aboneliğiniz alındı."
+    "success": "Teşekkürler! Aboneliğiniz alındı.",
+    "error": "Kayıt yapılamadı, lütfen tekrar deneyin."
   },
   "footer": {
     "corporate": {

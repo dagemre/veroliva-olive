@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { submitForm } from "@/lib/forms";
 
 /* Tasarım gereği alanlar placeholder ile gösteriliyor; erişilebilirlik için
    her alanın sr-only <label>'ı var (WCAG). */
@@ -10,9 +11,11 @@ const inputClass =
 
 export default function ContactForm() {
   const t = useTranslations("contactPage.form");
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "done" | "error"
+  >("idle");
 
-  if (done) {
+  if (status === "done") {
     return (
       <p
         role="status"
@@ -25,10 +28,22 @@ export default function ContactForm() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        // TODO: Supabase'e mesaj kaydı
-        setDone(true);
+        const form = e.currentTarget;
+        const data = Object.fromEntries(
+          new FormData(form).entries()
+        ) as Record<string, string>;
+        setStatus("sending");
+        try {
+          await submitForm({
+            ...data,
+            _subject: `Veroliva İletişim Formu — ${data.subject || ""}`,
+          });
+          setStatus("done");
+        } catch {
+          setStatus("error");
+        }
       }}
       className="mt-6 space-y-4"
     >
@@ -111,11 +126,19 @@ export default function ContactForm() {
         />
       </div>
 
+      {status === "error" && (
+        <p role="alert" className="text-sm font-medium text-red-700">
+          {t("error")}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="mt-2 flex w-full items-center justify-center gap-2 bg-olive px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:bg-olive-deep"
+        disabled={status === "sending"}
+        className="mt-2 flex w-full items-center justify-center gap-2 bg-olive px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:bg-olive-deep disabled:cursor-wait disabled:opacity-60"
       >
-        {t("submit")} <span aria-hidden="true">→</span>
+        {status === "sending" ? t("sending") : t("submit")}{" "}
+        <span aria-hidden="true">→</span>
       </button>
     </form>
   );
