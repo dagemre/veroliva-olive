@@ -28,6 +28,98 @@ body {
   overflow-x: clip; /* yatay taşma koruması */
 }
 
+/* "Made with ❤ Mre Creative" footer linki */
+.madewith {
+  position: relative;
+  display: inline-block;
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+.madewith .heart {
+  position: relative;
+  display: inline-block;
+  color: #d6212a;
+}
+.madewith .heart-mini {
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  font-size: 8px;
+  opacity: 0;
+  pointer-events: none;
+}
+.madewith__name {
+  position: relative;
+}
+.madewith__name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1.5px;
+  width: 0;
+  background: #d6212a;
+  transition: width 0.35s ease;
+}
+.madewith:hover,
+.madewith.is-beating {
+  color: var(--color-ink);
+  transform: translateY(-2px);
+}
+.madewith:hover .heart,
+.madewith.is-beating .heart {
+  animation: heartbeat 1.1s ease-in-out infinite;
+}
+.madewith:hover .heart-mini,
+.madewith.is-beating .heart-mini {
+  animation: heart-float 1.1s ease-out infinite;
+}
+.madewith:hover .heart-mini--2,
+.madewith.is-beating .heart-mini--2 {
+  animation-delay: 0.55s;
+}
+.madewith:hover .madewith__name::after,
+.madewith.is-beating .madewith__name::after {
+  width: 100%;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.4);
+  }
+  35% {
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes heart-float {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) rotate(0deg);
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -24px) rotate(14deg);
+  }
+}
+
 /* Karusel kaydırma çubuğunu gizle */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

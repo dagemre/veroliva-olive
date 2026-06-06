@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import NewsletterForm from "./NewsletterForm";
 import BackToTop from "./BackToTop";
+import MadeWith from "./MadeWith";
 
 const SOCIALS = [
   {
@@ -154,9 +155,12 @@ export default function Footer() {
         {/* Alt bar */}
         <div className="border-t border-line">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:px-8">
-            <p className="text-xs text-ink-soft">
-              {t("footer.copyright", { year })}
-            </p>
+            <div className="flex flex-col items-center gap-1.5 lg:flex-row lg:gap-5">
+              <p className="text-xs text-ink-soft">
+                {t("footer.copyright", { year })}
+              </p>
+              <MadeWith />
+            </div>
             <div className="flex flex-wrap items-center justify-center gap-6">
               <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
