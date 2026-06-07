@@ -27,15 +27,9 @@ export async function generateMetadata({
 }
 
 function CollectionContent({ products }: { products: Product[] }) {
-  const t = useTranslations("collectionPage");
-
   return (
     <>
-      <PageHero
-        title={t("title")}
-        text={t("heroText")}
-        image="/images/hero2.webp"
-      />
+      <PageHero image="/images/hero2.webp" />
       <CollectionGrid products={products} />
       <FeatureStrip />
     </>
@@ -50,12 +44,12 @@ function CollectionGrid({ products }: { products: Product[] }) {
       className="bg-cream bg-cover bg-center"
       style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
     >
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-14 pt-6 sm:px-6 sm:pt-8 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-10">
         {/* Sol tanıtım kolonu */}
         <div className="lg:pt-6">
-          <h2 className="font-display text-3xl text-ink lg:text-4xl">
+          <h1 className="font-display text-3xl text-ink lg:text-4xl">
             {t("title")}
-          </h2>
+          </h1>
           <p className="mt-5 text-sm leading-relaxed text-ink-soft">
             {t("text")}
           </p>
