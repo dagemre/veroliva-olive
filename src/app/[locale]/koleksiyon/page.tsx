@@ -36,8 +36,8 @@ function CollectionContent({ products }: { products: Product[] }) {
         text={t("heroText")}
         image="/images/hero2.webp"
       />
-      <FeatureStrip />
       <CollectionGrid products={products} />
+      <FeatureStrip />
     </>
   );
 }
@@ -67,10 +67,14 @@ function CollectionGrid({ products }: { products: Product[] }) {
           </Link>
         </div>
 
-        {/* Ürün grid'i — son satırdaki kartlar ortalanır */}
-        <div className="flex flex-wrap justify-center gap-5 lg:gap-6">
+        {/* Ürün grid'i — mobilde 2'li, geniş ekranda son satır ortalanır */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-6">
           {products.map((product) => (
-            <ProductCard key={product.slug} product={product} />
+            <ProductCard
+              key={product.slug}
+              product={product}
+              className="w-[calc(50%-0.5rem)] sm:w-64 lg:w-72"
+            />
           ))}
         </div>
       </div>

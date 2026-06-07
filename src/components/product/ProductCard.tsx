@@ -14,7 +14,13 @@ function productAlt(product: Product, locale: "tr" | "en"): string {
     : `${product.name} ${product.size} Turkish extra virgin olive oil bottle`;
 }
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  className = "w-64 shrink-0 snap-start sm:w-72",
+}: {
+  product: Product;
+  className?: string;
+}) {
   const locale = useLocale() as "tr" | "en";
   const t = useTranslations("collection");
   const { add } = useCart();
@@ -37,7 +43,9 @@ export default function ProductCard({ product }: { product: Product }) {
   }
 
   return (
-    <article className="group flex w-64 shrink-0 snap-start flex-col border border-line bg-cream-light sm:w-72">
+    <article
+      className={`group flex flex-col border border-line bg-cream-light ${className}`}
+    >
       {/* Görsel alanı */}
       <Link
         href={productHref}
