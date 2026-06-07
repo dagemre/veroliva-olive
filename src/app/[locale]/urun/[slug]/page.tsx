@@ -321,17 +321,21 @@ function ProductDetail({
             </p>
             {details.usage.items.every((u) => USAGE_IMAGES[u.icon]) ? (
               // Çizimli görseller (etiket görselin içinde — ayrıca yazı yok)
-              <div className="mt-5 grid grid-cols-[auto_auto] items-end justify-center gap-x-5 gap-y-3 border-t border-line pt-5">
+              <div className="mt-5 grid grid-cols-2 items-end gap-x-4 gap-y-5 border-t border-line pt-5">
                 {details.usage.items.map((u, i) => (
-                  <Image
-                    key={i}
-                    src={USAGE_IMAGES[u.icon]}
-                    alt={L(u.label)}
-                    width={300}
-                    height={250}
-                    sizes="132px"
-                    className="h-auto w-[132px]"
-                  />
+                  <figure key={i} className="flex flex-col items-center gap-1.5">
+                    <Image
+                      src={USAGE_IMAGES[u.icon]}
+                      alt=""
+                      width={300}
+                      height={150}
+                      sizes="132px"
+                      className="h-auto w-[132px]"
+                    />
+                    <figcaption className="text-center text-[12px] font-medium leading-tight text-ink">
+                      {L(u.label)}
+                    </figcaption>
+                  </figure>
                 ))}
               </div>
             ) : (
