@@ -373,28 +373,6 @@ export default function CartView() {
             </p>
           </div>
 
-          {/* Avantajlar */}
-          <div className="space-y-5 border border-line bg-cream-light p-6">
-            {(
-              [
-                ["perkSameDay", "perkSameDaySub", "M12 7v5l3 2M21 12a9 9 0 1 1-9-9 9 9 0 0 1 9 9Z"],
-                ["perkReturn", "perkReturnSub", "M3 12a9 9 0 1 0 3-6.7M3 4.5V9h4.5"],
-                ["perkSecure", "perkSecureSub", "M12 2.5 4.5 5.5v6c0 4.7 3.2 8 7.5 10 4.3-2 7.5-5.3 7.5-10v-6L12 2.5Z"],
-              ] as const
-            ).map(([titleKey, subKey, path]) => (
-              <div key={titleKey} className="flex items-start gap-3.5">
-                <span className="mt-0.5 text-ink-soft" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={path} />
-                  </svg>
-                </span>
-                <span>
-                  <span className="block text-[13px] font-semibold text-ink">{t(titleKey)}</span>
-                  <span className="block text-[12px] text-ink-soft">{t(subKey)}</span>
-                </span>
-              </div>
-            ))}
-          </div>
         </aside>
       </div>
 
