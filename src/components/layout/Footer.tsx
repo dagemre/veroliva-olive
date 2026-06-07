@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import NewsletterForm from "./NewsletterForm";
 import BackToTop from "./BackToTop";
 import MadeWith from "./MadeWith";
+import FooterColumn from "./FooterColumn";
 
 const SOCIALS = [
   {
@@ -102,8 +103,8 @@ export default function Footer() {
 
       {/* Ana footer */}
       <section className="bg-cream">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 text-center sm:grid-cols-2 sm:px-6 sm:text-left lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
-          <div>
+        <div className="mx-auto grid max-w-7xl gap-0 px-4 py-12 text-center sm:grid-cols-2 sm:gap-10 sm:px-6 sm:text-left lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
+          <div className="mb-8 sm:mb-0">
             <Image
               src="/Logo.svg"
               alt="Veroliva Zeytinyağı"
@@ -132,23 +133,7 @@ export default function Footer() {
             </div>
           </div>
           {columns.map((col) => (
-            <nav key={col.title} aria-label={col.title}>
-              <h3 className="mb-4 text-[12px] font-semibold uppercase tracking-[0.16em] text-ink">
-                {col.title}
-              </h3>
-              <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[13px] text-ink-soft transition-colors hover:text-gold"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <FooterColumn key={col.title} title={col.title} links={col.links} />
           ))}
         </div>
 
