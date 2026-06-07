@@ -44,18 +44,18 @@ function CollectionGrid({ products }: { products: Product[] }) {
       className="bg-cream bg-cover bg-center"
       style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
     >
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-14 pt-6 sm:px-6 sm:pt-8 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-10">
+      <div className="mx-auto grid max-w-7xl gap-5 px-4 pb-14 pt-4 sm:px-6 sm:pt-6 lg:grid-cols-[240px_1fr] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-6">
         {/* Sol tanıtım kolonu */}
-        <div className="lg:pt-6">
+        <div className="lg:pt-2">
           <h1 className="font-display text-3xl text-ink lg:text-4xl">
             {t("title")}
           </h1>
-          <p className="mt-5 text-sm leading-relaxed text-ink-soft">
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
             {t("text")}
           </p>
           <Link
             href="/rehber"
-            className="mt-7 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink underline-offset-4 transition-colors hover:text-gold"
+            className="mt-3 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink underline-offset-4 transition-colors hover:text-gold"
           >
             {t("cta")} <span aria-hidden="true">→</span>
           </Link>
