@@ -33,15 +33,6 @@ const PERKS = [
       </svg>
     ),
   },
-  {
-    key: "return",
-    icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M3.5 8.5 12 4l8.5 4.5v8L12 21l-8.5-4.5z" />
-        <path d="M3.5 8.5 12 13l8.5-4.5M12 13v8" />
-      </svg>
-    ),
-  },
 ] as const;
 
 // Tasarımdaki etiket eşleşmeleri: kargo / doğal / güvenli ödeme / kolay iade
@@ -49,7 +40,6 @@ const LABELS: Record<string, { title: string; sub: string }> = {
   shipping: { title: "band.shippingTitle", sub: "band.shippingSub" },
   natural: { title: "band.naturalTitle", sub: "band.naturalSub" },
   secure: { title: "perkSecure", sub: "perkSecureSub" },
-  return: { title: "band.returnTitle", sub: "band.returnSub" },
 };
 
 export default function PerksBand() {
@@ -57,7 +47,7 @@ export default function PerksBand() {
 
   return (
     <div className="border border-line bg-cream-light">
-      <div className="grid grid-cols-2 divide-line max-sm:gap-y-px lg:grid-cols-4 lg:divide-x">
+      <div className="grid divide-line sm:grid-cols-3 sm:divide-x">
         {PERKS.map((perk) => (
           <div key={perk.key} className="flex flex-col items-center gap-2 px-4 py-6 text-center">
             <span className="text-ink">{perk.icon}</span>
