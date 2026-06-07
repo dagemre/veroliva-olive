@@ -7,6 +7,19 @@ import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import AuthInput from "@/components/auth/AuthInput";
 import GoogleButton from "@/components/auth/GoogleButton";
 
+// ?next= parametresiyle giriş sonrası dönülecek sayfa (satış kaybını önler:
+// ödeme adımından girişe yönlenen kullanıcı girişten sonra ödemeye geri döner).
+// Açık yönlendirme (open redirect) olmasın diye yalnızca bu liste kabul edilir.
+const NEXT_TARGETS = {
+  odeme: "/odeme",
+  sepet: "/sepet",
+} as const;
+
+function nextTarget(): "/odeme" | "/sepet" | "/hesap" {
+  const next = new URLSearchParams(window.location.search).get("next");
+  return (next && NEXT_TARGETS[next as keyof typeof NEXT_TARGETS]) || "/hesap";
+}
+
 export default function LoginForm() {
   const t = useTranslations("auth.login");
   const tc = useTranslations("auth.common");
@@ -39,7 +52,7 @@ export default function LoginForm() {
       }
       return;
     }
-    router.push("/hesap");
+    router.push(nextTarget());
     router.refresh();
   }
 

@@ -161,14 +161,15 @@ export default function CheckoutView() {
             {t("loginText")}
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
+            {/* ?next=odeme → girişten sonra ödeme adımına geri döner (sepet localStorage'da durur) */}
             <Link
-              href="/giris"
+              href={{ pathname: "/giris", query: { next: "odeme" } }}
               className="bg-olive px-8 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:bg-olive-deep"
             >
               {t("login")}
             </Link>
             <Link
-              href="/kayit"
+              href={{ pathname: "/kayit", query: { next: "odeme" } }}
               className="border border-line bg-white px-8 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:border-gold-light"
             >
               {t("register")}
