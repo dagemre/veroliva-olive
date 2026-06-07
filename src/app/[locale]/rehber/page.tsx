@@ -81,12 +81,6 @@ function AboutSection() {
           <p className="mt-5 text-sm leading-relaxed text-ink-soft">
             {t("text")}
           </p>
-          <Link
-            href="/hakkimizda"
-            className="mt-7 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink underline-offset-4 transition-colors hover:text-gold"
-          >
-            {t("more")} <span aria-hidden="true">→</span>
-          </Link>
         </div>
 
         {/* 4 özellik kolonu — aralarında ince dikey çizgiler */}
@@ -136,7 +130,7 @@ function VarietiesSection() {
 
   return (
     <section className="bg-cream">
-      <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-20">
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
         <h2 className="font-display text-3xl text-ink lg:text-4xl">
           {t("title")}
         </h2>
@@ -195,7 +189,7 @@ function UsageTipsSection() {
 
   return (
     <section className="bg-cream">
-      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+      <div className="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8 lg:pb-20">
         <h2 className="font-display text-3xl text-ink lg:text-4xl">
           {t("title")}
         </h2>
@@ -236,8 +230,8 @@ function GuideContent() {
     <>
       <GuideHero />
       <AboutSection />
-      <VarietiesSection />
       <UsageTipsSection />
+      <VarietiesSection />
     </>
   );
 }
