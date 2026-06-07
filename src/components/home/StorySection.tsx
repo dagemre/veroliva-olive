@@ -40,7 +40,7 @@ export default function StorySection() {
     <section className="relative overflow-hidden bg-olive text-cream">
       {/* Tam genişlik arka plan fotoğrafı */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-[70%_center] lg:bg-center"
         style={{ backgroundImage: "url('/images/story.webp')" }}
         aria-hidden="true"
       />
@@ -57,7 +57,7 @@ export default function StorySection() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Sol metin paneli */}
-        <div className="max-w-md py-16 lg:py-24">
+        <div className="max-w-md py-10 lg:py-24">
           <h2 className="font-display text-3xl leading-snug lg:text-4xl">
             {t("title")}
           </h2>
@@ -65,12 +65,13 @@ export default function StorySection() {
             {t("text")}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-8">
+          {/* Mobilde 3 istatistik tek satırda yan yana */}
+          <div className="mt-6 grid grid-cols-3 gap-3 lg:mt-8 lg:flex lg:flex-wrap lg:gap-8">
             {STATS.map((s) => (
-              <div key={s.key} className="flex items-center gap-3">
-                <span className="text-gold-light">{s.icon}</span>
+              <div key={s.key} className="flex items-center gap-2 lg:gap-3">
+                <span className="shrink-0 text-gold-light">{s.icon}</span>
                 <div>
-                  <div className="text-lg font-semibold leading-none">
+                  <div className="text-base font-semibold leading-none lg:text-lg">
                     {s.value}
                   </div>
                   <div className="mt-1 text-[11px] uppercase tracking-[0.1em] text-cream/70">
@@ -83,7 +84,7 @@ export default function StorySection() {
 
           <Link
             href="/hakkimizda"
-            className="mt-9 inline-flex items-center gap-3 border border-cream/40 px-6 py-3 text-[13px] font-medium tracking-wide text-cream transition-colors hover:border-gold-light hover:text-gold-light"
+            className="mt-7 inline-flex items-center gap-3 border border-cream/40 px-6 py-3 text-[13px] font-medium tracking-wide text-cream transition-colors hover:border-gold-light hover:text-gold-light lg:mt-9"
           >
             {t("cta")} <span aria-hidden="true">→</span>
           </Link>
