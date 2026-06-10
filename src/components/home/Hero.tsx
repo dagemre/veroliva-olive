@@ -5,15 +5,22 @@ import { Link } from "@/i18n/navigation";
 export default function Hero() {
   const t = useTranslations("hero");
 
-  // LCP: hero arka plan görselini erkenden indir (CSS background'lar
-  // normalde geç keşfedilir, preload ile LCP < 2.5s hedeflenir).
+  // LCP: hero görsellerini erkenden indir (CSS background'lar normalde
+  // geç keşfedilir). Mobil ve masaüstü ayrı görsel kullanıyor.
+  preload("/images/hero-mobile.webp", { as: "image", fetchPriority: "high" });
   preload("/images/hero.webp", { as: "image", fetchPriority: "high" });
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-[75%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-center"
-      style={{ backgroundImage: "url('/images/hero.webp')" }}
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-bottom bg-no-repeat lg:min-h-[720px] lg:items-center"
+      style={{ backgroundImage: "url('/images/hero-mobile.webp')" }}
     >
+      {/* Masaüstü görseli — mobil görselin üzerine biner (yalnızca lg) */}
+      <div
+        className="pointer-events-none absolute inset-0 hidden bg-cover bg-center bg-no-repeat lg:block"
+        aria-hidden="true"
+        style={{ backgroundImage: "url('/images/hero.webp')" }}
+      />
       {/* Üstten krem geçiş — header harmanı (her boyutta) */}
       <div
         className="pointer-events-none absolute inset-0"
