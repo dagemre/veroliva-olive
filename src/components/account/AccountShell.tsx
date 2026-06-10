@@ -20,6 +20,8 @@ type AccountCtx = {
   user: User;
   profile: Profile | null;
   refreshProfile: () => Promise<void>;
+  /** Kullanıcının en çok sipariş ettiği ürün adı (mobil profil kartı + özet kartı). */
+  favoriteName: string | null;
 };
 
 const Ctx = createContext<AccountCtx | null>(null);
@@ -71,6 +73,7 @@ export default function AccountShell({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [favoriteName, setFavoriteName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -92,6 +95,19 @@ export default function AccountShell({ children }: { children: React.ReactNode }
         .maybeSingle();
       setProfile(p ?? null);
       setLoading(false);
+
+      // Favori ürün: kullanıcının tüm sipariş kalemlerinden en çok alınan.
+      const { data: items } = await supabase
+        .from("order_items")
+        .select("product_name, quantity");
+      if (items && items.length > 0) {
+        const tally = new Map<string, number>();
+        for (const it of items) {
+          tally.set(it.product_name, (tally.get(it.product_name) ?? 0) + it.quantity);
+        }
+        const top = [...tally.entries()].sort((a, b) => b[1] - a[1])[0];
+        setFavoriteName(top ? top[0] : null);
+      }
     });
   }, [router]);
 
@@ -169,7 +185,7 @@ export default function AccountShell({ children }: { children: React.ReactNode }
   );
 
   return (
-    <Ctx.Provider value={{ user, profile, refreshProfile }}>
+    <Ctx.Provider value={{ user, profile, refreshProfile, favoriteName }}>
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8">
         {/* Mobil: Hoş Geldiniz başlığı sayfanın en başında (özet sayfası) */}
         {isOverview && (
@@ -204,9 +220,30 @@ export default function AccountShell({ children }: { children: React.ReactNode }
                 <div className="min-w-0 lg:mt-3.5 lg:flex lg:flex-col lg:items-center">
                   <span className="block truncate text-[15px] font-semibold text-ink">{displayName || "—"}</span>
                   <span className="mt-0.5 block max-w-full truncate text-[12px] text-ink-soft lg:mt-1">{user.email}</span>
+
+                  {/* Mobilde: Profili Görüntüle yerine favori ürün (varsa) */}
+                  {favoriteName ? (
+                    <span className="mt-1.5 block lg:hidden">
+                      <span className="text-[11px] uppercase tracking-[0.08em] text-ink-soft">
+                        {t("overview.favorite")}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[13px] font-semibold text-ink">
+                        {favoriteName}
+                      </span>
+                    </span>
+                  ) : (
+                    <Link
+                      href="/hesap/bilgilerim"
+                      className="mt-1 inline-block text-[12px] font-medium text-olive underline underline-offset-4 hover:text-olive-deep lg:hidden"
+                    >
+                      {t("sidebar.viewProfile")}
+                    </Link>
+                  )}
+
+                  {/* Masaüstünde: Profili Görüntüle linki */}
                   <Link
                     href="/hesap/bilgilerim"
-                    className="mt-1 inline-block text-[12px] font-medium text-olive underline underline-offset-4 hover:text-olive-deep lg:mt-2.5"
+                    className="mt-2.5 hidden text-[12px] font-medium text-olive underline underline-offset-4 hover:text-olive-deep lg:inline-block"
                   >
                     {t("sidebar.viewProfile")}
                   </Link>
