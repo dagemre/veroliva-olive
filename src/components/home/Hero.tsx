@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pb-20 lg:pt-40">
         {/* Mobil: yazılar görselin altında alt alta — Masaüstü: orijinal sol-orta */}
         <div className="flex max-w-xl flex-col">
-          <h1 className="font-display text-4xl leading-tight text-cream sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="font-display text-[1.7rem] leading-tight text-cream sm:text-5xl lg:text-[3.4rem]">
             {t("title")}
           </h1>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/90 sm:text-base lg:mt-6">
