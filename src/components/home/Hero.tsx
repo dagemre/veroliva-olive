@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-[length:115%_auto] bg-[75%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-cover lg:bg-center"
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-[75%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-center"
       style={{ backgroundImage: "url('/images/hero.webp')" }}
     >
       {/* Üstten krem geçiş — header harmanı (her boyutta) */}
@@ -23,14 +23,13 @@ export default function Hero() {
             "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.6) 90px, rgba(238,229,202,0) 240px)",
         }}
       />
-      {/* Mobil: alttan yukarı koyu örtü — yazı alanının TAMAMINI kapsar,
-          böylece görsel büyütülse de başlık dahil tüm metin okunur kalır */}
+      {/* Mobil: alttan yukarı siyah gradyen (yazı okunurluğu) */}
       <div
         className="pointer-events-none absolute inset-0 lg:hidden"
         aria-hidden="true"
         style={{
           backgroundImage:
-            "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.72) 32%, rgba(0,0,0,0.5) 52%, rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 92%)",
+            "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 22%, rgba(0,0,0,0.12) 42%, rgba(0,0,0,0) 60%)",
         }}
       />
       {/* Masaüstü: soldan koyu geçiş (orijinal düzen) */}
