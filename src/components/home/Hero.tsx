@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-bottom lg:min-h-[760px]"
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-[25%_bottom] lg:min-h-[760px]"
       style={{
         backgroundImage:
           // 1) üstten krem geçiş (header harmanı) 2) alttan yukarı siyah gradyen (yazı okunurluğu) 3) görsel
