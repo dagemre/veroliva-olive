@@ -54,19 +54,9 @@ const NAV = [
     icon: "M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 20.5c0-3.3 3.4-5.5 7.5-5.5s7.5 2.2 7.5 5.5",
   },
   {
-    key: "favorites",
-    href: "/hesap/favorilerim",
-    icon: "M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z",
-  },
-  {
     key: "coupons",
     href: "/hesap/kuponlarim",
     icon: "M3 12.5 12.5 3H21v8.5L11.5 21zM16.5 7.5h.01",
-  },
-  {
-    key: "notifications",
-    href: "/hesap/bildirimlerim",
-    icon: "M18 9a6 6 0 1 0-12 0c0 5-2 6-2 6h16s-2-1-2-6M10.3 19.5a2 2 0 0 0 3.4 0",
   },
   {
     key: "password",
@@ -149,20 +139,43 @@ export default function AccountShell({ children }: { children: React.ReactNode }
         : "text-ink-soft hover:bg-parchment/40 hover:text-ink"
     }`;
 
+  // Yardım kartı — mobilde sayfa altına, masaüstünde sol kolona yerleşir.
+  const helpCard = (
+    <div className="border border-line bg-cream-light p-6">
+      <h2 className="text-[14px] font-semibold text-ink">{t("help.title")}</h2>
+      <p className="mt-2 text-[12px] leading-relaxed text-ink-soft">{t("help.text")}</p>
+      <dl className="mt-4 space-y-2 text-[12px] text-ink-soft">
+        <div className="flex items-center gap-2.5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" />
+            <path d="m3 6 9 7 9-7" />
+          </svg>
+          <dd>info@verolivaolive.com</dd>
+        </div>
+      </dl>
+      <Link
+        href="/iletisim"
+        className="mt-5 block w-full bg-olive px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:bg-olive-deep"
+      >
+        {t("help.cta")}
+      </Link>
+    </div>
+  );
+
   return (
     <Ctx.Provider value={{ user, profile, refreshProfile }}>
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-7 lg:grid-cols-[270px_1fr]">
           {/* ── Sol menü ── */}
           <aside className="space-y-5 lg:sticky lg:top-6">
-            <div className="border border-line bg-cream-light p-6">
-              {/* Profil özeti */}
-              <div className="flex flex-col items-center border-b border-line pb-5 text-center">
-                <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-parchment font-display text-2xl text-ink">
+            <div className="border border-line bg-cream-light p-5 lg:p-6">
+              {/* Profil özeti — mobilde yatay (ikon solda), masaüstünde dikey ortalı */}
+              <div className="flex items-center gap-4 border-b border-line pb-4 lg:flex-col lg:gap-0 lg:pb-5 lg:text-center">
+                <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-parchment font-display text-xl text-ink lg:h-20 lg:w-20 lg:text-2xl">
                   {initials}
                   <svg
-                    className="absolute -right-2 bottom-0 text-gold"
-                    width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"
+                    className="absolute -right-1.5 bottom-0 text-gold lg:-right-2"
+                    width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" aria-hidden="true"
                   >
                     <path d="M4 20C9 18 13 13 14 6" />
                     <path d="M9 14c1.8.4 2.6 1.8 2.4 3.6M12.5 9.5c1.8.3 2.7 1.6 2.6 3.4M7 17.5c1.5.3 2.3 1.3 2.3 2.9" fill="currentColor" stroke="none" />
@@ -170,14 +183,16 @@ export default function AccountShell({ children }: { children: React.ReactNode }
                     <ellipse cx="13.2" cy="11" rx="1.6" ry="2.5" transform="rotate(40 13.2 11)" fill="currentColor" stroke="none" />
                   </svg>
                 </span>
-                <span className="mt-3.5 text-[15px] font-semibold text-ink">{displayName || "—"}</span>
-                <span className="mt-1 max-w-full truncate text-[12px] text-ink-soft">{user.email}</span>
-                <Link
-                  href="/hesap/bilgilerim"
-                  className="mt-2.5 text-[12px] font-medium text-olive underline underline-offset-4 hover:text-olive-deep"
-                >
-                  {t("sidebar.viewProfile")}
-                </Link>
+                <div className="min-w-0 lg:mt-3.5 lg:flex lg:flex-col lg:items-center">
+                  <span className="block truncate text-[15px] font-semibold text-ink">{displayName || "—"}</span>
+                  <span className="mt-0.5 block max-w-full truncate text-[12px] text-ink-soft lg:mt-1">{user.email}</span>
+                  <Link
+                    href="/hesap/bilgilerim"
+                    className="mt-1 inline-block text-[12px] font-medium text-olive underline underline-offset-4 hover:text-olive-deep lg:mt-2.5"
+                  >
+                    {t("sidebar.viewProfile")}
+                  </Link>
+                </div>
               </div>
 
               {/* Menü */}
@@ -209,30 +224,15 @@ export default function AccountShell({ children }: { children: React.ReactNode }
               </nav>
             </div>
 
-            {/* Yardım kartı */}
-            <div className="border border-line bg-cream-light p-6">
-              <h2 className="text-[14px] font-semibold text-ink">{t("help.title")}</h2>
-              <p className="mt-2 text-[12px] leading-relaxed text-ink-soft">{t("help.text")}</p>
-              <dl className="mt-4 space-y-2 text-[12px] text-ink-soft">
-                <div className="flex items-center gap-2.5">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" />
-                    <path d="m3 6 9 7 9-7" />
-                  </svg>
-                  <dd>info@verolivaolive.com</dd>
-                </div>
-              </dl>
-              <Link
-                href="/iletisim"
-                className="mt-5 block w-full bg-olive px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-cream transition-colors hover:bg-olive-deep"
-              >
-                {t("help.cta")}
-              </Link>
-            </div>
+            {/* Yardım kartı — masaüstünde sol kolonda */}
+            <div className="hidden lg:block">{helpCard}</div>
           </aside>
 
           {/* ── İçerik ── */}
           <div className="min-w-0">{children}</div>
+
+          {/* Yardım kartı — mobilde sayfanın en altında */}
+          <div className="lg:hidden">{helpCard}</div>
         </div>
       </div>
     </Ctx.Provider>
