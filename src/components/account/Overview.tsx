@@ -82,11 +82,13 @@ export default function Overview() {
 
   return (
     <div>
-      {/* Hoş geldin */}
-      <h1 className="font-display text-3xl text-ink sm:text-4xl">
-        {firstName ? t("welcome", { name: firstName }) : t("welcomeNoName")}
-      </h1>
-      <p className="mt-2 text-sm text-ink-soft">{t("welcomeSub")}</p>
+      {/* Hoş geldin — masaüstünde burada; mobilde sayfanın en başında (AccountShell) */}
+      <div className="hidden lg:block">
+        <h1 className="font-display text-3xl text-ink sm:text-4xl">
+          {firstName ? t("welcome", { name: firstName }) : t("welcomeNoName")}
+        </h1>
+        <p className="mt-2 text-sm text-ink-soft">{t("welcomeSub")}</p>
+      </div>
 
       {/* 3 istatistik kartı */}
       <div className="mt-7 grid gap-4 sm:grid-cols-3">

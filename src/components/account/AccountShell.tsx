@@ -132,6 +132,12 @@ export default function AccountShell({ children }: { children: React.ReactNode }
   const isActive = (href: string) =>
     href === "/hesap" ? pathname === "/hesap" : pathname.startsWith(href);
 
+  // Mobilde özet sayfasında "Hoş Geldiniz" başlığını menünün de üstünde göster.
+  const isOverview = pathname === "/hesap";
+  const firstName =
+    profile?.first_name ||
+    ((user.user_metadata?.first_name as string | undefined) ?? "");
+
   const navLinkCls = (active: boolean) =>
     `flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium transition-colors ${
       active
@@ -165,6 +171,18 @@ export default function AccountShell({ children }: { children: React.ReactNode }
   return (
     <Ctx.Provider value={{ user, profile, refreshProfile }}>
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-4 sm:px-6 lg:px-8">
+        {/* Mobil: Hoş Geldiniz başlığı sayfanın en başında (özet sayfası) */}
+        {isOverview && (
+          <div className="mb-6 lg:hidden">
+            <h1 className="font-display text-3xl text-ink">
+              {firstName
+                ? t("overview.welcome", { name: firstName })
+                : t("overview.welcomeNoName")}
+            </h1>
+            <p className="mt-2 text-sm text-ink-soft">{t("overview.welcomeSub")}</p>
+          </div>
+        )}
+
         <div className="grid items-start gap-7 lg:grid-cols-[270px_1fr]">
           {/* ── Sol menü ── */}
           <aside className="space-y-5 lg:sticky lg:top-6">
