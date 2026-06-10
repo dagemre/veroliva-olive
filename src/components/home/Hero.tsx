@@ -11,7 +11,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-[75%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-center"
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-[length:115%_auto] bg-[75%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-cover lg:bg-center"
       style={{ backgroundImage: "url('/images/hero.webp')" }}
     >
       {/* Üstten krem geçiş — header harmanı (her boyutta) */}
