@@ -125,6 +125,63 @@ export function formatOrderDate(
   return new Intl.DateTimeFormat(locale === "tr" ? "tr-TR" : "en-GB", opts).format(date);
 }
 
+// ── Kargo firması takip linkleri ─────────────────────────────────────────────
+// Çoğu Türk kargo firması takip numarasını URL parametresiyle kabul eder.
+// Eşleşme yoksa null döner → "Kargom Nerede?" butonu gizlenir.
+// Yeni firma eklerken: anahtarı firma adının küçük harf/türkçesiz halinden bul.
+const CARRIER_TRACKING: { match: string[]; url: (no: string) => string }[] = [
+  {
+    match: ["yurtici", "yurtiçi"],
+    url: (no) => `https://www.yurticikargo.com/tr/online-servisler/gonderi-sorgula?code=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["aras"],
+    url: (no) => `https://kargotakip.araskargo.com.tr/?code=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["mng"],
+    url: (no) => `https://kargotakip.mngkargo.com.tr/?takipNo=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["ptt"],
+    url: (no) => `https://gonderitakip.ptt.gov.tr/Track/Verify?q=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["surat", "sürat"],
+    url: (no) => `https://www.suratkargo.com.tr/KargoTakip/?kargotakipno=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["sendeo"],
+    url: (no) => `https://www.sendeo.com.tr/gonderi-takibi?code=${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["trendyol", "tex"],
+    url: (no) => `https://www.trendyolexpress.com/gonderi-sorgula/${encodeURIComponent(no)}`,
+  },
+  {
+    match: ["hepsijet"],
+    url: (no) => `https://www.hepsijet.com/gonderi-takibi?trackingNumber=${encodeURIComponent(no)}`,
+  },
+];
+
+/** Kargo firması + takip no'dan firmaya ait takip sayfası URL'i; bulunamazsa null. */
+export function carrierTrackingUrl(
+  carrier: string | null,
+  trackingNumber: string | null,
+): string | null {
+  if (!carrier || !trackingNumber) return null;
+  const key = carrier
+    .toLocaleLowerCase("tr-TR")
+    .replace(/ç/g, "c")
+    .replace(/ı/g, "i")
+    .replace(/ş/g, "s")
+    .replace(/ü/g, "u")
+    .replace(/ö/g, "o")
+    .replace(/ğ/g, "g");
+  const found = CARRIER_TRACKING.find((c) => c.match.some((m) => key.includes(m)));
+  return found ? found.url(trackingNumber.trim()) : null;
+}
+
 /** Tahmini teslimat: sipariş tarihi + 3 gün (hafta sonuna denk gelirse pazartesi). */
 export function estimatedDelivery(locale: "tr" | "en", createdAt: string): string {
   const d = new Date(createdAt);

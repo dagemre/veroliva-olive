@@ -798,6 +798,25 @@
       "mismatch": "The passwords do not match.",
       "weak": "The password rules are not met.",
       "error": "Could not update the password, please try again."
+    },
+    "shipping": {
+      "title": "Shipment Tracking",
+      "subtitle": "Your dispatched and in-preparation orders are here.",
+      "empty": "You have no orders in transit or being prepared right now.",
+      "inTransit": "In Transit",
+      "preparing": "Being Prepared",
+      "carrier": "Courier",
+      "trackingNo": "Tracking No",
+      "copy": "Copy",
+      "copied": "Copied",
+      "whereIsMyCargo": "Where Is My Parcel?",
+      "noTrackingYet": "The tracking number will appear here once your order is shipped.",
+      "estimated": "Estimated Delivery",
+      "viewOrder": "Order Details",
+      "stepReceived": "Received",
+      "stepPreparing": "Preparing",
+      "stepShipped": "Shipped",
+      "stepDelivered": "Delivered"
     }
   }
 }

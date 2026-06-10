@@ -798,6 +798,25 @@
       "mismatch": "Şifreler eşleşmiyor.",
       "weak": "Şifre kuralları karşılanmıyor.",
       "error": "Şifre güncellenemedi, lütfen tekrar deneyin."
+    },
+    "shipping": {
+      "title": "Kargo Takibi",
+      "subtitle": "Yola çıkan ve hazırlanan siparişleriniz burada.",
+      "empty": "Şu an kargoda veya hazırlanan siparişiniz bulunmuyor.",
+      "inTransit": "Yolda",
+      "preparing": "Hazırlanıyor",
+      "carrier": "Kargo Firması",
+      "trackingNo": "Takip No",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı",
+      "whereIsMyCargo": "Kargom Nerede?",
+      "noTrackingYet": "Kargo numarası, siparişiniz kargoya verildiğinde burada görünecek.",
+      "estimated": "Tahmini Teslimat",
+      "viewOrder": "Sipariş Detayı",
+      "stepReceived": "Alındı",
+      "stepPreparing": "Hazırlanıyor",
+      "stepShipped": "Kargoda",
+      "stepDelivered": "Teslim"
     }
   }
 }

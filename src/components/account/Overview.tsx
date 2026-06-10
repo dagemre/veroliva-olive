@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useAccount } from "@/components/account/AccountShell";
 import OrderRowCard from "@/components/account/OrderRowCard";
+import ShipmentTracking from "@/components/account/ShipmentTracking";
 import { ORDER_SELECT, type OrderRow } from "@/lib/orders";
 import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import type { Tables } from "@/lib/database.types";
@@ -133,6 +134,9 @@ export default function Overview() {
           </span>
         </div>
       </div>
+
+      {/* Kargo takibi — aktif kargo yoksa kendini gizler */}
+      <ShipmentTracking />
 
       {/* Son siparişler */}
       <div className="mt-8">
