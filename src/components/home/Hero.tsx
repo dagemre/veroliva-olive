@@ -11,25 +11,49 @@ export default function Hero() {
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-[length:130%_auto] bg-[65%_bottom] lg:min-h-[760px]"
-      style={{
-        backgroundImage:
-          // 1) üstten krem geçiş (header harmanı) 2) alttan yukarı siyah gradyen (yazı okunurluğu) 3) görsel
-          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.6) 90px, rgba(238,229,202,0) 240px), linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 22%, rgba(0,0,0,0.12) 42%, rgba(0,0,0,0) 60%), url('/images/hero.webp')",
-      }}
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-[length:130%_auto] bg-[65%_bottom] bg-no-repeat lg:min-h-[720px] lg:items-center lg:bg-cover lg:bg-center"
+      style={{ backgroundImage: "url('/images/hero.webp')" }}
     >
-      <div className="mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pb-16">
-        {/* Yazılar görselin altında alt alta */}
+      {/* Üstten krem geçiş — header harmanı (her boyutta) */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.6) 90px, rgba(238,229,202,0) 240px)",
+        }}
+      />
+      {/* Mobil: alttan yukarı siyah gradyen (yazı okunurluğu) */}
+      <div
+        className="pointer-events-none absolute inset-0 lg:hidden"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 22%, rgba(0,0,0,0.12) 42%, rgba(0,0,0,0) 60%)",
+        }}
+      />
+      {/* Masaüstü: soldan koyu geçiş (orijinal düzen) */}
+      <div
+        className="pointer-events-none absolute inset-0 hidden lg:block"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%)",
+        }}
+      />
+
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pb-20 lg:pt-40">
+        {/* Mobil: yazılar görselin altında alt alta — Masaüstü: orijinal sol-orta */}
         <div className="flex max-w-xl flex-col">
           <h1 className="font-display text-4xl leading-tight text-cream sm:text-5xl lg:text-[3.4rem]">
             {t("title")}
           </h1>
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/90 sm:text-base">
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/90 sm:text-base lg:mt-6">
             {t("text")}
           </p>
           <Link
             href="/koleksiyon"
-            className="mt-7 inline-flex items-center gap-3 self-start border border-gold-light px-7 py-3.5 text-[13px] font-medium tracking-wide text-cream transition-colors hover:bg-gold-light/15"
+            className="mt-7 inline-flex items-center gap-3 self-start border border-gold-light px-7 py-3.5 text-[13px] font-medium tracking-wide text-cream transition-colors hover:bg-gold-light/15 lg:mt-9"
           >
             {t("cta")}
             <span aria-hidden="true">→</span>
