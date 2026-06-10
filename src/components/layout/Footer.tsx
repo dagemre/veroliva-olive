@@ -140,13 +140,14 @@ export default function Footer() {
         {/* Alt bar */}
         <div className="border-t border-line">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:px-8">
-            <div className="flex flex-col items-center gap-1.5 lg:flex-row lg:gap-5">
+            {/* Mobilde sıra: rozetler (1) → copyright (2) → Made with (3); masaüstünde değişmez */}
+            <div className="order-2 flex flex-col items-center gap-1.5 lg:order-none lg:flex-row lg:gap-5">
               <p className="text-xs text-ink-soft">
                 {t("footer.copyright", { year })}
               </p>
               <MadeWith />
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="order-1 flex flex-wrap items-center justify-center gap-6 lg:order-none">
               <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
                   <path d="M12 3c-4 3-7 4-7 9a7 7 0 0 0 14 0c0-5-3-6-7-9Z" />
