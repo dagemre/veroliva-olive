@@ -147,28 +147,31 @@ export default function Footer() {
               </p>
               <MadeWith />
             </div>
-            <div className="order-1 flex flex-wrap items-center justify-center gap-6 lg:order-none">
-              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
-                  <path d="M12 3c-4 3-7 4-7 9a7 7 0 0 0 14 0c0-5-3-6-7-9Z" />
-                </svg>
-                {t("footer.badges.natural")}
-              </span>
-              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3Z" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-                {t("footer.badges.securePayment")}
-              </span>
-              <span className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-                {t("footer.badges.fastShipping")}
-              </span>
+            <div className="order-1 flex flex-wrap items-center justify-center gap-4 lg:order-none lg:gap-6">
+              {/* Rozetler mobilde de tek satır: kendi içinde sarmalanmaz, yazı/boşluk küçülür */}
+              <div className="flex items-center justify-center gap-3 sm:gap-6">
+                <span className="flex items-center gap-1.5 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.06em] text-ink-soft sm:gap-2 sm:text-[11px] sm:tracking-[0.14em]">
+                  <svg className="h-[13px] w-[13px] shrink-0 sm:h-[15px] sm:w-[15px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+                    <path d="M12 3c-4 3-7 4-7 9a7 7 0 0 0 14 0c0-5-3-6-7-9Z" />
+                  </svg>
+                  {t("footer.badges.natural")}
+                </span>
+                <span className="flex items-center gap-1.5 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.06em] text-ink-soft sm:gap-2 sm:text-[11px] sm:tracking-[0.14em]">
+                  <svg className="h-[13px] w-[13px] shrink-0 sm:h-[15px] sm:w-[15px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 3 5 6v5c0 4.5 3 8.5 7 10 4-1.5 7-5.5 7-10V6l-7-3Z" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                  {t("footer.badges.securePayment")}
+                </span>
+                <span className="flex items-center gap-1.5 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.06em] text-ink-soft sm:gap-2 sm:text-[11px] sm:tracking-[0.14em]">
+                  <svg className="h-[13px] w-[13px] shrink-0 sm:h-[15px] sm:w-[15px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z" />
+                    <circle cx="7" cy="17" r="2" />
+                    <circle cx="17" cy="17" r="2" />
+                  </svg>
+                  {t("footer.badges.fastShipping")}
+                </span>
+              </div>
               <BackToTop />
             </div>
           </div>
