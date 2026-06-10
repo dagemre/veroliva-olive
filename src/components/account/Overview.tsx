@@ -91,7 +91,8 @@ export default function Overview() {
       </div>
 
       {/* 3 istatistik kartı */}
-      <div className="mt-7 grid gap-4 sm:grid-cols-3">
+      {/* İstatistik kartları — mobilde gizli, masaüstünde görünür */}
+      <div className="mt-7 hidden gap-4 sm:grid sm:grid-cols-3">
         <div className={cardCls}>
           <span className={iconCls} aria-hidden="true">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
