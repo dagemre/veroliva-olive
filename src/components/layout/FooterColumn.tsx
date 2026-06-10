@@ -20,7 +20,7 @@ export default function FooterColumn({
   return (
     <nav
       aria-label={title}
-      className="border-t border-line text-left last:border-b sm:border-0"
+      className="border-t border-line text-left sm:border-0"
     >
       {/* Mobil: tam genişlik satır — başlık solda, artı sağda */}
       <button
