@@ -27,7 +27,7 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.6) 90px, rgba(238,229,202,0) 240px)",
+            "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px)",
         }}
       />
       {/* Mobil: alttan yukarı siyah gradyen (yazı okunurluğu) */}
