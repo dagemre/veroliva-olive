@@ -21,13 +21,13 @@ export default function Hero() {
         aria-hidden="true"
         style={{ backgroundImage: "url('/images/hero.webp')" }}
       />
-      {/* Üstten krem geçiş — header harmanı (her boyutta) */}
+      {/* Masaüstü: soldan koyu geçiş (orijinal düzen) — kremin ALTINDA kalmalı */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 hidden lg:block"
         aria-hidden="true"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px)",
+            "linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%)",
         }}
       />
       {/* Mobil: alttan yukarı siyah gradyen (yazı okunurluğu) */}
@@ -39,13 +39,14 @@ export default function Hero() {
             "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 22%, rgba(0,0,0,0.12) 42%, rgba(0,0,0,0) 60%)",
         }}
       />
-      {/* Masaüstü: soldan koyu geçiş (orijinal düzen) */}
+      {/* Üstten krem geçiş — header harmanı (her boyutta). EN ÜSTTE: dünkü
+          tek-background sırasında krem en üstteydi, o yüzden burada da son katman. */}
       <div
-        className="pointer-events-none absolute inset-0 hidden lg:block"
+        className="pointer-events-none absolute inset-0"
         aria-hidden="true"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%)",
+            "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px)",
         }}
       />
 
