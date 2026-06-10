@@ -11,24 +11,25 @@ export default function Hero() {
 
   return (
     <section
-      className="relative -mt-20 flex min-h-[640px] items-start bg-olive bg-cover bg-[68%_center] sm:bg-center lg:min-h-[720px] lg:items-center"
+      className="relative -mt-20 flex min-h-[640px] items-end bg-olive bg-cover bg-bottom lg:min-h-[760px]"
       style={{
         backgroundImage:
-          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.75) 110px, rgba(238,229,202,0) 300px), linear-gradient(to right, rgba(35,42,20,0.6) 0%, rgba(35,42,20,0.3) 55%, rgba(35,42,20,0.08) 100%), url('/images/hero.webp')",
+          // 1) üstten krem geçiş (header harmanı) 2) alttan yukarı siyah gradyen (yazı okunurluğu) 3) görsel
+          "linear-gradient(to bottom, rgba(244,239,224,0.95) 0%, rgba(238,229,202,0.6) 90px, rgba(238,229,202,0) 240px), linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.45) 22%, rgba(0,0,0,0.12) 42%, rgba(0,0,0,0) 60%), url('/images/hero.webp')",
       }}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col self-stretch px-4 pb-16 pt-28 sm:px-6 lg:block lg:self-auto lg:px-8 lg:pb-20 lg:pt-40">
-        <div className="flex max-w-xl flex-1 flex-col lg:block">
+      <div className="mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 lg:px-8 lg:pb-16">
+        {/* Yazılar görselin altında alt alta */}
+        <div className="flex max-w-xl flex-col">
           <h1 className="font-display text-4xl leading-tight text-cream sm:text-5xl lg:text-[3.4rem]">
             {t("title")}
           </h1>
-          {/* Mobil: paragraf + CTA hero'nun alt kısmına iner; masaüstü: başlığın hemen altında */}
-          <p className="mt-auto max-w-md text-sm leading-relaxed text-cream/85 sm:text-base lg:mt-6">
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/90 sm:text-base">
             {t("text")}
           </p>
           <Link
             href="/koleksiyon"
-            className="mt-6 inline-flex items-center gap-3 self-start border border-gold-light px-7 py-3.5 text-[13px] font-medium tracking-wide text-cream transition-colors hover:bg-gold-light/15 lg:mt-9"
+            className="mt-7 inline-flex items-center gap-3 self-start border border-gold-light px-7 py-3.5 text-[13px] font-medium tracking-wide text-cream transition-colors hover:bg-gold-light/15"
           >
             {t("cta")}
             <span aria-hidden="true">→</span>
