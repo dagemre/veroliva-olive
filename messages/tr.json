@@ -999,6 +999,40 @@
         "status": "Durum",
         "actions": "İşlem"
       }
+    },
+    "campaigns": {
+      "subtitle": "İndirim kuponlarını oluşturun ve yönetin.",
+      "count": "{count} kupon · {active} aktif",
+      "add": "Yeni Kupon",
+      "addTitle": "Yeni Kupon Oluştur",
+      "empty": "Henüz kupon yok.",
+      "noExpiry": "Süresiz",
+      "active": "Aktif",
+      "passive": "Pasif",
+      "required": "Kod ve indirim değeri zorunludur.",
+      "col": {
+        "code": "Kod",
+        "discount": "İndirim",
+        "min": "Min. Sepet",
+        "validUntil": "Geçerlilik",
+        "usage": "Kullanım",
+        "status": "Durum",
+        "actions": "İşlem"
+      },
+      "form": {
+        "code": "Kupon Kodu",
+        "type": "İndirim Tipi",
+        "percent": "Yüzde (%)",
+        "fixed": "Tutar (TL)",
+        "valuePercent": "Yüzde Değeri",
+        "valueFixed": "İndirim Tutarı (TL)",
+        "minSubtotal": "Min. Sepet Tutarı",
+        "validUntil": "Son Geçerlilik Tarihi",
+        "validNote": "Boş bırakılırsa süresiz.",
+        "descTr": "Açıklama (TR)",
+        "descEn": "Açıklama (EN)",
+        "activeLabel": "Kupon aktif"
+      }
     }
   }
 }

@@ -999,6 +999,40 @@
         "status": "Status",
         "actions": "Actions"
       }
+    },
+    "campaigns": {
+      "subtitle": "Create and manage discount coupons.",
+      "count": "{count} coupons · {active} active",
+      "add": "New Coupon",
+      "addTitle": "Create New Coupon",
+      "empty": "No coupons yet.",
+      "noExpiry": "No expiry",
+      "active": "Active",
+      "passive": "Inactive",
+      "required": "Code and discount value are required.",
+      "col": {
+        "code": "Code",
+        "discount": "Discount",
+        "min": "Min. Cart",
+        "validUntil": "Valid Until",
+        "usage": "Used",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "form": {
+        "code": "Coupon Code",
+        "type": "Discount Type",
+        "percent": "Percentage (%)",
+        "fixed": "Amount (TL)",
+        "valuePercent": "Percentage Value",
+        "valueFixed": "Discount Amount (TL)",
+        "minSubtotal": "Min. Cart Total",
+        "validUntil": "Valid Until Date",
+        "validNote": "Leave empty for no expiry.",
+        "descTr": "Description (TR)",
+        "descEn": "Description (EN)",
+        "activeLabel": "Coupon active"
+      }
     }
   }
 }
