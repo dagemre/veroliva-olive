@@ -1033,6 +1033,100 @@
         "descEn": "Açıklama (EN)",
         "activeLabel": "Kupon aktif"
       }
+    },
+    "content": {
+      "subtitle": "Ürün detay sayfası içeriklerini düzenleyin.",
+      "selectProduct": "Ürün Seçin",
+      "saved": "✓ Kaydedildi",
+      "save": "İçeriği Kaydet",
+      "description": "Ürün Açıklaması",
+      "descTr": "Açıklama (TR)",
+      "descEn": "Açıklama (EN)",
+      "highlights": "Öne Çıkanlar (fiyat altı 4'lü şerit)",
+      "iconHint": "İkon anahtarları",
+      "addRow": "Satır Ekle",
+      "titleTr": "Başlık (TR)",
+      "titleEn": "Başlık (EN)",
+      "subTr": "Alt (TR)",
+      "subEn": "Alt (EN)",
+      "specs": "Ürün Hakkında Özellikleri",
+      "labelTr": "Etiket (TR)",
+      "labelEn": "Etiket (EN)",
+      "valueTr": "Değer (TR)",
+      "valueEn": "Değer (EN)",
+      "taste": "Tat & Aroma",
+      "fruity": "Meyvemsi",
+      "bitter": "Acılık",
+      "pungent": "Yakıcılık",
+      "notesTr": "Tat notları (TR)",
+      "notesEn": "Tat notları (EN)",
+      "usage": "İdeal Kullanım",
+      "usageTextTr": "Açıklama (TR)",
+      "usageTextEn": "Açıklama (EN)",
+      "nutrition": "Besin Değerleri (100 ml)",
+      "value": "Değer",
+      "footnoteTr": "Dipnot (TR)",
+      "footnoteEn": "Dipnot (EN)",
+      "gallery": "Galeri Görselleri",
+      "galleryHint": "Şişe fotoğrafına ek görsellerin public yolu (örn. /images/galeri/ornek.webp).",
+      "addImage": "Görsel Ekle"
+    },
+    "payments": {
+      "subtitle": "Tahsilatları ve ödeme yöntemlerini görüntüleyin.",
+      "collected": "Tahsil Edilen",
+      "pending": "Bekleyen",
+      "refunded": "İade Edilen",
+      "byMethod": "Yönteme Göre Dağılım",
+      "method": "Yöntem"
+    },
+    "shipping": {
+      "subtitle": "Gönderim kuyruğu — firma ve takip no girin, durumu ilerletin.",
+      "queueCount": "Kuyrukta {count} sipariş",
+      "empty": "Gönderilecek sipariş yok.",
+      "saved": "Kaydedildi ✓"
+    },
+    "reports": {
+      "subtitle": "Satış ve stok raporları.",
+      "exportOrders": "Siparişleri Dışa Aktar (CSV)",
+      "exportStock": "Stok Listesi (CSV)",
+      "monthly": "Aylık Satış (son 12 ay)",
+      "total": "Toplam",
+      "orders": "sipariş",
+      "topProducts": "En Çok Satanlar",
+      "units": "adet",
+      "lowStock": "Düşük Stok",
+      "lowStockHint": "{n} adet ve altı.",
+      "stockOk": "Tüm ürünlerde stok yeterli."
+    },
+    "settings": {
+      "subtitle": "Site geneli ayarları yönetin.",
+      "missing": "site_settings tablosu henüz oluşturulmamış. Aşağıdaki ayarları kaydedebilmek için verilen SQL'i Supabase'de çalıştırın.",
+      "announcement": "Duyuru Barı",
+      "announcementHint": "Üstteki ince banttaki metin. Boş bırakılırsa varsayılan metin gösterilir.",
+      "contact": "İletişim Bilgileri",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "address": "Adres",
+      "bank": "Banka / Havale",
+      "bankName": "Hesap Adı",
+      "shipping": "Kargo Kuralları",
+      "shippingHint": "Bu değerler şu an kodda tanımlı (bilgi amaçlı). Değiştirmek için söyleyin.",
+      "freeThreshold": "Ücretsiz Kargo Eşiği",
+      "shippingFee": "Kargo Ücreti",
+      "save": "Ayarları Kaydet"
+    },
+    "reviews": {
+      "subtitle": "{count} onay bekleyen yorum",
+      "missing": "reviews tablosu henüz oluşturulmamış. Yorum sistemi için verilen SQL'i Supabase'de çalıştırın.",
+      "empty": "Yorum yok.",
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "delete": "Sil",
+      "status": {
+        "pending": "Beklemede",
+        "approved": "Onaylı",
+        "rejected": "Reddedildi"
+      }
     }
   }
 }

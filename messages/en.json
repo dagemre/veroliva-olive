@@ -1033,6 +1033,100 @@
         "descEn": "Description (EN)",
         "activeLabel": "Coupon active"
       }
+    },
+    "content": {
+      "subtitle": "Edit product detail page content.",
+      "selectProduct": "Select Product",
+      "saved": "✓ Saved",
+      "save": "Save Content",
+      "description": "Product Description",
+      "descTr": "Description (TR)",
+      "descEn": "Description (EN)",
+      "highlights": "Highlights (4-up strip under price)",
+      "iconHint": "Icon keys",
+      "addRow": "Add Row",
+      "titleTr": "Title (TR)",
+      "titleEn": "Title (EN)",
+      "subTr": "Sub (TR)",
+      "subEn": "Sub (EN)",
+      "specs": "About Specs",
+      "labelTr": "Label (TR)",
+      "labelEn": "Label (EN)",
+      "valueTr": "Value (TR)",
+      "valueEn": "Value (EN)",
+      "taste": "Taste & Aroma",
+      "fruity": "Fruity",
+      "bitter": "Bitter",
+      "pungent": "Pungent",
+      "notesTr": "Taste notes (TR)",
+      "notesEn": "Taste notes (EN)",
+      "usage": "Ideal Use",
+      "usageTextTr": "Description (TR)",
+      "usageTextEn": "Description (EN)",
+      "nutrition": "Nutrition (per 100 ml)",
+      "value": "Value",
+      "footnoteTr": "Footnote (TR)",
+      "footnoteEn": "Footnote (EN)",
+      "gallery": "Gallery Images",
+      "galleryHint": "Public path of extra images besides the bottle photo (e.g. /images/galeri/sample.webp).",
+      "addImage": "Add Image"
+    },
+    "payments": {
+      "subtitle": "View collections and payment methods.",
+      "collected": "Collected",
+      "pending": "Pending",
+      "refunded": "Refunded",
+      "byMethod": "By Method",
+      "method": "Method"
+    },
+    "shipping": {
+      "subtitle": "Shipping queue — enter carrier & tracking, advance status.",
+      "queueCount": "{count} orders in queue",
+      "empty": "No orders to ship.",
+      "saved": "Saved ✓"
+    },
+    "reports": {
+      "subtitle": "Sales and stock reports.",
+      "exportOrders": "Export Orders (CSV)",
+      "exportStock": "Stock List (CSV)",
+      "monthly": "Monthly Sales (last 12 months)",
+      "total": "Total",
+      "orders": "orders",
+      "topProducts": "Top Sellers",
+      "units": "units",
+      "lowStock": "Low Stock",
+      "lowStockHint": "{n} units or fewer.",
+      "stockOk": "All products well stocked."
+    },
+    "settings": {
+      "subtitle": "Manage site-wide settings.",
+      "missing": "The site_settings table does not exist yet. Run the provided SQL in Supabase to enable saving these settings.",
+      "announcement": "Announcement Bar",
+      "announcementHint": "Text in the top thin bar. Leave empty to use the default text.",
+      "contact": "Contact Info",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "bank": "Bank / Transfer",
+      "bankName": "Account Name",
+      "shipping": "Shipping Rules",
+      "shippingHint": "These values are currently defined in code (info only). Ask to change them.",
+      "freeThreshold": "Free Shipping Threshold",
+      "shippingFee": "Shipping Fee",
+      "save": "Save Settings"
+    },
+    "reviews": {
+      "subtitle": "{count} reviews awaiting approval",
+      "missing": "The reviews table does not exist yet. Run the provided SQL in Supabase to enable the review system.",
+      "empty": "No reviews.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
     }
   }
 }
