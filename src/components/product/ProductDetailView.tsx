@@ -17,6 +17,7 @@ import {
 } from "@/lib/products";
 import ProductGallery, { type GalleryImage } from "@/components/product/ProductGallery";
 import PurchasePanel from "@/components/product/PurchasePanel";
+import { productImage } from "@/lib/admin";
 import DetailIcon from "@/components/product/DetailIcon";
 import ProductCard from "@/components/product/ProductCard";
 import Carousel from "@/components/home/Carousel";
@@ -92,7 +93,7 @@ export default function ProductDetailView({
   const description = locale === "tr" ? product.description?.tr : product.description?.en;
   const unitPrice = formatUnitPrice(product.price, product.size);
 
-  const bottleUrl = `/images/products/${product.slug}.webp`;
+  const bottleUrl = productImage(product.slug, product.imageUrl);
   if (!preview) preload(bottleUrl, { as: "image", fetchPriority: "high" });
 
   const bottleAlt =

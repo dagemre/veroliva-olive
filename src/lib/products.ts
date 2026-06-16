@@ -11,6 +11,8 @@ export type Product = {
   size: string;
   price: number; // TL
   medal?: "gold" | "silver";
+  /** Şişe görseli — Supabase Storage public URL. Yoksa /images/products/{slug}.webp konvansiyonu. */
+  imageUrl?: string;
   description?: { tr: string; en: string };
   details?: ProductDetails;
 };
@@ -227,7 +229,7 @@ export async function getProducts(): Promise<Product[]> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, slug, name, badge_tr, badge_en, size, price, medal")
+    .select("id, slug, name, badge_tr, badge_en, size, price, medal, image_url")
     .eq("is_active", true)
     .order("sort_order", { ascending: true });
 
@@ -244,6 +246,7 @@ export async function getProducts(): Promise<Product[]> {
     size: row.size,
     price: Number(row.price),
     medal: row.medal === "gold" || row.medal === "silver" ? row.medal : undefined,
+    imageUrl: row.image_url ?? undefined,
   }));
 }
 
@@ -256,7 +259,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, slug, name, badge_tr, badge_en, size, price, medal, description_tr, description_en, details")
+    .select("id, slug, name, badge_tr, badge_en, size, price, medal, image_url, description_tr, description_en, details")
     .eq("slug", slug)
     .eq("is_active", true)
     .single();
@@ -274,6 +277,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     size: data.size,
     price: Number(data.price),
     medal: data.medal === "gold" || data.medal === "silver" ? data.medal : undefined,
+    imageUrl: (data as { image_url?: string | null }).image_url ?? undefined,
     description: {
       tr: (data as { description_tr?: string }).description_tr || "",
       en: (data as { description_en?: string }).description_en || "",

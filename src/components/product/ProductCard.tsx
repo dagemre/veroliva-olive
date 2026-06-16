@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { formatPrice, type Product } from "@/lib/products";
+import { productImage } from "@/lib/admin";
 import { useCart } from "@/components/cart/CartProvider";
 
 // SEO: açıklayıcı alt text (TR/EN) — görsel araması için anahtar kelimeli.
@@ -53,7 +54,7 @@ export default function ProductCard({
         style={{ backgroundImage: "url('/images/urun-fon.webp')" }}
       >
         <Image
-          src={`/images/products/${product.slug}.webp`}
+          src={productImage(product.slug, product.imageUrl)}
           alt={productAlt(product, locale)}
           width={877}
           height={900}

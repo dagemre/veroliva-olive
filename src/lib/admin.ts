@@ -242,7 +242,8 @@ export function donutSegments(
   return segs;
 }
 
-/** Ürün slug → şişe görseli (public/images/products). */
-export function productImage(slug: string | null | undefined): string {
+/** Şişe görseli: yüklenmiş imageUrl (Supabase Storage) varsa onu, yoksa slug konvansiyonunu döndürür. */
+export function productImage(slug: string | null | undefined, imageUrl?: string | null): string {
+  if (imageUrl) return imageUrl;
   return slug ? `/images/products/${slug}.webp` : "/images/products/veroliva-classic.webp";
 }

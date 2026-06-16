@@ -979,7 +979,13 @@
         "usageTextTr": "Usage text (TR)",
         "usageTextEn": "Usage text (EN)",
         "footnoteTr": "Footnote (TR)",
-        "footnoteEn": "Footnote (EN)"
+        "footnoteEn": "Footnote (EN)",
+        "bottle": "Bottle Image",
+        "uploadBottle": "Upload Bottle Image",
+        "useDefaultBottle": "Use default",
+        "bottleNote": "If none is uploaded, /images/products/{slug}.webp is used.",
+        "uploadGallery": "Upload Gallery Image",
+        "uploading": "Uploading…"
       }
     },
     "orders": {

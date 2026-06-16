@@ -44,7 +44,7 @@ export async function generateMetadata({
     params: { slug },
     title,
     description: desc,
-    ogImage: `/images/products/${slug}.webp`,
+    ogImage: product.imageUrl || `/images/products/${slug}.webp`,
   });
 }
 
@@ -74,7 +74,7 @@ export default async function ProductPage({
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    image: `${SITE_URL}/images/products/${product.slug}.webp`,
+    image: product.imageUrl || `${SITE_URL}/images/products/${product.slug}.webp`,
     description: locale_ === "tr"
       ? (product.description?.tr || `${product.name} — ${product.size} soğuk sıkım natürel sızma zeytinyağı.`)
       : (product.description?.en || `${product.name} — ${product.size} cold pressed extra virgin olive oil.`),

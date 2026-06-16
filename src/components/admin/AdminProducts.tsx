@@ -26,9 +26,10 @@ type Row = {
   is_active: boolean;
   stock_quantity: number;
   sort_order: number;
+  image_url: string | null;
 };
 
-const COLS = "id, name, slug, size, price, currency, badge_tr, badge_en, category, medal, is_active, stock_quantity, sort_order";
+const COLS = "id, name, slug, size, price, currency, badge_tr, badge_en, category, medal, is_active, stock_quantity, sort_order, image_url";
 
 const inputCls =
   "w-full border border-line bg-cream px-3 py-2.5 text-[13px] text-ink focus:border-gold-light focus:outline-none";
@@ -114,7 +115,7 @@ export default function AdminProducts() {
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden border border-line bg-cream">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={productImage(r.slug)} alt="" className="h-full w-full object-contain" />
+                      <img src={productImage(r.slug, r.image_url)} alt="" className="h-full w-full object-contain" />
                     </span>
                     <div className="min-w-0">
                       <span className="block truncate font-medium">{r.name}</span>

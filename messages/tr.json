@@ -979,7 +979,13 @@
         "usageTextTr": "Kullanım metni (TR)",
         "usageTextEn": "Kullanım metni (EN)",
         "footnoteTr": "Dipnot (TR)",
-        "footnoteEn": "Dipnot (EN)"
+        "footnoteEn": "Dipnot (EN)",
+        "bottle": "Şişe Görseli",
+        "uploadBottle": "Şişe Görseli Yükle",
+        "useDefaultBottle": "Varsayılana dön",
+        "bottleNote": "Yüklenmezse /images/products/{slug}.webp varsayılanı kullanılır.",
+        "uploadGallery": "Galeri Görseli Yükle",
+        "uploading": "Yükleniyor…"
       }
     },
     "orders": {

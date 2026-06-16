@@ -9,7 +9,10 @@ import { useTranslations } from "next-intl";
 import AdminModal from "./AdminModal";
 import ProductDetailView from "@/components/product/ProductDetailView";
 import DetailIcon from "@/components/product/DetailIcon";
+import { productImage } from "@/lib/admin";
 import { getSupabaseBrowser } from "@/lib/supabase-browser";
+
+const BUCKET = "product-images";
 import { normalizeDetails, serializeDetails, type Product, type ProductDetails } from "@/lib/products";
 import type { Json } from "@/lib/database.types";
 
@@ -28,6 +31,7 @@ type TFn = (key: string) => string;
 type Draft = {
   name: string; slug: string; size: string; price: string;
   category: string; medal: "" | "gold" | "silver"; is_active: boolean; stock: string;
+  imageUrl: string;
   badge_tr: string; badge_en: string; description_tr: string; description_en: string;
   details: ProductDetails;
 };
@@ -68,6 +72,7 @@ export default function ProductEditor({
   const [draft, setDraft] = useState<Draft | null>(null);
   const [initialStock, setInitialStock] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
@@ -76,7 +81,7 @@ export default function ProductEditor({
       if (!supabase) return;
       const { data } = await supabase
         .from("products")
-        .select("id, slug, name, badge_tr, badge_en, size, price, medal, category, description_tr, description_en, details, is_active, stock_quantity")
+        .select("id, slug, name, badge_tr, badge_en, size, price, medal, category, image_url, description_tr, description_en, details, is_active, stock_quantity")
         .eq("id", productId)
         .single();
       if (!data) return;
@@ -87,6 +92,7 @@ export default function ProductEditor({
         price: String(d.price ?? ""), category: String(d.category ?? ""),
         medal: (d.medal === "gold" || d.medal === "silver" ? d.medal : "") as Draft["medal"],
         is_active: Boolean(d.is_active ?? true), stock: String(d.stock_quantity ?? 0),
+        imageUrl: String(d.image_url ?? ""),
         badge_tr: String(d.badge_tr ?? ""), badge_en: String(d.badge_en ?? ""),
         description_tr: String(d.description_tr ?? ""), description_en: String(d.description_en ?? ""),
         details: normalizeDetails(d.details),
@@ -97,10 +103,38 @@ export default function ProductEditor({
   function patch(p: Partial<Draft>) { setDraft((cur) => (cur ? { ...cur, ...p } : cur)); }
   function patchDetails(p: Partial<ProductDetails>) { setDraft((cur) => (cur ? { ...cur, details: { ...cur.details, ...p } } : cur)); }
 
+  // Tek dosyayı Storage'a yükler, public URL döndürür (yoksa null).
+  async function uploadFile(file: File): Promise<string | null> {
+    const supabase = getSupabaseBrowser();
+    if (!supabase || !draft) return null;
+    const ext = (file.name.split(".").pop() || "webp").toLowerCase();
+    const base = (draft.slug || productId).replace(/[^a-zA-Z0-9-]/g, "-");
+    const path = `${base}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const { error } = await supabase.storage.from(BUCKET).upload(path, file, { upsert: true, cacheControl: "3600" });
+    if (error) { setErr(error.message); return null; }
+    return supabase.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+
+  async function onBottleFile(file: File) {
+    setUploading(true); setErr(null);
+    const url = await uploadFile(file);
+    setUploading(false);
+    if (url) patch({ imageUrl: url });
+  }
+
+  async function onGalleryFiles(files: FileList) {
+    setUploading(true); setErr(null);
+    const urls: string[] = [];
+    for (const f of Array.from(files)) { const u = await uploadFile(f); if (u) urls.push(u); }
+    setUploading(false);
+    if (urls.length) setDraft((cur) => (cur ? { ...cur, details: { ...cur.details, gallery: [...cur.details.gallery, ...urls] } } : cur));
+  }
+
   const previewProduct: Product | null = draft && {
     id: productId, slug: draft.slug, name: draft.name,
     badge: { tr: draft.badge_tr, en: draft.badge_en }, size: draft.size,
     price: Number(draft.price) || 0, medal: draft.medal || undefined,
+    imageUrl: draft.imageUrl || undefined,
     description: { tr: draft.description_tr, en: draft.description_en }, details: draft.details,
   };
 
@@ -112,6 +146,7 @@ export default function ProductEditor({
     const { error: upErr } = await supabase.from("products").update({
       name: draft.name, slug: draft.slug, size: draft.size, price: Number(draft.price),
       category: draft.category || null, medal: draft.medal || null, is_active: draft.is_active,
+      image_url: draft.imageUrl || null,
       badge_tr: draft.badge_tr, badge_en: draft.badge_en,
       description_tr: draft.description_tr, description_en: draft.description_en,
       details: serializeDetails(draft.details) as Json,
@@ -190,7 +225,17 @@ export default function ProductEditor({
 
             {tab === "details" && <DetailsTab draft={draft} patchDetails={patchDetails} t={t} />}
             {tab === "nutrition" && <NutritionTab draft={draft} patchDetails={patchDetails} t={t} />}
-            {tab === "images" && <ImagesTab draft={draft} patchDetails={patchDetails} t={t} />}
+            {tab === "images" && (
+              <ImagesTab
+                draft={draft}
+                patchDetails={patchDetails}
+                t={t}
+                uploading={uploading}
+                onBottleFile={onBottleFile}
+                onGalleryFiles={onGalleryFiles}
+                onClearBottle={() => patch({ imageUrl: "" })}
+              />
+            )}
             {tab === "preview" && <p className="text-[12px] text-ink-soft lg:hidden">{t("products.editor.previewHint")}</p>}
 
             {err && <p className="mt-3 text-[12px] text-[#a8503f]">{err}</p>}
@@ -330,18 +375,61 @@ function NutritionTab({ draft, patchDetails, t }: { draft: Draft; patchDetails: 
   );
 }
 
-function ImagesTab({ draft, patchDetails, t }: { draft: Draft; patchDetails: (p: Partial<ProductDetails>) => void; t: TFn }) {
+function ImagesTab({ draft, patchDetails, t, uploading, onBottleFile, onGalleryFiles, onClearBottle }: {
+  draft: Draft; patchDetails: (p: Partial<ProductDetails>) => void; t: TFn;
+  uploading: boolean; onBottleFile: (f: File) => void; onGalleryFiles: (f: FileList) => void; onClearBottle: () => void;
+}) {
   const g = draft.details.gallery;
   return (
-    <div className="space-y-3">
-      <h3 className={labelCls}>{t("products.editor.gallery")}</h3>
-      <p className="text-[11px] text-ink-soft">{t("products.editor.galleryNote")}</p>
-      {g.map((src, i) => (
-        <RowShell key={i} onRemove={() => patchDetails({ gallery: g.filter((_, j) => j !== i) })}>
-          <input className={inputCls2} placeholder="/images/galeri/ornek.webp" value={src} onChange={(e) => patchDetails({ gallery: g.map((x, j) => j === i ? e.target.value : x) })} />
-        </RowShell>
-      ))}
-      <AddButton label={t("products.editor.addRow")} onClick={() => patchDetails({ gallery: [...g, ""] })} />
+    <div className="space-y-6">
+      {/* Şişe görseli */}
+      <section className="space-y-2">
+        <h3 className={labelCls}>{t("products.editor.bottle")}</h3>
+        <div className="flex items-center gap-4">
+          <span className="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden border border-line bg-parchment">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={productImage(draft.slug, draft.imageUrl)} alt="" className="h-full w-full object-contain p-1.5" />
+          </span>
+          <div className="space-y-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 border border-line px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-soft hover:border-gold-light hover:text-ink">
+              <span aria-hidden="true">↑</span>{t("products.editor.uploadBottle")}
+              <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) onBottleFile(f); e.target.value = ""; }} />
+            </label>
+            {draft.imageUrl && (
+              <button type="button" onClick={onClearBottle} className="block text-[11px] text-ink-soft underline-offset-2 hover:text-ink hover:underline">
+                {t("products.editor.useDefaultBottle")}
+              </button>
+            )}
+          </div>
+        </div>
+        <p className="text-[11px] text-ink-soft">{t("products.editor.bottleNote")}</p>
+      </section>
+
+      {/* Galeri */}
+      <section className="space-y-2">
+        <h3 className={labelCls}>{t("products.editor.gallery")}</h3>
+        <p className="text-[11px] text-ink-soft">{t("products.editor.galleryNote")}</p>
+        {g.map((src, i) => (
+          <RowShell key={i} onRemove={() => patchDetails({ gallery: g.filter((_, j) => j !== i) })}>
+            <div className="flex items-center gap-2">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden border border-line bg-cream-light">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={src || "/images/urun-fon.webp"} alt="" className="h-full w-full object-cover" />
+              </span>
+              <input className={inputCls2} placeholder="/images/galeri/ornek.webp" value={src} onChange={(e) => patchDetails({ gallery: g.map((x, j) => j === i ? e.target.value : x) })} />
+            </div>
+          </RowShell>
+        ))}
+        <div className="flex flex-wrap items-center gap-2">
+          <label className="inline-flex cursor-pointer items-center gap-2 border border-line px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-soft hover:border-gold-light hover:text-ink">
+            <span aria-hidden="true">↑</span>{t("products.editor.uploadGallery")}
+            <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => { if (e.target.files?.length) onGalleryFiles(e.target.files); e.target.value = ""; }} />
+          </label>
+          <AddButton label={t("products.editor.addRow")} onClick={() => patchDetails({ gallery: [...g, ""] })} />
+        </div>
+      </section>
+
+      {uploading && <p className="text-[12px] text-olive">{t("products.editor.uploading")}</p>}
     </div>
   );
 }
