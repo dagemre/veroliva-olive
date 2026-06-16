@@ -818,5 +818,187 @@
       "stepShipped": "Kargoda",
       "stepDelivered": "Teslim"
     }
+  },
+  "admin": {
+    "metaTitle": "Yönetim Paneli · Veroliva",
+    "metaDescription": "Veroliva yönetim paneli.",
+    "loading": "Yükleniyor…",
+    "role": "Yönetici",
+    "signOut": "Çıkış Yap",
+    "menu": "Menü",
+    "all": "Tümü",
+    "cancel": "Vazgeç",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor…",
+    "denied": {
+      "title": "Erişim Yok",
+      "text": "Bu sayfa yalnızca yöneticilere açıktır.",
+      "cta": "Anasayfaya Dön"
+    },
+    "soon": {
+      "title": "Bu bölüm yakında",
+      "text": "Bu modül üzerinde çalışıyoruz. Çok yakında burada olacak."
+    },
+    "nav": {
+      "overview": "Genel Bakış",
+      "products": "Ürünler",
+      "orders": "Siparişler",
+      "users": "Kullanıcılar",
+      "payments": "Ödemeler",
+      "campaigns": "Kampanyalar",
+      "shipping": "Kargo Yönetimi",
+      "content": "İçerik Yönetimi",
+      "reviews": "Yorumlar",
+      "reports": "Raporlar",
+      "settings": "Ayarlar"
+    },
+    "overview": {
+      "welcome": "Hoş Geldiniz, {name}",
+      "subtitle": "Yönetim paneline hoş geldiniz."
+    },
+    "kpi": {
+      "orders": "Toplam Sipariş",
+      "sales": "Toplam Satış",
+      "avg": "Ortalama Sipariş",
+      "customers": "Aktif Müşteriler",
+      "vsLast": "bu aya göre",
+      "new": "yeni"
+    },
+    "sales": {
+      "title": "Satış Özeti",
+      "monthly": "Aylık",
+      "weekly": "Haftalık"
+    },
+    "recentOrders": {
+      "title": "Son Siparişler",
+      "all": "Tüm Siparişler"
+    },
+    "status": {
+      "pending": "Sipariş Alındı",
+      "paid": "Ödeme Alındı",
+      "preparing": "Hazırlanıyor",
+      "shipped": "Kargoya Verildi",
+      "delivered": "Teslim Edildi",
+      "cancelled": "İptal Edildi",
+      "refunded": "İade Edildi"
+    },
+    "productMgmt": {
+      "title": "Ürün Yönetimi",
+      "inStock": "Stokta",
+      "add": "Yeni Ürün Ekle"
+    },
+    "usersCard": {
+      "title": "Kullanıcılar",
+      "customer": "Müşteri"
+    },
+    "paymentSummary": {
+      "title": "Ödeme Özeti",
+      "total": "Toplam"
+    },
+    "payment": {
+      "card": "Kredi Kartı",
+      "bank_transfer": "Havale / EFT",
+      "cod": "Kapıda Ödeme",
+      "other": "Diğer"
+    },
+    "quick": {
+      "title": "Hızlı İşlemler",
+      "addProduct": "Yeni Ürün Ekle",
+      "addCampaign": "İndirim Kampanyası Oluştur",
+      "addCarrier": "Kargo Firması Ekle",
+      "publishPost": "Duyuru Yayınla"
+    },
+    "empty": {
+      "orders": "Henüz sipariş yok.",
+      "products": "Henüz ürün yok.",
+      "users": "Henüz kullanıcı yok.",
+      "payments": "Henüz ödeme verisi yok."
+    },
+    "products": {
+      "subtitle": "Ürünleri, fiyatları ve stokları yönetin.",
+      "count": "{count} ürün",
+      "totalStock": "toplam {count} adet stok",
+      "active": "Aktif",
+      "passive": "Pasif",
+      "edit": "Düzenle",
+      "addTitle": "Yeni Ürün Ekle",
+      "addCta": "Ürünü Ekle",
+      "col": {
+        "product": "Ürün",
+        "badge": "Etiket",
+        "price": "Fiyat",
+        "stock": "Stok",
+        "status": "Durum",
+        "actions": "İşlem"
+      },
+      "form": {
+        "name": "Ürün Adı",
+        "slug": "URL (slug)",
+        "size": "Hacim",
+        "stockNote": "Yeni miktarı girin; fark stok hareketi olarak işlenir.",
+        "badgeTr": "Etiket (TR)",
+        "badgeEn": "Etiket (EN)",
+        "initialStock": "Başlangıç Stoğu",
+        "category": "Kategori",
+        "medal": "Madalya",
+        "medalNone": "Yok",
+        "required": "Ad, slug, hacim ve fiyat zorunludur."
+      }
+    },
+    "orders": {
+      "subtitle": "Siparişleri görüntüleyin ve durumlarını güncelleyin.",
+      "detail": "Detay",
+      "filterAll": "Tümü",
+      "subtotal": "Ara Toplam",
+      "shipping": "Kargo",
+      "free": "Ücretsiz",
+      "discount": "İndirim",
+      "carrier": "Kargo Firması",
+      "trackingNo": "Takip No",
+      "col": {
+        "number": "Sipariş No",
+        "customer": "Müşteri",
+        "date": "Tarih",
+        "total": "Tutar",
+        "payment": "Ödeme",
+        "status": "Durum",
+        "actions": "İşlem"
+      }
+    },
+    "users": {
+      "subtitle": "Kayıtlı müşterileri görüntüleyin.",
+      "count": "{count} kayıtlı kullanıcı",
+      "search": "Ad veya e-posta ara…",
+      "col": {
+        "name": "Ad Soyad",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "joined": "Kayıt",
+        "kvkk": "KVKK Onayı",
+        "role": "Rol"
+      }
+    },
+    "messages": {
+      "title": "İletişim Kutusu",
+      "subtitle": "{count} yeni mesaj",
+      "filterAll": "Tümü",
+      "empty": "Henüz mesaj yok.",
+      "read": "Oku",
+      "noSubject": "(Konusuz)",
+      "markReplied": "Yanıtlandı İşaretle",
+      "replyEmail": "E-posta ile Yanıtla",
+      "status": {
+        "new": "Yeni",
+        "read": "Okundu",
+        "replied": "Yanıtlandı"
+      },
+      "col": {
+        "from": "Gönderen",
+        "subject": "Konu",
+        "date": "Tarih",
+        "status": "Durum",
+        "actions": "İşlem"
+      }
+    }
   }
 }

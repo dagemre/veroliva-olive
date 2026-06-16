@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
           "/odeme",
           "/siparis-onayi",
           "/hesap",
+          "/admin",
           "/en/cart",
           "/en/checkout",
           "/en/order-confirmation",

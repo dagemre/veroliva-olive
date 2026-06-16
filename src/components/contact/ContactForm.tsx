@@ -3,6 +3,22 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { submitForm } from "@/lib/forms";
+import { getSupabaseBrowser } from "@/lib/supabase-browser";
+
+// İletişim mesajını Supabase contact_messages'a yazar (public INSERT).
+// Admin panelindeki Mesajlar kutusu bu kayıtları okur.
+async function saveMessage(data: Record<string, string>): Promise<void> {
+  const supabase = getSupabaseBrowser();
+  if (!supabase) throw new Error("no-supabase");
+  const { error } = await supabase.from("contact_messages").insert({
+    name: data.name,
+    email: data.email,
+    phone: data.phone || null,
+    subject: data.subject || null,
+    message: data.message,
+  });
+  if (error) throw error;
+}
 
 /* Tasarım gereği alanlar placeholder ile gösteriliyor; erişilebilirlik için
    her alanın sr-only <label>'ı var (WCAG). */
@@ -35,15 +51,24 @@ export default function ContactForm() {
           new FormData(form).entries()
         ) as Record<string, string>;
         setStatus("sending");
+        // Hem panele (DB) hem e-postaya yaz; biri başarılıysa gönderildi say.
+        let ok = false;
+        try {
+          await saveMessage(data);
+          ok = true;
+        } catch {
+          /* RLS/erişim hatası — e-posta yine de denenecek */
+        }
         try {
           await submitForm({
             ...data,
             _subject: `Veroliva İletişim Formu — ${data.subject || ""}`,
           });
-          setStatus("done");
+          ok = true;
         } catch {
-          setStatus("error");
+          /* e-posta başarısız — DB kaydı varsa yine de yeterli */
         }
+        setStatus(ok ? "done" : "error");
       }}
       className="mt-6 space-y-4"
     >

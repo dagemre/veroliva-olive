@@ -818,5 +818,187 @@
       "stepShipped": "Shipped",
       "stepDelivered": "Delivered"
     }
+  },
+  "admin": {
+    "metaTitle": "Admin Panel · Veroliva",
+    "metaDescription": "Veroliva admin panel.",
+    "loading": "Loading…",
+    "role": "Administrator",
+    "signOut": "Sign Out",
+    "menu": "Menu",
+    "all": "View All",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving…",
+    "denied": {
+      "title": "Access Denied",
+      "text": "This page is only available to administrators.",
+      "cta": "Back to Home"
+    },
+    "soon": {
+      "title": "Coming soon",
+      "text": "We're working on this module. It'll be here very soon."
+    },
+    "nav": {
+      "overview": "Overview",
+      "products": "Products",
+      "orders": "Orders",
+      "users": "Users",
+      "payments": "Payments",
+      "campaigns": "Campaigns",
+      "shipping": "Shipping",
+      "content": "Content",
+      "reviews": "Reviews",
+      "reports": "Reports",
+      "settings": "Settings"
+    },
+    "overview": {
+      "welcome": "Welcome, {name}",
+      "subtitle": "Welcome to your admin panel."
+    },
+    "kpi": {
+      "orders": "Total Orders",
+      "sales": "Total Sales",
+      "avg": "Average Order",
+      "customers": "Active Customers",
+      "vsLast": "vs last month",
+      "new": "new"
+    },
+    "sales": {
+      "title": "Sales Overview",
+      "monthly": "Monthly",
+      "weekly": "Weekly"
+    },
+    "recentOrders": {
+      "title": "Recent Orders",
+      "all": "All Orders"
+    },
+    "status": {
+      "pending": "Order Received",
+      "paid": "Payment Received",
+      "preparing": "Preparing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "refunded": "Refunded"
+    },
+    "productMgmt": {
+      "title": "Product Management",
+      "inStock": "In stock",
+      "add": "Add New Product"
+    },
+    "usersCard": {
+      "title": "Users",
+      "customer": "Customer"
+    },
+    "paymentSummary": {
+      "title": "Payment Summary",
+      "total": "Total"
+    },
+    "payment": {
+      "card": "Credit Card",
+      "bank_transfer": "Bank Transfer",
+      "cod": "Cash on Delivery",
+      "other": "Other"
+    },
+    "quick": {
+      "title": "Quick Actions",
+      "addProduct": "Add New Product",
+      "addCampaign": "Create Discount Campaign",
+      "addCarrier": "Add Carrier",
+      "publishPost": "Publish Announcement"
+    },
+    "empty": {
+      "orders": "No orders yet.",
+      "products": "No products yet.",
+      "users": "No users yet.",
+      "payments": "No payment data yet."
+    },
+    "products": {
+      "subtitle": "Manage products, prices and stock.",
+      "count": "{count} products",
+      "totalStock": "{count} units in stock total",
+      "active": "Active",
+      "passive": "Inactive",
+      "edit": "Edit",
+      "addTitle": "Add New Product",
+      "addCta": "Add Product",
+      "col": {
+        "product": "Product",
+        "badge": "Badge",
+        "price": "Price",
+        "stock": "Stock",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "form": {
+        "name": "Product Name",
+        "slug": "URL (slug)",
+        "size": "Size",
+        "stockNote": "Enter the new amount; the difference is logged as a stock movement.",
+        "badgeTr": "Badge (TR)",
+        "badgeEn": "Badge (EN)",
+        "initialStock": "Initial Stock",
+        "category": "Category",
+        "medal": "Medal",
+        "medalNone": "None",
+        "required": "Name, slug, size and price are required."
+      }
+    },
+    "orders": {
+      "subtitle": "View orders and update their status.",
+      "detail": "Detail",
+      "filterAll": "All",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "free": "Free",
+      "discount": "Discount",
+      "carrier": "Carrier",
+      "trackingNo": "Tracking No",
+      "col": {
+        "number": "Order No",
+        "customer": "Customer",
+        "date": "Date",
+        "total": "Total",
+        "payment": "Payment",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    },
+    "users": {
+      "subtitle": "View registered customers.",
+      "count": "{count} registered users",
+      "search": "Search name or email…",
+      "col": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "joined": "Joined",
+        "kvkk": "Consent",
+        "role": "Role"
+      }
+    },
+    "messages": {
+      "title": "Inbox",
+      "subtitle": "{count} new messages",
+      "filterAll": "All",
+      "empty": "No messages yet.",
+      "read": "Read",
+      "noSubject": "(No subject)",
+      "markReplied": "Mark Replied",
+      "replyEmail": "Reply by Email",
+      "status": {
+        "new": "New",
+        "read": "Read",
+        "replied": "Replied"
+      },
+      "col": {
+        "from": "From",
+        "subject": "Subject",
+        "date": "Date",
+        "status": "Status",
+        "actions": "Actions"
+      }
+    }
   }
 }
