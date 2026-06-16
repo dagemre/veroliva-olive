@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useAdmin } from "./AdminShell";
 import AdminPageHeader from "./AdminPageHeader";
 import AdminModal from "./AdminModal";
+import ProductEditor from "./ProductEditor";
 import { getSupabaseBrowser } from "@/lib/supabase-browser";
 import { formatCount, formatTRY, productImage, type Locale } from "@/lib/admin";
 
@@ -47,7 +48,7 @@ export default function AdminProducts() {
   const { user } = useAdmin();
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
-  const [edit, setEdit] = useState<Row | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
 
   async function load() {
@@ -144,7 +145,7 @@ export default function AdminProducts() {
                 <td className="px-4 py-3 text-right">
                   <button
                     type="button"
-                    onClick={() => setEdit(r)}
+                    onClick={() => setEditId(r.id)}
                     className="text-[12px] font-medium text-olive hover:text-olive-deep"
                   >
                     {t("products.edit")}
@@ -156,13 +157,13 @@ export default function AdminProducts() {
         </table>
       </div>
 
-      {edit && (
-        <EditProduct
-          row={edit}
+      {editId && (
+        <ProductEditor
+          productId={editId}
           userId={user.id}
-          onClose={() => setEdit(null)}
+          onClose={() => setEditId(null)}
           onSaved={() => {
-            setEdit(null);
+            setEditId(null);
             load();
           }}
         />
@@ -179,98 +180,6 @@ export default function AdminProducts() {
         />
       )}
     </>
-  );
-}
-
-function EditProduct({
-  row,
-  userId,
-  onClose,
-  onSaved,
-}: {
-  row: Row;
-  userId: string;
-  onClose: () => void;
-  onSaved: () => void;
-}) {
-  const t = useTranslations("admin");
-  const [price, setPrice] = useState(String(row.price));
-  const [size, setSize] = useState(row.size);
-  const [badgeTr, setBadgeTr] = useState(row.badge_tr);
-  const [badgeEn, setBadgeEn] = useState(row.badge_en);
-  const [stock, setStock] = useState(String(row.stock_quantity));
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
-
-  async function save() {
-    const supabase = getSupabaseBrowser();
-    if (!supabase) return;
-    setBusy(true);
-    setErr(null);
-    const newStock = parseInt(stock, 10);
-    const { error: upErr } = await supabase
-      .from("products")
-      .update({ price: Number(price), size, badge_tr: badgeTr, badge_en: badgeEn })
-      .eq("id", row.id);
-    if (upErr) {
-      setErr(upErr.message);
-      setBusy(false);
-      return;
-    }
-    const delta = newStock - row.stock_quantity;
-    if (!Number.isNaN(newStock) && delta !== 0) {
-      const { error: mvErr } = await supabase.from("stock_movements").insert({
-        product_id: row.id,
-        change: delta,
-        reason: "adjustment",
-        created_by: userId,
-        note: "Admin paneli düzeltmesi",
-      });
-      if (mvErr) {
-        setErr(mvErr.message);
-        setBusy(false);
-        return;
-      }
-    }
-    setBusy(false);
-    onSaved();
-  }
-
-  return (
-    <AdminModal title={row.name} onClose={onClose}>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2">
-          <label className={labelCls}>{t("products.col.price")} (TL)</label>
-          <input className={inputCls} type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
-        </div>
-        <div>
-          <label className={labelCls}>{t("products.form.size")}</label>
-          <input className={inputCls} value={size} onChange={(e) => setSize(e.target.value)} />
-        </div>
-        <div>
-          <label className={labelCls}>{t("products.col.stock")}</label>
-          <input className={inputCls} type="number" value={stock} onChange={(e) => setStock(e.target.value)} />
-          <p className="mt-1 text-[11px] text-ink-soft">{t("products.form.stockNote")}</p>
-        </div>
-        <div>
-          <label className={labelCls}>{t("products.form.badgeTr")}</label>
-          <input className={inputCls} value={badgeTr} onChange={(e) => setBadgeTr(e.target.value)} />
-        </div>
-        <div>
-          <label className={labelCls}>{t("products.form.badgeEn")}</label>
-          <input className={inputCls} value={badgeEn} onChange={(e) => setBadgeEn(e.target.value)} />
-        </div>
-      </div>
-      {err && <p className="mt-3 text-[12px] text-[#a8503f]">{err}</p>}
-      <div className="mt-6 flex justify-end gap-3">
-        <button type="button" onClick={onClose} className="border border-line px-5 py-2.5 text-[12px] font-medium text-ink-soft hover:text-ink">
-          {t("cancel")}
-        </button>
-        <button type="button" onClick={save} disabled={busy} className="bg-olive px-5 py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-cream hover:bg-olive-deep disabled:opacity-60">
-          {busy ? t("saving") : t("save")}
-        </button>
-      </div>
-    </AdminModal>
   );
 }
 

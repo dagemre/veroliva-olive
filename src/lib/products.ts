@@ -168,6 +168,35 @@ export function normalizeDetails(raw: unknown): ProductDetails {
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
+/** ProductDetails → Supabase jsonb (snake_case _tr/_en). normalizeDetails'in tersi. */
+export function serializeDetails(d: ProductDetails): Record<string, unknown> {
+  return {
+    gallery: d.gallery,
+    highlights: d.highlights.map((h) => ({
+      icon: h.icon,
+      title_tr: h.title.tr, title_en: h.title.en,
+      sub_tr: h.sub.tr, sub_en: h.sub.en,
+    })),
+    about_specs: d.aboutSpecs.map((s) => ({
+      icon: s.icon,
+      label_tr: s.label.tr, label_en: s.label.en,
+      value_tr: s.value.tr, value_en: s.value.en,
+    })),
+    taste: {
+      fruity: d.taste.fruity, bitter: d.taste.bitter, pungent: d.taste.pungent,
+      notes_tr: d.taste.notes.tr, notes_en: d.taste.notes.en,
+    },
+    usage: {
+      text_tr: d.usage.text.tr, text_en: d.usage.text.en,
+      items: d.usage.items.map((u) => ({ icon: u.icon, label_tr: u.label.tr, label_en: u.label.en })),
+    },
+    nutrition: {
+      rows: d.nutrition.rows.map((r) => ({ label_tr: r.label.tr, label_en: r.label.en, value: r.value })),
+      footnote_tr: d.nutrition.footnote.tr, footnote_en: d.nutrition.footnote.en,
+    },
+  };
+}
+
 function clamp05(v: unknown, fallback: number): number {
   const n = Number(v);
   if (!Number.isFinite(n)) return fallback;
